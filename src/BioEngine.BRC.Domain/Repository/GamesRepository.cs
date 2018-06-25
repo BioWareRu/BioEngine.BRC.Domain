@@ -5,7 +5,8 @@ namespace BioEngine.BRC.Domain.Repository
 {
     public sealed class GamesRepository : SiteEntityRepository<Game, int>
     {
-        internal GamesRepository(BioRepositoryContext<Game, int> repositoryContext) : base(repositoryContext)
+        public GamesRepository(BioRepositoryContext<Game, int> repositoryContext, SitesRepository sitesRepository) :
+            base(repositoryContext, sitesRepository)
         {
         }
     }

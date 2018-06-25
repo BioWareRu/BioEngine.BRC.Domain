@@ -6,6 +6,7 @@ namespace BioEngine.BRC.Domain.Entities
     [TypedEntity(2)]
     public class Game : Section<GameData>
     {
+        public override string TypeTitle { get; set; } = "Игра";
     }
 
     public class GameData : TypedData

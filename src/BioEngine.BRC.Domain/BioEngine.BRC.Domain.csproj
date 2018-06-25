@@ -2,6 +2,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Migrations" />
+  </ItemGroup>
   <Choose>
     <When Condition="Exists('..\..\..\BioEngine.Core')">
       <ItemGroup>

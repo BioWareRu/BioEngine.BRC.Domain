@@ -5,7 +5,8 @@ namespace BioEngine.BRC.Domain.Repository
 {
     public class PostsRepository : SectionEntityRepository<Post, int>
     {
-        internal PostsRepository(BioRepositoryContext<Post, int> repositoryContext) : base(repositoryContext)
+        public PostsRepository(BioRepositoryContext<Post, int> repositoryContext, SitesRepository sitesRepository) :
+            base(repositoryContext, sitesRepository)
         {
         }
     }

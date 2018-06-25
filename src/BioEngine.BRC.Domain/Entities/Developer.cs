@@ -7,11 +7,12 @@ namespace BioEngine.BRC.Domain.Entities
     [TypedEntity(1)]
     public class Developer : Section<DeveloperData>
     {
+        public override string TypeTitle { get; set; } = "Разработчик";
     }
 
     public class DeveloperData : TypedData
     {
-        public Person[] Persons { get; set; }
+        public Person[] Persons { get; set; } = new Person[0];
     }
 
     public class Person

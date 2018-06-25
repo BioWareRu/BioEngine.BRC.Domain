@@ -5,7 +5,7 @@ namespace BioEngine.BRC.Domain.Repository
 {
     public class TopicsRepository:BioRepository<Topic,int>
     {
-        internal TopicsRepository(BioRepositoryContext<Topic, int> repositoryContext) : base(repositoryContext)
+        public TopicsRepository(BioRepositoryContext<Topic, int> repositoryContext) : base(repositoryContext)
         {
         }
     }
