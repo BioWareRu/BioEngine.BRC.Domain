@@ -6,11 +6,11 @@ namespace BioEngine.BRC.Domain.Entities
     [TypedEntity(1)]
     public class Post : ContentItem<PostData>
     {
+        public override string TypeTitle { get; set; } = "Пост";
     }
 
     public class PostData : TypedData
     {
-        public string MainText { get; set; }
-        public string ExtendedText { get; set; }
+        public string Text { get; set; }
     }
 }

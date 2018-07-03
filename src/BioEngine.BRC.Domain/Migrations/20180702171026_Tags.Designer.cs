@@ -3,15 +3,17 @@ using System;
 using BioEngine.Core.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Domain.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20180702171026_Tags")]
+    partial class Tags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,18 +61,6 @@ namespace BioEngine.BRC.Domain.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IsPublished");
-
-                    b.HasIndex("SectionIds");
-
-                    b.HasIndex("SiteIds");
-
-                    b.HasIndex("TagIds");
-
-                    b.HasIndex("Type");
-
-                    b.HasIndex("Url");
 
                     b.ToTable("Content");
 
@@ -123,12 +113,6 @@ namespace BioEngine.BRC.Domain.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IsPublished");
-
-                    b.HasIndex("SiteIds");
-
-                    b.HasIndex("Url");
 
                     b.ToTable("Sections");
 

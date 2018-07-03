@@ -6,6 +6,7 @@ namespace BioEngine.BRC.Domain.Entities
     [TypedEntity(2)]
     public class File : ContentItem<FileData>
     {
+        public override string TypeTitle { get; set; } = "Файл";
     }
 
     public class FileData : TypedData
