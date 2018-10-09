@@ -4,17 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Domain.Migrations
 {
-    public partial class Tags : Migration
+    public partial class AddMeta : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int[]>(
-                name: "TagIds",
-                table: "Content",
-                nullable: true);
-
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Meta",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -23,22 +18,21 @@ namespace BioEngine.BRC.Domain.Migrations
                     DateUpdated = table.Column<DateTimeOffset>(nullable: false),
                     IsPublished = table.Column<bool>(nullable: false),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    EntityType = table.Column<string>(nullable: false),
+                    EntityId = table.Column<string>(nullable: false),
+                    Key = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(type: "jsonb", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_Meta", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tags");
-
-            migrationBuilder.DropColumn(
-                name: "TagIds",
-                table: "Content");
+                name: "Meta");
         }
     }
 }

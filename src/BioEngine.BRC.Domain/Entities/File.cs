@@ -1,9 +1,11 @@
 ﻿using BioEngine.Core.Entities;
 using BioEngine.Core.Interfaces;
+using BioEngine.Core.Storage;
+using BioEngine.BRC.Domain.Core;
 
 namespace BioEngine.BRC.Domain.Entities
 {
-    [TypedEntity(2)]
+    [TypedEntity(BRCContentTypes.TypeFile)]
     public class File : ContentItem<FileData>
     {
         public override string TypeTitle { get; set; } = "Файл";
@@ -11,7 +13,7 @@ namespace BioEngine.BRC.Domain.Entities
 
     public class FileData : TypedData
     {
-        public int Size { get; set; }
-        public int DownloadsCount { get; set; }
+        public string Text { get; set; }
+        public StorageItem File { get; set; }
     }
 }

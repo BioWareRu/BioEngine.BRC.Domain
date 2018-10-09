@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace BioEngine.BRC.Domain.Validation
 {
-    public class PostValidator : ContentValidator<Post>
+    public class PostValidator : ContentValidator<Post, int>
     {
         public PostValidator()
         {

@@ -1,10 +1,11 @@
 ﻿using BioEngine.Core.Entities;
 using BioEngine.Core.Interfaces;
 using BioEngine.Core.Storage;
+using BioEngine.BRC.Domain.Core;
 
 namespace BioEngine.BRC.Domain.Entities
 {
-    [TypedEntity(3)]
+    [TypedEntity(BRCContentTypes.TypeGallery)]
     public class Gallery : ContentItem<GalleryData>
     {
         public override string TypeTitle { get; set; } = "Галерея";

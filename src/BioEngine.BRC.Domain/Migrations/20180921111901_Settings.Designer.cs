@@ -10,15 +10,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BioEngine.BRC.Domain.Migrations
 {
     [DbContext(typeof(BioContext))]
-    [Migration("20180702171158_Indexes")]
-    partial class Indexes
+    [Migration("20180921111901_Settings")]
+    partial class Settings
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("BioEngine.Core.Entities.ContentItem", b =>
@@ -28,8 +28,6 @@ namespace BioEngine.BRC.Domain.Migrations
 
                     b.Property<int>("AuthorId");
 
-                    b.Property<int>("CommentsCount");
-
                     b.Property<DateTimeOffset>("DateAdded");
 
                     b.Property<DateTimeOffset?>("DatePublished");
@@ -37,10 +35,6 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.Property<DateTimeOffset>("DateUpdated");
 
                     b.Property<string>("Description");
-
-                    b.Property<int?>("ForumPostId");
-
-                    b.Property<int?>("ForumTopicId");
 
                     b.Property<bool>("IsPinned");
 
@@ -79,7 +73,7 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.HasDiscriminator<int>("Type");
                 });
 
-            modelBuilder.Entity("BioEngine.Core.Entities.Section", b =>
+            modelBuilder.Entity("BioEngine.Core.Entities.Page", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -92,7 +86,38 @@ namespace BioEngine.BRC.Domain.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int?>("ForumId");
+                    b.Property<bool>("IsPublished");
+
+                    b.Property<string>("Keywords");
+
+                    b.Property<int[]>("SiteIds");
+
+                    b.Property<string>("Text")
+                        .IsRequired();
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.Property<string>("Url")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("BioEngine.Core.Entities.Section", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("DateAdded");
+
+                    b.Property<DateTimeOffset?>("DatePublished");
+
+                    b.Property<DateTimeOffset>("DateUpdated");
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Hashtag")
                         .IsRequired();
@@ -135,6 +160,35 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.ToTable("Sections");
 
                     b.HasDiscriminator<int>("Type");
+                });
+
+            modelBuilder.Entity("BioEngine.Core.Entities.SettingsRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<DateTimeOffset>("DateAdded");
+
+                    b.Property<DateTimeOffset?>("DatePublished");
+
+                    b.Property<DateTimeOffset>("DateUpdated");
+
+                    b.Property<string>("EntityId");
+
+                    b.Property<string>("EntityType");
+
+                    b.Property<bool>("IsPublished");
+
+                    b.Property<string>("Key")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("BioEngine.Core.Entities.Site", b =>

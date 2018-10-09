@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace BioEngine.BRC.Domain.Validation
 {
-    public class DeveloperValidator : SectionValidator<Developer>
+    public class DeveloperValidator : SectionValidator<Developer, int>
     {
         public DeveloperValidator() : base()
         {
