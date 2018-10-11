@@ -1,5 +1,4 @@
 ﻿using BioEngine.BRC.Domain.Entities;
-using BioEngine.Core.Providers;
 using BioEngine.Core.Repository;
 
 namespace BioEngine.BRC.Domain.Repository

@@ -15,16 +15,16 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Settings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
-                    IsPublished = table.Column<bool>(nullable: false),
+                    DateAdded = table.Column<DateTimeOffset>(),
+                    DateUpdated = table.Column<DateTimeOffset>(),
+                    IsPublished = table.Column<bool>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    Key = table.Column<string>(nullable: false),
+                    Key = table.Column<string>(),
                     EntityType = table.Column<string>(nullable: true),
                     EntityId = table.Column<string>(nullable: true),
-                    Data = table.Column<string>(type: "jsonb", nullable: false)
+                    Data = table.Column<string>(type: "jsonb")
                 },
                 constraints: table =>
                 {
@@ -41,16 +41,16 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Meta",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
+                    DateAdded = table.Column<DateTimeOffset>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
-                    EntityId = table.Column<string>(nullable: false),
-                    EntityType = table.Column<string>(nullable: false),
-                    IsPublished = table.Column<bool>(nullable: false),
-                    Key = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(type: "jsonb", nullable: false)
+                    DateUpdated = table.Column<DateTimeOffset>(),
+                    EntityId = table.Column<string>(),
+                    EntityType = table.Column<string>(),
+                    IsPublished = table.Column<bool>(),
+                    Key = table.Column<string>(),
+                    Value = table.Column<string>(type: "jsonb")
                 },
                 constraints: table =>
                 {

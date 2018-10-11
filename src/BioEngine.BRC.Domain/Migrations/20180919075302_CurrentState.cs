@@ -12,18 +12,18 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Content",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Type = table.Column<int>(nullable: false),
-                    AuthorId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Url = table.Column<string>(nullable: false),
+                    Type = table.Column<int>(),
+                    AuthorId = table.Column<int>(),
+                    Title = table.Column<string>(),
+                    Url = table.Column<string>(),
                     Description = table.Column<string>(nullable: true),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
+                    DateAdded = table.Column<DateTimeOffset>(),
+                    DateUpdated = table.Column<DateTimeOffset>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    IsPublished = table.Column<bool>(nullable: false),
-                    IsPinned = table.Column<bool>(nullable: false),
+                    IsPublished = table.Column<bool>(),
+                    IsPinned = table.Column<bool>(),
                     SectionIds = table.Column<int[]>(nullable: true),
                     SiteIds = table.Column<int[]>(nullable: true),
                     TagIds = table.Column<int[]>(nullable: true),
@@ -38,16 +38,16 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Pages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
-                    IsPublished = table.Column<bool>(nullable: false),
+                    DateAdded = table.Column<DateTimeOffset>(),
+                    DateUpdated = table.Column<DateTimeOffset>(),
+                    IsPublished = table.Column<bool>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
                     SiteIds = table.Column<int[]>(nullable: true),
-                    Title = table.Column<string>(nullable: false),
-                    Url = table.Column<string>(nullable: false),
-                    Text = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(),
+                    Url = table.Column<string>(),
+                    Text = table.Column<string>(),
                     Description = table.Column<string>(nullable: true),
                     Keywords = table.Column<string>(nullable: true)
                 },
@@ -60,22 +60,22 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Sections",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Type = table.Column<int>(nullable: false),
+                    Type = table.Column<int>(),
                     ParentId = table.Column<int>(nullable: true),
-                    Title = table.Column<string>(nullable: false),
-                    Url = table.Column<string>(nullable: false),
-                    Logo = table.Column<string>(type: "jsonb", nullable: false),
-                    LogoSmall = table.Column<string>(type: "jsonb", nullable: false),
+                    Title = table.Column<string>(),
+                    Url = table.Column<string>(),
+                    Logo = table.Column<string>(type: "jsonb"),
+                    LogoSmall = table.Column<string>(type: "jsonb"),
                     Description = table.Column<string>(nullable: true),
-                    ShortDescription = table.Column<string>(nullable: false),
+                    ShortDescription = table.Column<string>(),
                     Keywords = table.Column<string>(nullable: true),
-                    Hashtag = table.Column<string>(nullable: false),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
+                    Hashtag = table.Column<string>(),
+                    DateAdded = table.Column<DateTimeOffset>(),
+                    DateUpdated = table.Column<DateTimeOffset>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    IsPublished = table.Column<bool>(nullable: false),
+                    IsPublished = table.Column<bool>(),
                     SiteIds = table.Column<int[]>(nullable: true),
                     Data = table.Column<string>(type: "jsonb", nullable: true)
                 },
@@ -88,16 +88,16 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Sites",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
-                    IsPublished = table.Column<bool>(nullable: false),
+                    DateAdded = table.Column<DateTimeOffset>(),
+                    DateUpdated = table.Column<DateTimeOffset>(),
+                    IsPublished = table.Column<bool>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    Title = table.Column<string>(nullable: false),
-                    Url = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: false),
-                    Keywords = table.Column<string>(nullable: false)
+                    Title = table.Column<string>(),
+                    Url = table.Column<string>(),
+                    Description = table.Column<string>(),
+                    Keywords = table.Column<string>()
                 },
                 constraints: table =>
                 {
@@ -108,11 +108,11 @@ namespace BioEngine.BRC.Domain.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DateAdded = table.Column<DateTimeOffset>(nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(nullable: false),
-                    IsPublished = table.Column<bool>(nullable: false),
+                    DateAdded = table.Column<DateTimeOffset>(),
+                    DateUpdated = table.Column<DateTimeOffset>(),
+                    IsPublished = table.Column<bool>(),
                     DatePublished = table.Column<DateTimeOffset>(nullable: true),
                     Name = table.Column<string>(nullable: true)
                 },

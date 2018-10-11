@@ -2,6 +2,7 @@
 
 namespace BioEngine.BRC.Domain.Migrations
 {
+    // ReSharper disable once InconsistentNaming
     public partial class Add_SiteId_To_Settings : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

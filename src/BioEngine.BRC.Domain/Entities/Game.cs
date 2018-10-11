@@ -25,6 +25,7 @@ namespace BioEngine.BRC.Domain.Entities
         PSThree,
         PSFour,
         Android,
+        // ReSharper disable once InconsistentNaming
         iOS,
         MacOS,
         Linux
