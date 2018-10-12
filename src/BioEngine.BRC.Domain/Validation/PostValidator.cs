@@ -1,10 +1,11 @@
 ﻿using BioEngine.BRC.Domain.Entities;
-using BioEngine.Core.Validation;
 using FluentValidation;
+using JetBrains.Annotations;
 
 namespace BioEngine.BRC.Domain.Validation
 {
-    public class PostValidator : ContentValidator<Post, int>
+    [UsedImplicitly]
+    public class PostValidator : AbstractValidator<Post>
     {
         public PostValidator()
         {
