@@ -8,9 +8,6 @@ namespace BioEngine.BRC.Domain.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Meta");
-
             migrationBuilder.CreateTable(
                 name: "Settings",
                 columns: table => new
@@ -36,26 +33,6 @@ namespace BioEngine.BRC.Domain.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Settings");
-
-            migrationBuilder.CreateTable(
-                name: "Meta",
-                columns: table => new
-                {
-                    Id = table.Column<int>()
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DateAdded = table.Column<DateTimeOffset>(),
-                    DatePublished = table.Column<DateTimeOffset>(nullable: true),
-                    DateUpdated = table.Column<DateTimeOffset>(),
-                    EntityId = table.Column<string>(),
-                    EntityType = table.Column<string>(),
-                    IsPublished = table.Column<bool>(),
-                    Key = table.Column<string>(),
-                    Value = table.Column<string>(type: "jsonb")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Meta", x => x.Id);
-                });
         }
     }
 }

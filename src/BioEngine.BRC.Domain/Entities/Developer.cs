@@ -4,7 +4,6 @@ using BioEngine.Core.Interfaces;
 
 namespace BioEngine.BRC.Domain.Entities
 {
-    [TypedEntity(1)]
     public class Developer : Section<DeveloperData>
     {
         public override string TypeTitle { get; set; } = "Разработчик";
