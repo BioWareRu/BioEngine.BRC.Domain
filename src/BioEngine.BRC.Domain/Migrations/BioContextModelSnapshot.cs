@@ -16,12 +16,12 @@ namespace BioEngine.BRC.Domain.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("BioEngine.Core.Entities.Menu", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("DateAdded");
@@ -35,7 +35,7 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.Property<string>("Items")
                         .HasColumnType("jsonb");
 
-                    b.Property<int>("SiteId");
+                    b.Property<Guid>("SiteId");
 
                     b.Property<string>("Title");
 
@@ -46,7 +46,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.Page", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("DateAdded");
@@ -57,7 +57,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
                     b.Property<bool>("IsPublished");
 
-                    b.Property<int[]>("SiteIds");
+                    b.Property<Guid[]>("SiteIds");
 
                     b.Property<string>("Text")
                         .IsRequired();
@@ -75,7 +75,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.Post", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AuthorId");
@@ -90,11 +90,11 @@ namespace BioEngine.BRC.Domain.Migrations
 
                     b.Property<bool>("IsPublished");
 
-                    b.Property<int[]>("SectionIds");
+                    b.Property<Guid[]>("SectionIds");
 
-                    b.Property<int[]>("SiteIds");
+                    b.Property<Guid[]>("SiteIds");
 
-                    b.Property<int[]>("TagIds");
+                    b.Property<Guid[]>("TagIds");
 
                     b.Property<string>("Title")
                         .IsRequired();
@@ -119,11 +119,12 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.PostBlock", b =>
                 {
-                    b.Property<Guid>("Id");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("PostId");
+                    b.Property<Guid>("PostId");
 
                     b.Property<string>("Type")
                         .IsRequired();
@@ -139,7 +140,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.PropertiesRecord", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Data")
@@ -152,7 +153,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
                     b.Property<DateTimeOffset>("DateUpdated");
 
-                    b.Property<string>("EntityId");
+                    b.Property<Guid>("EntityId");
 
                     b.Property<string>("EntityType");
 
@@ -161,7 +162,7 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.Property<string>("Key")
                         .IsRequired();
 
-                    b.Property<int?>("SiteId");
+                    b.Property<Guid?>("SiteId");
 
                     b.HasKey("Id");
 
@@ -170,7 +171,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.Section", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("DateAdded");
@@ -192,12 +193,12 @@ namespace BioEngine.BRC.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("jsonb");
 
-                    b.Property<int?>("ParentId");
+                    b.Property<Guid?>("ParentId");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired();
 
-                    b.Property<int[]>("SiteIds");
+                    b.Property<Guid[]>("SiteIds");
 
                     b.Property<string>("Title")
                         .IsRequired();
@@ -225,7 +226,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.Site", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("DateAdded");
@@ -249,7 +250,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.StorageItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("DateAdded");
@@ -280,7 +281,7 @@ namespace BioEngine.BRC.Domain.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("DateAdded");
