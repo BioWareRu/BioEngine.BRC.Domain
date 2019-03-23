@@ -3,15 +3,17 @@ using System;
 using BioEngine.Core.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Domain.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20190323081838_rename_blocks_use_them_in_pages")]
+    partial class rename_blocks_use_them_in_pages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -453,19 +455,6 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.ToTable("Sections");
 
                     b.HasDiscriminator().HasValue("BioEngine.BRC.Domain.Entities.Topic");
-                });
-
-            modelBuilder.Entity("BioEngine.Core.Entities.ContentBlock", b =>
-                {
-                    b.HasOne("BioEngine.Core.Entities.Page", "Page")
-                        .WithMany("Blocks")
-                        .HasForeignKey("ContentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BioEngine.Core.Entities.Post", "Post")
-                        .WithMany("Blocks")
-                        .HasForeignKey("ContentId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
