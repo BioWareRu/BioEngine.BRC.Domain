@@ -1,5 +1,4 @@
 ﻿using BioEngine.Core.Entities;
-using BioEngine.Core.Interfaces;
 
 namespace BioEngine.BRC.Domain.Entities
 {
