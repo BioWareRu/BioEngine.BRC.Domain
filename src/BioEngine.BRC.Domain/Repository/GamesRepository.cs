@@ -3,7 +3,7 @@ using BioEngine.Core.Repository;
 
 namespace BioEngine.BRC.Domain.Repository
 {
-    public sealed class GamesRepository : SiteEntityRepository<Game>
+    public sealed class GamesRepository : SectionRepository<Game>
     {
         public GamesRepository(BioRepositoryContext<Game> repositoryContext) : base(repositoryContext)
         {

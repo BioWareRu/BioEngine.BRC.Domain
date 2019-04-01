@@ -3,7 +3,7 @@ using BioEngine.Core.Repository;
 
 namespace BioEngine.BRC.Domain.Repository
 {
-    public class TopicsRepository : SiteEntityRepository<Topic>
+    public class TopicsRepository : SectionRepository<Topic>
     {
         public TopicsRepository(BioRepositoryContext<Topic> repositoryContext) : base(repositoryContext)
         {
