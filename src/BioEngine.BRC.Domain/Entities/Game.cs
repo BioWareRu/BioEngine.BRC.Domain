@@ -1,7 +1,9 @@
-﻿using BioEngine.Core.Entities;
+﻿using BioEngine.Core.DB;
+using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities
 {
+    [TypedEntity("game")]
     public class Game : Section<GameData>
     {
         public override string TypeTitle { get; set; } = "Игра";

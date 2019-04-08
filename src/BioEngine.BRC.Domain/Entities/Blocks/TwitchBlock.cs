@@ -1,7 +1,9 @@
+using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities.Blocks
 {
+    [TypedEntity("twitch")]
     public class TwitchBlock : ContentBlock<TwitchBlockData>
     {
         public override string TypeTitle { get; set; } = "Twitch";

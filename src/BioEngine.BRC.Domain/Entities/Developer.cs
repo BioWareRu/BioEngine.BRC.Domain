@@ -1,8 +1,10 @@
 ﻿using System;
+using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities
 {
+    [TypedEntity("developer")]
     public class Developer : Section<DeveloperData>
     {
         public override string TypeTitle { get; set; } = "Разработчик";
