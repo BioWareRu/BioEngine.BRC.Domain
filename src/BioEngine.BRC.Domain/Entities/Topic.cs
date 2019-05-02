@@ -9,7 +9,7 @@ namespace BioEngine.BRC.Domain.Entities
         public override string TypeTitle { get; set; } = "Тема";
     }
 
-    public class TopicData : TypedData
+    public class TopicData : ITypedData
     {
     }
 }

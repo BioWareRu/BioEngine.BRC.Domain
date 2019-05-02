@@ -10,7 +10,7 @@ namespace BioEngine.BRC.Domain.Entities
         public override string TypeTitle { get; set; } = "Разработчик";
     }
 
-    public class DeveloperData : TypedData
+    public class DeveloperData : ITypedData
     {
         public Person[] Persons { get; set; } = new Person[0];
     }

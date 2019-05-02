@@ -9,7 +9,7 @@ namespace BioEngine.BRC.Domain.Entities
         public override string TypeTitle { get; set; } = "Игра";
     }
 
-    public class GameData : TypedData
+    public class GameData : ITypedData
     {
         public Platform[] Platforms { get; set; }
     }
