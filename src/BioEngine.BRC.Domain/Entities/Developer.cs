@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
 
@@ -8,6 +9,7 @@ namespace BioEngine.BRC.Domain.Entities
     public class Developer : Section<DeveloperData>
     {
         public override string TypeTitle { get; set; } = "Разработчик";
+        [NotMapped] public override string PublicUrl => $"/developer/{Url}.html";
     }
 
     public class DeveloperData : ITypedData
