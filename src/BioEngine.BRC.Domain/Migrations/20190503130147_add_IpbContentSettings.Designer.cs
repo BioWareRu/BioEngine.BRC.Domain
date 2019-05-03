@@ -3,21 +3,51 @@ using System;
 using BioEngine.Core.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Domain.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20190503130147_add_IpbContentSettings")]
+    partial class add_IpbContentSettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("BioEngine.Core.Comments.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AuthorId");
+
+                    b.Property<Guid>("ContentId");
+
+                    b.Property<DateTimeOffset>("DateAdded");
+
+                    b.Property<DateTimeOffset?>("DatePublished");
+
+                    b.Property<DateTimeOffset>("DateUpdated");
+
+                    b.Property<bool>("IsPublished");
+
+                    b.Property<Guid[]>("SiteIds")
+                        .IsRequired();
+
+                    b.Property<string>("Type")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comments");
+                });
 
             modelBuilder.Entity("BioEngine.Core.Entities.ContentBlock", b =>
                 {
@@ -327,36 +357,6 @@ namespace BioEngine.BRC.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("BioEngine.Extra.IPB.Comments.IPBComment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AuthorId");
-
-                    b.Property<Guid>("ContentId");
-
-                    b.Property<DateTimeOffset>("DateAdded");
-
-                    b.Property<DateTimeOffset?>("DatePublished");
-
-                    b.Property<DateTimeOffset>("DateUpdated");
-
-                    b.Property<bool>("IsPublished");
-
-                    b.Property<int>("PostId");
-
-                    b.Property<Guid[]>("SiteIds")
-                        .IsRequired();
-
-                    b.Property<string>("Type")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IPBComment");
                 });
 
             modelBuilder.Entity("BioEngine.Extra.IPB.Entities.IPBContentSettings", b =>
