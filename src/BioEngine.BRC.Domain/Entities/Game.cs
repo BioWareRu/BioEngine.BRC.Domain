@@ -8,7 +8,8 @@ namespace BioEngine.BRC.Domain.Entities
     public class Game : Section<GameData>
     {
         public override string TypeTitle { get; set; } = "Игра";
-        [NotMapped] public override string PublicUrl => $"/game/{Url}.html";
+        [NotMapped] public override string PublicUrl => $"/games/{Url}/about.html";
+        [NotMapped] public override string PostsUrl => $"/games/{Url}/posts.html";
     }
 
     public class GameData : ITypedData

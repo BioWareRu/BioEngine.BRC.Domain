@@ -9,7 +9,8 @@ namespace BioEngine.BRC.Domain.Entities
     public class Developer : Section<DeveloperData>
     {
         public override string TypeTitle { get; set; } = "Разработчик";
-        [NotMapped] public override string PublicUrl => $"/developer/{Url}.html";
+        [NotMapped] public override string PublicUrl => $"/developers/{Url}/about.html";
+        [NotMapped] public override string PostsUrl => $"/developers/{Url}/posts.html";
     }
 
     public class DeveloperData : ITypedData
