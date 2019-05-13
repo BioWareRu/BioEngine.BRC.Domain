@@ -17,4 +17,7 @@
     <PackageReference Include="BioEngine.Core.Search" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Api" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Core.Api')" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api" />
+  </ItemGroup>
 </Project>
