@@ -24,6 +24,12 @@ namespace BioEngine.BRC.Domain
                     configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"]));
         }
 
+        public static Core.BioEngine AddBrcCommon(this Core.BioEngine bioEngine)
+        {
+            return bioEngine.AddModule<BrcDomainModule, BrcDomainModuleConfig>((configuration, env) =>
+                new BrcDomainModuleConfig(configuration["BE_PATREON_SERVICE_URL"]));
+        }
+
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)
         {
             return bioEngine.AddModule<S3StorageModule, S3StorageModuleConfig>((configuration, env) =>
