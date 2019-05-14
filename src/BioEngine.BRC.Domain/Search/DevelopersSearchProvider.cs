@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+ using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Entities;
 using BioEngine.BRC.Domain.Repository;
@@ -21,10 +20,10 @@ namespace BioEngine.BRC.Domain.Search
             _developersRepository = developersRepository;
         }
 
-        protected override async Task<IEnumerable<Developer>> GetEntitiesAsync(IEnumerable<SearchModel> searchModels)
+        protected override Task<Developer[]> GetEntitiesAsync(SearchModel[] searchModels)
         {
             var ids = searchModels.Select(s => s.Id).Distinct().ToArray();
-            return await _developersRepository.GetByIdsAsync(ids);
+            return _developersRepository.GetByIdsAsync(ids);
         }
     }
 }
