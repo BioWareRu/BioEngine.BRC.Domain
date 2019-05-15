@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <IsPackable>true</IsPackable>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="BioEngine.Core.Site" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Core.Site')" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0-preview5-19227-01" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BioEngine.BRC.Common\BioEngine.BRC.Common.csproj" />
+    <ProjectReference Include="..\..\..\BioEngine.Core.Site\src\BioEngine.Core.Site\BioEngine.Core.Site.csproj" Condition="Exists('..\..\..\BioEngine.Core.Site')" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Shared\Assets" />
+  </ItemGroup>
+</Project>
