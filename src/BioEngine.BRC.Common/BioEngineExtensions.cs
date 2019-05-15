@@ -4,6 +4,7 @@ using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace BioEngine.BRC.Common
@@ -16,7 +17,10 @@ namespace BioEngine.BRC.Common
                 (configuration, env) => new PostgresDatabaseModuleConfig(configuration["BE_POSTGRES_HOST"],
                     configuration["BE_POSTGRES_USERNAME"], configuration["BE_POSTGRES_DATABASE"],
                     configuration["BE_POSTGRES_PASSWORD"], int.Parse(configuration["BE_POSTGRES_PORT"]),
-                    env.IsDevelopment(), typeof(MigrationsManager).Assembly));
+                    env.IsDevelopment(), typeof(MigrationsManager).Assembly)).ConfigureServices(collection =>
+            {
+                collection.AddHealthChecks().AddDbContextCheck<BioContext>();
+            });
         }
 
         public static Core.BioEngine AddElasticSearch(this Core.BioEngine bioEngine)
