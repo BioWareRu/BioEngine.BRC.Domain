@@ -69,7 +69,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand waves-effect" href="/">
-                BioWare Russian Community
+                @Model.Site.Title
             </a>
 
             <!-- Collapse -->
@@ -85,34 +85,7 @@
                 <vc:menu></vc:menu>
 
                 <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/biowareru" class="nav-link waves-effect" target="_blank">
-                            <i class="fab fa-facebook-f mr-3"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://twitter.com/biowareru" class="nav-link waves-effect" target="_blank">
-                            <i class="fab fa-twitter mr-3"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.youtube.com/c/rubioware" class="nav-link waves-effect" target="_blank">
-                            <i class="fab fa-youtube mr-3"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.twitch.tv/brcstream" class="nav-link waves-effect" target="_blank">
-                            <i class="fab fa-twitch mr-3"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://discord.gg/NEEk48k" class="nav-link waves-effect" target="_blank">
-                            <i class="fab fa-discord mr-3"></i>
-                        </a>
-                    </li>
-                </ul>
-
+                @await Html.PartialAsync("_headerRight")
             </div>
 
         </div>
@@ -183,7 +156,7 @@
 
     <!--Call to action-->
     <div class="pt-4">
-        <p>При любом публичном использовании материалов сайта ссылка на <a href="https://www.bioware.ru">www.bioware.ru</a> обязательна. Полное копирование допускается не иначе как с письменного разрешения администрации.</p>
+        <p>При любом публичном использовании материалов сайта ссылка на <a href="@Model.Site.Url">@Model.Site.Title</a> обязательна. Полное копирование допускается не иначе как с письменного разрешения администрации.</p>
     </div>
     <!--/.Call to action-->
 
@@ -191,35 +164,13 @@
 
     <!-- Social icons -->
     <div class="pb-4">
-        <a href="https://www.facebook.com/biowareru" target="_blank">
-            <i class="fab fa-facebook-f mr-3"></i>
-        </a>
-
-        <a href="https://twitter.com/biowareru" target="_blank">
-            <i class="fab fa-twitter mr-3"></i>
-        </a>
-
-        <a href="https://www.youtube.com/c/rubioware" target="_blank">
-            <i class="fab fa-youtube mr-3"></i>
-        </a>
-
-        <a href="https://www.twitch.tv/brcstream" target="_blank">
-            <i class="fab fa-twitch mr-3"></i>
-        </a>
-        <a href="https://discord.gg/NEEk48k" target="_blank">
-            <i class="fab fa-discord mr-3"></i>
-        </a>
-
-        <a href="https://github.com/biowareru" target="_blank">
-            <i class="fab fa-github mr-3"></i>
-        </a>
-
+        @await Html.PartialAsync("_footerSocials")
     </div>
     <!-- Social icons -->
 
     <!--Copyright-->
     <div class="footer-copyright py-3">
-        © 2005-@DateTime.Now.Year <a href="https://www.bioware.ru" target="_blank"> www.BioWare.ru </a>
+        © 2005-@DateTime.Now.Year <a href="@Model.Site.Url" target="_blank"> @Model.Site.Title </a>
     </div>
     <!--/.Copyright-->
 
