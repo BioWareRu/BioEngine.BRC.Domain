@@ -31,11 +31,6 @@ namespace BioEngine.BRC.Common
             return bioEngine.AddModule<BrcDomainModule>();
         }
 
-        public static Core.BioEngine AddBrcApiDomain(this Core.BioEngine bioEngine)
-        {
-            return bioEngine.AddModule<BrcDomainApiModule>();
-        }
-
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)
         {
             return bioEngine.AddModule<S3StorageModule, S3StorageModuleConfig>((configuration, env) =>
