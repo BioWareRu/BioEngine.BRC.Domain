@@ -30,7 +30,7 @@
             </h2>
         </header>
         <div class="sections">
-            @Html.Raw(string.Join(", ", Model.Entity.Sections.Select(section => $"<a href=\"{section.PublicUrl}\">{section.Title}</a>")))
+            @Html.Raw(string.Join(", ", Model.Entity.Sections.Where(s => s.SiteIds.Contains(Model.Site.Id)).Select(section => $"<a href=\"{section.PublicUrl}\">{section.Title}</a>")))
         </div>
         @{
             await Html.RenderPartialAsync("Blocks/Blocks", Model.ContentEntityViewModel());
