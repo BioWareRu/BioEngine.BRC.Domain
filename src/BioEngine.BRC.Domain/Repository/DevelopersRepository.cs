@@ -5,8 +5,7 @@ namespace BioEngine.BRC.Domain.Repository
 {
     public class DevelopersRepository : SectionRepository<Developer>
     {
-        public DevelopersRepository(BioRepositoryContext<Developer> repositoryContext,
-            IMainSiteSelectionPolicy mainSiteSelectionPolicy) : base(repositoryContext, mainSiteSelectionPolicy)
+        public DevelopersRepository(BioRepositoryContext<Developer> repositoryContext) : base(repositoryContext)
         {
         }
     }
