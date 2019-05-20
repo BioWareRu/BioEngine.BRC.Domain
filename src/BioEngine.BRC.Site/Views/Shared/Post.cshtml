@@ -44,7 +44,7 @@
                     Тэги:
                     @foreach (var tag in Model.Entity.Tags)
                     {
-                        @Html.ActionLink(tag.Title, "ListByTagAsync", "Posts", new {tagName = tag.Title})
+                        @Html.ActionLink(tag.Title, "ListByTag", "Posts", new {tagName = tag.Title})
                         if (tag != Model.Entity.Tags.Last())
                         {
                             <span>, </span>
