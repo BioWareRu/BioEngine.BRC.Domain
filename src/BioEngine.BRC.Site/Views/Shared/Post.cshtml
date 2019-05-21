@@ -42,6 +42,7 @@
             <div class="row tags">
                 <div class="col-12">
                     Тэги:
+                    @* ReSharper disable once Mvc.ActionNotResolved *@
                     @foreach (var tag in Model.Entity.Tags)
                     {
                         @Html.ActionLink(tag.Title, "ListByTag", "Posts", new {tagName = tag.Title})
