@@ -14,7 +14,7 @@
     <PackageReference Include="BioEngine.Extra.Facebook" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Extra.Facebook')" />
     <PackageReference Include="BioEngine.Extra.Ads" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Extra.Ads')" />
     <PackageReference Include="BioEngine.Core.Logging.Loki" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Core.Infra')" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview5-19227-01" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BioEngine.BRC.Domain\BioEngine.BRC.Domain.csproj" />
