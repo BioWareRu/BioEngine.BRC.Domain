@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Entities;
+using BioEngine.Core.Abstractions;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
 using BioEngine.Core.Posts.Entities;

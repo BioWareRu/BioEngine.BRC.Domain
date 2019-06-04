@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using BioEngine.BRC.Domain;
 using BioEngine.BRC.Domain.Entities;
 using BioEngine.BRC.Domain.Repository;
-using BioEngine.Core.DB;
 using BioEngine.Core.Repository;
 using BioEngine.Core.Site;
 using BioEngine.Core.Web;
@@ -14,7 +13,7 @@ namespace BioEngine.BRC.Site.Controllers
     public class DevelopersController : SectionController<Developer, DevelopersRepository>
     {
         public DevelopersController(
-            BaseControllerContext<Developer, ContentEntityQueryContext<Developer>, DevelopersRepository> context,
+            BaseControllerContext<Developer, DevelopersRepository> context,
             ContentItemsRepository contentItemsRepository) : base(context, contentItemsRepository)
         {
         }

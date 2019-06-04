@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using BioEngine.Core.DB;
 using BioEngine.Core.Pages.Db;
 using BioEngine.Core.Pages.Entities;
 using BioEngine.Core.Routing;
@@ -11,7 +10,7 @@ namespace BioEngine.BRC.Site.Controllers
 {
     public class PagesController : SiteController<Page, PagesRepository>
     {
-        public PagesController(BaseControllerContext<Page, ContentEntityQueryContext<Page>, PagesRepository> context) :
+        public PagesController(BaseControllerContext<Page, PagesRepository> context) :
             base(context)
         {
         }

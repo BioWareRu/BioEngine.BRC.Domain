@@ -1,3 +1,4 @@
+using BioEngine.Core.Abstractions;
 using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities

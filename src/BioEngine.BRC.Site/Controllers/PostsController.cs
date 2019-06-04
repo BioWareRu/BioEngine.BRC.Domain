@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using BioEngine.Core.Comments;
-using BioEngine.Core.DB;
 using BioEngine.Core.Posts.Db;
 using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Posts.Site;
@@ -14,7 +13,7 @@ namespace BioEngine.BRC.Site.Controllers
     [Route("/")]
     public class PostsController : BasePostsController
     {
-        public PostsController(BaseControllerContext<Post, ContentEntityQueryContext<Post>, PostsRepository> context,
+        public PostsController(BaseControllerContext<Post, PostsRepository> context,
             TagsRepository tagsRepository, ICommentsProvider commentsProvider) : base(context, tagsRepository,
             commentsProvider)
         {
