@@ -16,7 +16,7 @@ namespace BioEngine.BRC.Site.Controllers
         {
         }
 
-        [HttpGet(BioEngineCoreRoutes.PagePublic)]
+        [HttpGet(BioEngineCoreRoutes.Page)]
         public override Task<IActionResult> ShowAsync(string url)
         {
             return base.ShowAsync(url);

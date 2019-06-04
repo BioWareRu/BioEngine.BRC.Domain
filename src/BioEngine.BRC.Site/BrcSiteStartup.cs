@@ -60,8 +60,8 @@ namespace BioEngine.BRC.Site
         public override void RegisterEndpoints(IEndpointRouteBuilder endpoints)
         {
             base.RegisterEndpoints(endpoints);
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostPublic, "/posts/{url:string}.html");
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.PagePublic, "/pages/{url:string}.html");
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.Post, "/posts/{url:string}.html");
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.Page, "/pages/{url:string}.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.GamePublic, "/games/{gameUrl:string}/about.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.GamePosts, "/games/{gameUrl:string}/posts.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.DeveloperPublic, "/developers/{gameUrl:string}/about.html");
