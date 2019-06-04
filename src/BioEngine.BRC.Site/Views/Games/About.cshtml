@@ -1,14 +1,18 @@
+@using BioEngine.BRC.Domain
 @using BioEngine.BRC.Site.ViewModels
+@using BioEngine.Core.Routing
+@using Microsoft.AspNetCore.Routing
 @model BioEngine.Core.Site.Model.EntityViewModel<BioEngine.BRC.Domain.Entities.Game>
+@inject LinkGenerator LinkGenerator
 @{
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
-    <img class="card-img-top" src="@Model.Entity.Logo.PublicUri" alt="@Model.Entity.Title"/>
+    <img class="card-img-top" src="@Model.Entity.Data.Logo.PublicUri" alt="@Model.Entity.Title"/>
     <section class="card-body">
         <header>
             <h1 class="card-title">
-                <img class="img-fluid" src="@Model.Entity.LogoSmall.PublicUri" alt="@Model.Entity.Title"/> @Model.Entity.Title
+                <img class="img-fluid" src="@Model.Entity.Data.LogoSmall.PublicUri" alt="@Model.Entity.Title"/> @Model.Entity.Title
             </h1>
         </header>
     </section>
@@ -16,10 +20,10 @@
 <section class="navbar navbar-dark p-2 mb-4">
     <ul class="nav nav-pills darken-2">
         <li class="nav-item">
-            <a class="nav-link active" href="@Model.Entity.PublicUrl">Об игре</a>
+            <a class="nav-link active" href="@LinkGenerator.GeneratePublicUrl(Model.Entity)">Об игре</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="@Model.Entity.PostsUrl">Публикации</a>
+            <a class="nav-link" href="@LinkGenerator.GenerateUrl(BrcDomainRoutes.GamePosts, new {url = Model.Entity.Url})">Публикации</a>
         </li>
     </ul>
 </section>
@@ -35,10 +39,7 @@
 
             </div>
             <div class="col-5" style="text-align: right">
-                @{
-                    var fullUrl = Model.Site.Url + Model.Entity.PublicUrl;
-                }
-                @await Html.PartialAsync("Share", new ShareViewModel(Model.Entity.Title, fullUrl))
+                @await Html.PartialAsync("Share", new ShareViewModel(Model.Entity.Title, LinkGenerator.GeneratePublicUrl(Model.Entity, Model.Site)))
             </div>
         </div>
     </footer>

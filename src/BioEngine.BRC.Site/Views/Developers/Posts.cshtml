@@ -1,13 +1,17 @@
-@model BioEngine.Core.Site.Model.ListViewModel<BioEngine.Core.Entities.Post>
+@using BioEngine.BRC.Domain
+@using BioEngine.Core.Routing
+@using Microsoft.AspNetCore.Routing
+@model BioEngine.BRC.Site.ViewModels.PostsListModel
+@inject LinkGenerator LinkGenerator
 @{
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
-    <img class="card-img-top" src="@Model.Section.Logo.PublicUri" alt="@Model.Section.Title"/>
+    <img class="card-img-top" src="@Model.Logo.PublicUri" alt="@Model.Section.Title"/>
     <section class="card-body">
         <header>
             <h1 class="card-title">
-                <img class="img-fluid" src="@Model.Section.LogoSmall.PublicUri" alt="@Model.Section.Title"/> @Model.Section.Title
+                <img class="img-fluid" src="@Model.LogoSmall.PublicUri" alt="@Model.Section.Title"/> @Model.Section.Title
             </h1>
         </header>
     </section>
@@ -16,10 +20,10 @@
 <section class="navbar navbar-dark p-2 mb-4">
     <ul class="nav nav-pills darken-2">
         <li class="nav-item">
-            <a class="nav-link" href="@Model.Section.PublicUrl">О компании</a>
+            <a class="nav-link" href="@LinkGenerator.GeneratePublicUrl(Model.Section)">О компании</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="@Model.Section.PostsUrl">Публикации</a>
+            <a class="nav-link active" href="@LinkGenerator.GenerateUrl(BrcDomainRoutes.DeveloperPosts, new {url = Model.Section.Url})">Публикации</a>
         </li>
     </ul>
 </section>

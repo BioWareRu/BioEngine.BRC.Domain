@@ -1,6 +1,8 @@
+@using BioEngine.Core.Routing
+@using Microsoft.AspNetCore.Routing
 @model BioEngine.Core.Web.Models.BlockViewModel<BioEngine.Core.Entities.Blocks.CutBlock, BioEngine.Core.Entities.Blocks.CutBlockData>
-
-<a href="@Model.ContentEntity.PublicUrl" class="btn btn-primary btn-md waves-effect waves-light">
+@inject LinkGenerator LinkGenerator
+<a href="@LinkGenerator.GeneratePublicUrl(Model.ContentEntity)" class="btn btn-primary btn-md waves-effect waves-light">
     @{
         if (string.IsNullOrEmpty(Model.Block.Data.ButtonText))
         {

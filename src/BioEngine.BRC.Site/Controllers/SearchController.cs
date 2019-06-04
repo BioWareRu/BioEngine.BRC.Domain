@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Entities;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
+using BioEngine.Core.Posts.Entities;
+using BioEngine.Core.Routing;
 using BioEngine.Core.Search;
 using BioEngine.Core.Site.Controllers;
+using BioEngine.Core.Site.Model;
 using BioEngine.Core.Web;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers
 {
+    [Route("/search")]
     public class SearchController : BaseSearchController
     {
         public SearchController(BaseControllerContext context, IEnumerable<ISearchProvider> searchProviders) : base(
@@ -31,7 +35,8 @@ namespace BioEngine.BRC.Site.Controllers
                 var limit = hasBlock ? 0 : 5;
                 if (!hasBlock || block == "games")
                 {
-                    var searchBlock = await BuildBlockAsync<Game>(query, limit, "Игры", "games");
+                    var searchBlock =
+                        await BuildBlockAsync<Game>(query, limit, "Игры", "games");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
@@ -49,7 +54,8 @@ namespace BioEngine.BRC.Site.Controllers
 
                 if (!hasBlock || block == "topics")
                 {
-                    var searchBlock = await BuildBlockAsync<Topic>(query, limit, "Темы", "topics");
+                    var searchBlock =
+                        await BuildBlockAsync<Topic>(query, limit, "Темы", "topics");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
@@ -81,7 +87,7 @@ namespace BioEngine.BRC.Site.Controllers
                     new Uri(Url.Action("Index", "Search", new {query, block = blockKey}), UriKind.Relative),
                     entitiesCount,
                     entities, x => x.Title,
-                    x => new Uri(x.PublicUrl, UriKind.Relative),
+                    x => LinkGenerator.GeneratePublicUrl(x),
                     x => GetDescriptionFromHtml((x.Blocks.FirstOrDefault(b => b is TextBlock) as TextBlock)
                         ?.Data
                         .Text), x => x.DateUpdated);

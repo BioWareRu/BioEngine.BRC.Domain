@@ -1,10 +1,13 @@
 using System.Globalization;
+using BioEngine.BRC.Domain;
 using BioEngine.Core.Logging.Controllers;
+using BioEngine.Core.Routing;
 using BioEngine.Core.Site;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,6 +55,22 @@ namespace BioEngine.BRC.Site
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
+        }
+
+        public override void RegisterEndpoints(IEndpointRouteBuilder endpoints)
+        {
+            base.RegisterEndpoints(endpoints);
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostPublic, "/posts/{url:string}.html");
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.PagePublic, "/pages/{url:string}.html");
+            endpoints.MapControllerRoute(BrcDomainRoutes.GamePublic, "/games/{gameUrl:string}/about.html");
+            endpoints.MapControllerRoute(BrcDomainRoutes.GamePosts, "/games/{gameUrl:string}/posts.html");
+            endpoints.MapControllerRoute(BrcDomainRoutes.DeveloperPublic, "/developers/{gameUrl:string}/about.html");
+            endpoints.MapControllerRoute(BrcDomainRoutes.DeveloperPosts, "/developers/{gameUrl:string}/posts.html");
+            endpoints.MapControllerRoute(BrcDomainRoutes.TopicPublic, "/topics/{gameUrl:string}/about.html");
+            endpoints.MapControllerRoute(BrcDomainRoutes.TopicPosts, "/topics/{gameUrl:string}/posts.html");
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostsByTags, "posts/tags/{tagNames}.html");
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostsByTagsPage, "posts/tags/{tagNames}/page/page.html");
+            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostsPage, "page/page.html");
         }
     }
 }

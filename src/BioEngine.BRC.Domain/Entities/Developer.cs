@@ -1,19 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using BioEngine.Core.DB;
-using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities
 {
     [TypedEntity("developer")]
-    public class Developer : Section<DeveloperData>
+    public class Developer : BrcSection<DeveloperData>
     {
         public override string TypeTitle { get; set; } = "Разработчик";
-        [NotMapped] public override string PublicUrl => $"/developers/{Url}/about.html";
-        [NotMapped] public override string PostsUrl => $"/developers/{Url}/posts.html";
+        [NotMapped] public override string PublicRouteName { get; set; } = BrcDomainRoutes.DeveloperPublic;
     }
 
-    public class DeveloperData : ITypedData
+    public class DeveloperData : BrcSectionData
     {
         public Person[] Persons { get; set; } = new Person[0];
     }

@@ -1,6 +1,9 @@
 @using BioEngine.BRC.Site.ViewModels
 @using BioEngine.Core.Entities
-@model BioEngine.Core.Site.Model.EntityViewModel<BioEngine.Core.Entities.Page>
+@using BioEngine.Core.Routing
+@using Microsoft.AspNetCore.Routing
+@model BioEngine.Core.Site.Model.EntityViewModel<BioEngine.Core.Pages.Entities.Page>
+@inject LinkGenerator LinkGenerator
 @{
     Layout = "~/Views/_Main.cshtml";
 }
@@ -12,7 +15,7 @@
                 @switch (Model.Mode)
                 {
                     case ContentEntityViewMode.List:
-                        <a class="article-list__permalink" href="@Model.Entity.PublicUrl">@Model.Entity.Title</a>
+                        <a class="article-list__permalink" href="@LinkGenerator.GeneratePublicUrl(Model.Entity)">@Model.Entity.Title</a>
                         break;
                     case ContentEntityViewMode.Entity:
                         @Model.Entity.Title
@@ -32,10 +35,7 @@
 
             </div>
             <div class="col-5" style="text-align: right">
-                @{
-                    var fullUrl = Model.Site.Url + Model.Entity.PublicUrl;
-                }
-                @await Html.PartialAsync("Share", new ShareViewModel(Model.Entity.Title, fullUrl))
+                @await Html.PartialAsync("Share", new ShareViewModel(Model.Entity.Title, LinkGenerator.GeneratePublicUrl(Model.Entity, Model.Site)))
             </div>
         </div>
     </footer>

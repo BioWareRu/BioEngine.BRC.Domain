@@ -3,15 +3,17 @@ using System;
 using BioEngine.Core.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Migrations.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20190604055733_rework_content_entities")]
+    partial class rework_content_entities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,6 +25,8 @@ namespace BioEngine.BRC.Migrations.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("AdId");
 
                     b.Property<Guid>("ContentId");
 
@@ -36,6 +40,8 @@ namespace BioEngine.BRC.Migrations.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdId");
 
                     b.HasIndex("ContentId");
 
@@ -592,19 +598,17 @@ namespace BioEngine.BRC.Migrations.Migrations
 
             modelBuilder.Entity("BioEngine.Core.Entities.ContentBlock", b =>
                 {
-                    b.HasOne("BioEngine.Core.Entities.ContentItem", null)
-                        .WithMany("Blocks")
-                        .HasForeignKey("ContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BioEngine.Core.Entities.Section", null)
-                        .WithMany("Blocks")
-                        .HasForeignKey("ContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BioEngine.Extra.Ads.Entities.Ad", null)
+                        .WithMany("Blocks")
+                        .HasForeignKey("AdId");
+
+                    b.HasOne("BioEngine.Core.Entities.ContentItem", "ContentItem")
+                        .WithMany("Blocks")
+                        .HasForeignKey("ContentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BioEngine.Core.Entities.Section", "Section")
                         .WithMany("Blocks")
                         .HasForeignKey("ContentId")
                         .OnDelete(DeleteBehavior.Cascade)

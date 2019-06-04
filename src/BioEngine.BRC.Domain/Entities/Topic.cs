@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using BioEngine.Core.DB;
-using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities
 {
     [TypedEntity("topic")]
-    public class Topic : Section<TopicData>
+    public class Topic : BrcSection<TopicData>
     {
         public override string TypeTitle { get; set; } = "Тема";
-        [NotMapped] public override string PublicUrl => $"/topics/{Url}/about.html";
-        [NotMapped] public override string PostsUrl => $"/topics/{Url}/posts.html";
+        [NotMapped] public override string PublicRouteName { get; set; } = BrcDomainRoutes.TopicPublic;
     }
 
-    public class TopicData : ITypedData
+    public class TopicData : BrcSectionData
     {
     }
 }

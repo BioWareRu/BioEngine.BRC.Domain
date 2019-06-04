@@ -2,6 +2,8 @@ using System;
 using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
+using BioEngine.Core.Pages;
+using BioEngine.Core.Posts;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +34,7 @@ namespace BioEngine.BRC.Common
 
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
         {
-            return bioEngine.AddModule<BrcDomainModule>();
+            return bioEngine.AddModule<BrcDomainModule>().AddModule<PagesModule>().AddModule<PostsModule>();
         }
 
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)

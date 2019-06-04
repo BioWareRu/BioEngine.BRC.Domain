@@ -17,6 +17,8 @@
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview5-19227-01" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BioEngine.Core\src\BioEngine.Core.Pages\BioEngine.Core.Pages.csproj" />
+    <ProjectReference Include="..\..\..\BioEngine.Core\src\BioEngine.Core.Posts\BioEngine.Core.Posts.csproj" />
     <ProjectReference Include="..\BioEngine.BRC.Domain\BioEngine.BRC.Domain.csproj" />
     <ProjectReference Include="..\BioEngine.BRC.Migrations\BioEngine.BRC.Migrations.csproj" />
     <ProjectReference Include="..\..\..\BioEngine.Extra.IPB\src\BioEngine.Extra.IPB\BioEngine.Extra.IPB.csproj" Condition="Exists('..\..\..\BioEngine.Extra.IPB')" />

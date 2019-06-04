@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using BioEngine.Core.DB;
-using BioEngine.Core.Entities;
 
 namespace BioEngine.BRC.Domain.Entities
 {
     [TypedEntity("game")]
-    public class Game : Section<GameData>
+    public class Game : BrcSection<GameData>
     {
-        public override string TypeTitle { get; set; } = "Игра";
-        [NotMapped] public override string PublicUrl => $"/games/{Url}/about.html";
-        [NotMapped] public override string PostsUrl => $"/games/{Url}/posts.html";
+        public override string TypeTitle { get; set; } = "Игра"; 
+        [NotMapped] public override string PublicRouteName { get; set; } = BrcDomainRoutes.GamePublic;
     }
 
-    public class GameData : ITypedData
+    public class GameData : BrcSectionData
     {
         public Platform[] Platforms { get; set; }
     }
