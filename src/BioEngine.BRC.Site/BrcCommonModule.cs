@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BioEngine.BRC.Site
 {
-    public class BrcSiteModule : BioEngineModule<BrcSiteModuleConfig>
+    public class BrcSiteModule : BaseBioEngineModule<BrcSiteModuleConfig>
     {
         public override void ConfigureServices(IServiceCollection services, IConfiguration configuration,
             IHostEnvironment environment)

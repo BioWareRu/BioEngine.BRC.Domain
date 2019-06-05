@@ -2,7 +2,7 @@ using BioEngine.Core.Modules;
 
 namespace BioEngine.BRC.Domain
 {
-    public class BrcDomainModule : BioEngineModule
+    public class BrcDomainModule : BaseBioEngineModule
     {
     }
 }
