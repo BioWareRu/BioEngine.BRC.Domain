@@ -1,7 +1,8 @@
 using System.Globalization;
 using BioEngine.BRC.Domain;
 using BioEngine.Core.Logging.Controllers;
-using BioEngine.Core.Routing;
+using BioEngine.Core.Pages.Routing;
+using BioEngine.Core.Posts.Routing;
 using BioEngine.Core.Site;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB.Controllers;
@@ -60,17 +61,17 @@ namespace BioEngine.BRC.Site
         public override void RegisterEndpoints(IEndpointRouteBuilder endpoints)
         {
             base.RegisterEndpoints(endpoints);
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.Post, "/posts/{url:string}.html");
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.Page, "/pages/{url:string}.html");
+            endpoints.MapControllerRoute(BioEnginePostsRoutes.Post, "/posts/{url:string}.html");
+            endpoints.MapControllerRoute(BioEnginePagesRoutes.Page, "/pages/{url:string}.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.GamePublic, "/games/{gameUrl:string}/about.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.GamePosts, "/games/{gameUrl:string}/posts.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.DeveloperPublic, "/developers/{gameUrl:string}/about.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.DeveloperPosts, "/developers/{gameUrl:string}/posts.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.TopicPublic, "/topics/{gameUrl:string}/about.html");
             endpoints.MapControllerRoute(BrcDomainRoutes.TopicPosts, "/topics/{gameUrl:string}/posts.html");
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostsByTags, "posts/tags/{tagNames}.html");
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostsByTagsPage, "posts/tags/{tagNames}/page/page.html");
-            endpoints.MapControllerRoute(BioEngineCoreRoutes.PostsPage, "page/page.html");
+            endpoints.MapControllerRoute(BioEnginePostsRoutes.PostsByTags, "posts/tags/{tagNames}.html");
+            endpoints.MapControllerRoute(BioEnginePostsRoutes.PostsByTagsPage, "posts/tags/{tagNames}/page/page.html");
+            endpoints.MapControllerRoute(BioEnginePostsRoutes.PostsPage, "page/page.html");
         }
     }
 }

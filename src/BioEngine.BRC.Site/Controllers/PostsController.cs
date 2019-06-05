@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 using BioEngine.Core.Comments;
 using BioEngine.Core.Posts.Db;
 using BioEngine.Core.Posts.Entities;
+using BioEngine.Core.Posts.Routing;
 using BioEngine.Core.Posts.Site;
 using BioEngine.Core.Repository;
-using BioEngine.Core.Routing;
 using BioEngine.Core.Web;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,25 +25,25 @@ namespace BioEngine.BRC.Site.Controllers
             return base.ListAsync();
         }
 
-        [HttpGet(BioEngineCoreRoutes.Post)]
+        [HttpGet(BioEnginePostsRoutes.Post)]
         public override Task<IActionResult> ShowAsync(string url)
         {
             return base.ShowAsync(url);
         }
 
-        [HttpGet(BioEngineCoreRoutes.PostsPage)]
+        [HttpGet(BioEnginePostsRoutes.PostsPage)]
         public override Task<IActionResult> ListPageAsync(int page)
         {
             return base.ListPageAsync(page);
         }
 
-        [HttpGet(BioEngineCoreRoutes.PostsByTagsPage)]
+        [HttpGet(BioEnginePostsRoutes.PostsByTagsPage)]
         public override Task<IActionResult> ListByTagPageAsync(string tagNames, int page)
         {
             return base.ListByTagPageAsync(tagNames, page);
         }
 
-        [HttpGet(BioEngineCoreRoutes.PostsByTags)]
+        [HttpGet(BioEnginePostsRoutes.PostsByTags)]
         public override Task<IActionResult> ListByTagAsync(string tagNames)
         {
             return base.ListByTagAsync(tagNames);
