@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using BioEngine.Core.Comments;
-using BioEngine.Core.Posts.Db;
-using BioEngine.Core.Posts.Entities;
-using BioEngine.Core.Posts.Routing;
-using BioEngine.Core.Posts.Site;
+using BioEngine.Posts.Db;
+using BioEngine.Posts.Entities;
+using BioEngine.Posts.Routing;
+using BioEngine.Posts.Site;
 using BioEngine.Core.Repository;
 using BioEngine.Core.Web;
 using Microsoft.AspNetCore.Mvc;

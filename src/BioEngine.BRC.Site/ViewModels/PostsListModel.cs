@@ -1,5 +1,5 @@
 using BioEngine.Core.Entities;
-using BioEngine.Core.Posts.Entities;
+using BioEngine.Posts.Entities;
 using BioEngine.Core.Site.Model;
 
 namespace BioEngine.BRC.Site.ViewModels

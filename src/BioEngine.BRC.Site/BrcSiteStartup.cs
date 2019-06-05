@@ -1,11 +1,11 @@
 using System.Globalization;
 using BioEngine.BRC.Domain;
 using BioEngine.Core.Logging.Controllers;
-using BioEngine.Core.Pages.Routing;
-using BioEngine.Core.Posts.Routing;
+using BioEngine.Posts.Routing;
 using BioEngine.Core.Site;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB.Controllers;
+using BioEngine.Pages.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;

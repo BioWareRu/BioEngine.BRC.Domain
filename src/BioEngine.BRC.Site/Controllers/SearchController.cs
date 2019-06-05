@@ -7,7 +7,7 @@ using BioEngine.BRC.Domain.Entities;
 using BioEngine.Core.Abstractions;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
-using BioEngine.Core.Posts.Entities;
+using BioEngine.Posts.Entities;
 using BioEngine.Core.Routing;
 using BioEngine.Core.Search;
 using BioEngine.Core.Site.Controllers;

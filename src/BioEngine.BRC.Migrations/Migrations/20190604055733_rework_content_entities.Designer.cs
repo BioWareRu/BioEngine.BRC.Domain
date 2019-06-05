@@ -529,7 +529,7 @@ namespace BioEngine.BRC.Migrations.Migrations
                     b.HasDiscriminator().HasValue("youtube");
                 });
 
-            modelBuilder.Entity("BioEngine.Core.Pages.Entities.Page", b =>
+            modelBuilder.Entity("BioEngine.Pages.Entities.Page", b =>
                 {
                     b.HasBaseType("BioEngine.Core.Entities.ContentItem");
 
@@ -542,7 +542,7 @@ namespace BioEngine.BRC.Migrations.Migrations
                     b.HasDiscriminator().HasValue("page");
                 });
 
-            modelBuilder.Entity("BioEngine.Core.Posts.Entities.Post", b =>
+            modelBuilder.Entity("BioEngine.Posts.Entities.Post", b =>
                 {
                     b.HasBaseType("BioEngine.Core.Entities.ContentItem");
 

@@ -2,10 +2,10 @@ using System;
 using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
-using BioEngine.Core.Pages;
-using BioEngine.Core.Posts;
+using BioEngine.Posts;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
+using BioEngine.Pages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

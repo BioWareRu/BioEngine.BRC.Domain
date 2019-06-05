@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using BioEngine.Core.Pages.Db;
-using BioEngine.Core.Pages.Entities;
-using BioEngine.Core.Pages.Routing;
 using BioEngine.Core.Site;
 using BioEngine.Core.Web;
+using BioEngine.Pages.Db;
+using BioEngine.Pages.Entities;
+using BioEngine.Pages.Routing;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers
