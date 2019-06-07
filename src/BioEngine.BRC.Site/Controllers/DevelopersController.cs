@@ -18,19 +18,19 @@ namespace BioEngine.BRC.Site.Controllers
         {
         }
 
-        [HttpGet(BrcDomainRoutes.DeveloperPublic)]
+        [HttpGet("/developers/{url}/about.html", Name = BrcDomainRoutes.DeveloperPublic)]
         public override Task<IActionResult> ShowAsync(string url)
         {
             return base.ShowAsync(url);
         }
 
-        [HttpGet(BrcDomainRoutes.DeveloperPosts)]
+        [HttpGet("/developers/{url}/posts.html", Name = BrcDomainRoutes.DeveloperPosts)]
         public Task<IActionResult> PostsAsync(string url)
         {
             return base.PostsAsync(new[] {"post"}, url);
         }
 
-        [HttpGet(BrcDomainRoutes.DeveloperPostsPage)]
+        [HttpGet("/developers/{url}/posts/page/{page:int}.html", Name = BrcDomainRoutes.DeveloperPostsPage)]
         public Task<IActionResult> PostsPageAsync(string url, int page)
         {
             return base.PostsPageAsync(new[] {"post"}, url, page);

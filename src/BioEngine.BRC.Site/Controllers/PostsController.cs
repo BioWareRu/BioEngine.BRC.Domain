@@ -25,25 +25,25 @@ namespace BioEngine.BRC.Site.Controllers
             return base.ListAsync();
         }
 
-        [HttpGet(BioEnginePostsRoutes.Post)]
+        [HttpGet("/posts/{url}.html", Name = BioEnginePostsRoutes.Post)]
         public override Task<IActionResult> ShowAsync(string url)
         {
             return base.ShowAsync(url);
         }
 
-        [HttpGet(BioEnginePostsRoutes.PostsPage)]
+        [HttpGet("page/page.html", Name = BioEnginePostsRoutes.PostsPage)]
         public override Task<IActionResult> ListPageAsync(int page)
         {
             return base.ListPageAsync(page);
         }
 
-        [HttpGet(BioEnginePostsRoutes.PostsByTagsPage)]
+        [HttpGet("posts/tags/{tagNames}/page/page.html", Name = BioEnginePostsRoutes.PostsByTagsPage)]
         public override Task<IActionResult> ListByTagPageAsync(string tagNames, int page)
         {
             return base.ListByTagPageAsync(tagNames, page);
         }
 
-        [HttpGet(BioEnginePostsRoutes.PostsByTags)]
+        [HttpGet("posts/tags/{tagNames}.html", Name = BioEnginePostsRoutes.PostsByTags)]
         public override Task<IActionResult> ListByTagAsync(string tagNames)
         {
             return base.ListByTagAsync(tagNames);
