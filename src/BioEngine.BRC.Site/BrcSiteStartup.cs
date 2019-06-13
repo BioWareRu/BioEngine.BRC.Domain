@@ -1,10 +1,12 @@
 using System.Globalization;
+using BioEngine.BRC.Common;
 using BioEngine.Core.Logging.Controllers;
 using BioEngine.Core.Site;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,6 +54,12 @@ namespace BioEngine.BRC.Site
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
+        }
+
+        protected override void ConfigureEndpoints(IApplicationBuilder app, IHostEnvironment env, IEndpointRouteBuilder endpoints)
+        {
+            endpoints.AddBrcRoutes();
+            base.ConfigureEndpoints(app, env, endpoints);
         }
     }
 }
