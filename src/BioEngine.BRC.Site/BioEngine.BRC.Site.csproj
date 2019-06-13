@@ -9,7 +9,7 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="BioEngine.Core.Site" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Core.Site')" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0-preview5-19227-01" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0-preview6.19307.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BioEngine.BRC.Common\BioEngine.BRC.Common.csproj" />
