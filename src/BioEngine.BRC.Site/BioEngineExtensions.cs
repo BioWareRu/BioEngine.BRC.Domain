@@ -1,11 +1,14 @@
 using System;
 using BioEngine.BRC.Common;
-using BioEngine.BRC.Domain;
+using BioEngine.Core.Abstractions;
 using BioEngine.Core.Logging.Loki;
 using BioEngine.Core.Seo;
 using BioEngine.Core.Site;
+using BioEngine.Core.Users;
 using BioEngine.Extra.Ads;
 using BioEngine.Extra.IPB;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace BioEngine.BRC.Site
 {
@@ -13,9 +16,9 @@ namespace BioEngine.BRC.Site
     {
         public static Core.BioEngine AddBrcSite(this Core.BioEngine bioEngine)
         {
-            return bioEngine
+            bioEngine
                 .AddPostgresDb()
-                .AddModule<BrcDomainModule>()
+                .AddBrcDomain()
                 .AddModule<BrcSiteModule, BrcSiteModuleConfig>(
                     (configuration, env) =>
                         new BrcSiteModuleConfig(configuration["BE_PATREON_SERVICE_URL"]))
@@ -44,6 +47,16 @@ namespace BioEngine.BRC.Site
                 .AddModule<SiteModule, SiteModuleConfig>((configuration, env) =>
                     new SiteModuleConfig(Guid.Parse(configuration["BE_SITE_ID"])))
                 .AddModule<AdsModule>();
+
+            bioEngine.ConfigureServices((context, collection) =>
+            {
+                if (context.HostingEnvironment.IsDevelopment())
+                {
+                    collection.AddScoped<IUserDataProvider, TestUserDataProvider>();
+                }
+            });
+
+            return bioEngine;
         }
     }
 }

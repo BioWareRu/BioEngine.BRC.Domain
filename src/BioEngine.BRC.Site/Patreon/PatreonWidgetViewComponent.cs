@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace BioEngine.BRC.Site.Patreon
@@ -8,12 +9,15 @@ namespace BioEngine.BRC.Site.Patreon
     public class PatreonWidgetViewComponent : ViewComponent
     {
         private readonly PatreonApiHelper _patreonApiHelper;
+        private readonly IHostEnvironment _hostEnvironment;
         private readonly ILogger<PatreonApiHelper> _logger;
 
         public PatreonWidgetViewComponent(PatreonApiHelper patreonApiHelper,
+            IHostEnvironment hostEnvironment,
             ILogger<PatreonApiHelper> logger)
         {
             _patreonApiHelper = patreonApiHelper;
+            _hostEnvironment = hostEnvironment;
             _logger = logger;
         }
 
@@ -22,7 +26,14 @@ namespace BioEngine.BRC.Site.Patreon
             var currentGoal = new PatreonGoal();
             try
             {
-                currentGoal = await _patreonApiHelper.GetCurrentGoalAsync();
+                if (!_hostEnvironment.IsDevelopment())
+                {
+                    currentGoal = await _patreonApiHelper.GetCurrentGoalAsync();
+                }
+                else
+                {
+                    currentGoal.Description = "Test goal";
+                }
             }
             catch (Exception ex)
             {
