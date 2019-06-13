@@ -16,7 +16,9 @@
     <PackageReference Include="BioEngine.Posts" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Posts')" />
     <PackageReference Include="BioEngine.Pages" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Pages')" />
     <PackageReference Include="BioEngine.Core.Logging.Loki" Version="3.0.*" Condition="!Exists('..\..\..\BioEngine.Core.Infra')" />
+    <!--Fix EF Core on preview5 until npgsql is fixed-->
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview5-19227-01" />
+    <!---->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\BioEngine.Posts\src\BioEngine.Posts\BioEngine.Posts.csproj" Condition="Exists('..\..\..\BioEngine.Posts')" />
