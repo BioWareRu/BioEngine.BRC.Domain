@@ -2,6 +2,7 @@ using System;
 using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
+using BioEngine.Core.Logging.Graylog;
 using BioEngine.Posts;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
@@ -35,6 +36,12 @@ namespace BioEngine.BRC.Common
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
         {
             return bioEngine.AddModule<BrcDomainModule>().AddModule<PagesModule>().AddModule<PostsModule>();
+        }
+
+        public static Core.BioEngine AddLogging(this Core.BioEngine bioEngine)
+        {
+            return bioEngine.AddModule<GraylogLoggingModule, GraglogModuleConfig>((configuration, environment) => new GraglogModuleConfig(configuration["BE_GRAYLOG_HOST"],
+                int.Parse(configuration["BE_GRAYLOG_PORT"]), environment.ApplicationName));
         }
 
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)

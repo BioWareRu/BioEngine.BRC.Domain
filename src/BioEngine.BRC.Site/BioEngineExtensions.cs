@@ -1,7 +1,6 @@
 using System;
 using BioEngine.BRC.Common;
 using BioEngine.Core.Abstractions;
-using BioEngine.Core.Logging.Loki;
 using BioEngine.Core.Seo;
 using BioEngine.Core.Site;
 using BioEngine.Core.Users;
@@ -22,8 +21,7 @@ namespace BioEngine.BRC.Site
                 .AddModule<BrcSiteModule, BrcSiteModuleConfig>(
                     (configuration, env) =>
                         new BrcSiteModuleConfig(configuration["BE_PATREON_SERVICE_URL"]))
-                .AddModule<LokiLoggingModule, LokiLoggingConfig>((configuration, environment) =>
-                    new LokiLoggingConfig(configuration["BRC_LOKI_URL"]))
+                .AddLogging()
                 .AddElasticSearch()
                 .AddS3Storage()
                 .AddModule<SeoModule>()

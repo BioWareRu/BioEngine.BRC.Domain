@@ -15,7 +15,7 @@
     <PackageReference Include="BioEngine.Extra.Ads" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
     <PackageReference Include="BioEngine.Posts" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Posts')" />
     <PackageReference Include="BioEngine.Pages" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Pages')" />
-    <PackageReference Include="BioEngine.Core.Logging.Loki" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core.Infra')" />
+    <PackageReference Include="BioEngine.Core.Logging.Graylog" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core.Infra')" />
     <!--Fix EF Core on preview5 until npgsql is fixed-->
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview5-19227-01" />
     <!---->
@@ -29,7 +29,7 @@
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Twitter\src\BioEngine.Extra.Twitter\BioEngine.Extra.Twitter.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Twitter')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Facebook\src\BioEngine.Extra.Facebook\BioEngine.Extra.Facebook.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Facebook')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Ads\src\BioEngine.Extra.Ads\BioEngine.Extra.Ads.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core.Infra\src\BioEngine.Core.Logging.Loki\BioEngine.Core.Logging.Loki.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core.Infra')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core.Infra\src\BioEngine.Core.Logging.Graylog\BioEngine.Core.Logging.Graylog.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core.Infra')" />
   </ItemGroup>
 
 </Project>
