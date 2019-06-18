@@ -26,6 +26,10 @@ namespace BioEngine.BRC.Common
                 .MapRoute(BrcDomainRoutes.GamePosts, "/games/{url}/posts.html", "Games", "Posts")
                 .MapRoute(BrcDomainRoutes.GamePostsPage, "/games/{url}/posts/page/{page:int}.html", "Games",
                     "PostsPage")
+                .MapRoute(BrcDomainRoutes.TopicPublic, "/topics/{url}/about.html", "Topics", "Show")
+                .MapRoute(BrcDomainRoutes.TopicPosts, "/topics/{url}/posts.html", "Topics", "Posts")
+                .MapRoute(BrcDomainRoutes.TopicPostsPage, "/topics/{url}/posts/page/{page:int}.html", "Topics",
+                    "PostsPage")
                 .MapRoute(BioEnginePagesRoutes.Page, "/pages/{url.html}", "Pages", "Show")
                 ;
 

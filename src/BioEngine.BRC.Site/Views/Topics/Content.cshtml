@@ -1,0 +1,32 @@
+@using BioEngine.BRC.Domain
+@using BioEngine.Core.Routing
+@using Microsoft.AspNetCore.Routing
+@model BioEngine.Core.Site.Model.SectionContentListViewModel<BioEngine.BRC.Domain.Entities.Topic, BioEngine.Posts.Entities.Post>
+@inject LinkGenerator LinkGenerator
+@{
+    Layout = "~/Views/_Main.cshtml";
+}
+<div class="card mb-4">
+    <img class="card-img-top" src="@Model.Section.Data.Logo.PublicUri" alt="@Model.Section.Title"/>
+    <section class="card-body">
+        <header>
+            <h1 class="card-title">
+                <img class="img-fluid" src="@Model.Section.Data.LogoSmall.PublicUri" alt="@Model.Section.Title"/> @Model.Section.Title
+            </h1>
+        </header>
+    </section>
+</div>
+
+<section class="navbar navbar-dark p-2 mb-4">
+    <ul class="nav nav-pills darken-2">
+        <li class="nav-item">
+            <a class="nav-link" href="@LinkGenerator.GeneratePublicUrl(Model.Section)">Об игре</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="@LinkGenerator.GenerateUrl(BrcDomainRoutes.GamePosts, new {url = Model.Section.Url})">Публикации</a>
+        </li>
+    </ul>
+</section>
+@{
+    await Html.RenderPartialAsync("PostsList", Model);
+}

@@ -1,0 +1,46 @@
+@using BioEngine.BRC.Domain
+@using BioEngine.BRC.Site.ViewModels
+@using BioEngine.Core.Routing
+@using Microsoft.AspNetCore.Routing
+@model BioEngine.Core.Site.Model.EntityViewModel<BioEngine.BRC.Domain.Entities.Topic>
+@inject LinkGenerator LinkGenerator
+@{
+    Layout = "~/Views/_Main.cshtml";
+}
+<div class="card mb-4">
+    <img class="card-img-top" src="@Model.Entity.Data.Logo.PublicUri" alt="@Model.Entity.Title"/>
+    <section class="card-body">
+        <header>
+            <h1 class="card-title">
+                <img class="img-fluid" src="@Model.Entity.Data.LogoSmall.PublicUri" alt="@Model.Entity.Title"/> @Model.Entity.Title
+            </h1>
+        </header>
+    </section>
+</div>
+<section class="navbar navbar-dark p-2 mb-4">
+    <ul class="nav nav-pills darken-2">
+        <li class="nav-item">
+            <a class="nav-link active" href="@LinkGenerator.GeneratePublicUrl(Model.Entity)">Тема</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@LinkGenerator.GenerateUrl(BrcDomainRoutes.TopicPosts, new {url = Model.Entity.Url})">Публикации</a>
+        </li>
+    </ul>
+</section>
+<article class="card mb-4 post">
+    <section class="card-body">
+        @{
+            await Html.RenderPartialAsync("Blocks/Blocks", Model.ContentEntityViewModel());
+        }
+    </section>
+    <footer class="card-footer">
+        <div class="row justify-content-between">
+            <div class="col-3">
+
+            </div>
+            <div class="col-5" style="text-aligLn: right">
+                @await Html.PartialAsync("Share", new ShareViewModel(Model.Entity.Title, LinkGenerator.GeneratePublicUrl(Model.Entity, Model.Site)))
+            </div>
+        </div>
+    </footer>
+</article>
