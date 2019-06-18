@@ -1,17 +1,17 @@
 @using BioEngine.BRC.Domain
 @using BioEngine.Core.Routing
 @using Microsoft.AspNetCore.Routing
-@model BioEngine.BRC.Site.ViewModels.PostsListModel
+@model BioEngine.Core.Site.Model.SectionContentListViewModel<BioEngine.BRC.Domain.Entities.Developer, BioEngine.Posts.Entities.Post>
 @inject LinkGenerator LinkGenerator
 @{
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
-    <img class="card-img-top" src="@Model.Logo.PublicUri" alt="@Model.Section.Title"/>
+    <img class="card-img-top" src="@Model.Section.Data.Logo.PublicUri" alt="@Model.Section.Title"/>
     <section class="card-body">
         <header>
             <h1 class="card-title">
-                <img class="img-fluid" src="@Model.LogoSmall.PublicUri" alt="@Model.Section.Title"/> @Model.Section.Title
+                <img class="img-fluid" src="@Model.Section.Data.LogoSmall.PublicUri" alt="@Model.Section.Title"/> @Model.Section.Title
             </h1>
         </header>
     </section>
