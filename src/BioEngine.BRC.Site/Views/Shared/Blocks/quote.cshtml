@@ -4,21 +4,23 @@
     <div>
         @Html.Raw(Model.Block.Data.Text)
     </div>
-    <div class="author">
-        @if (!string.IsNullOrEmpty(Model.Block.Data.Link))
-        {
-            if (!string.IsNullOrEmpty(Model.Block.Data.Author))
+    <footer class="author">
+        <cite>
+            @if (!string.IsNullOrEmpty(Model.Block.Data.Link))
             {
-                <a href="@Model.Block.Data.Link">@Model.Block.Data.Author</a>
+                if (!string.IsNullOrEmpty(Model.Block.Data.Author))
+                {
+                    <a href="@Model.Block.Data.Link">@Model.Block.Data.Author</a>
+                }
+                else
+                {
+                    <a href="@Model.Block.Data.Link">Источник</a>
+                }
             }
-            else
+            else if (!string.IsNullOrEmpty(Model.Block.Data.Author))
             {
-                <a href="@Model.Block.Data.Link">Источник</a>
+                @Model.Block.Data.Author
             }
-        }
-        else if (!string.IsNullOrEmpty(Model.Block.Data.Author))
-        {
-            @Model.Block.Data.Author
-        }
-    </div>
+        </cite>
+    </footer>
 </blockquote>
