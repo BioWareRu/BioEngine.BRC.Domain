@@ -13,8 +13,8 @@
     <PackageReference Include="BioEngine.Extra.Twitter" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Twitter')" />
     <PackageReference Include="BioEngine.Extra.Facebook" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Facebook')" />
     <PackageReference Include="BioEngine.Extra.Ads" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
-    <PackageReference Include="BioEngine.Posts" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Pages" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Core.Posts" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Core.Pages" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Logging.Graylog" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <!--Fix EF Core on preview5 until npgsql is fixed-->
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview5-19227-01" />
