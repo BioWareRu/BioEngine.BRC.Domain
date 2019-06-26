@@ -13,23 +13,23 @@
     <PackageReference Include="BioEngine.Extra.Twitter" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Twitter')" />
     <PackageReference Include="BioEngine.Extra.Facebook" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Facebook')" />
     <PackageReference Include="BioEngine.Extra.Ads" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
-    <PackageReference Include="BioEngine.Posts" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Posts')" />
-    <PackageReference Include="BioEngine.Pages" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Pages')" />
-    <PackageReference Include="BioEngine.Core.Logging.Graylog" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core.Infra')" />
+    <PackageReference Include="BioEngine.Posts" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Pages" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Core.Logging.Graylog" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <!--Fix EF Core on preview5 until npgsql is fixed-->
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.0.0-preview5-19227-01" />
     <!---->
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Posts\src\BioEngine.Posts\BioEngine.Posts.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Posts')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Pages\src\BioEngine.Pages\BioEngine.Pages.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Pages')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Posts\BioEngine.Core.Posts.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Pages\BioEngine.Core.Pages.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\BioEngine.BRC.Domain\BioEngine.BRC.Domain.csproj" />
     <ProjectReference Include="..\BioEngine.BRC.Migrations\BioEngine.BRC.Migrations.csproj" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.IPB\src\BioEngine.Extra.IPB\BioEngine.Extra.IPB.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.IPB')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Twitter\src\BioEngine.Extra.Twitter\BioEngine.Extra.Twitter.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Twitter')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Facebook\src\BioEngine.Extra.Facebook\BioEngine.Extra.Facebook.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Facebook')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Ads\src\BioEngine.Extra.Ads\BioEngine.Extra.Ads.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core.Infra\src\BioEngine.Core.Logging.Graylog\BioEngine.Core.Logging.Graylog.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core.Infra')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Logging.Graylog\BioEngine.Core.Logging.Graylog.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
   </ItemGroup>
 
 </Project>

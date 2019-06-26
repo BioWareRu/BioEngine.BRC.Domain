@@ -1,7 +1,7 @@
 using BioEngine.BRC.Domain;
+using BioEngine.Core.Pages.Routing;
+using BioEngine.Core.Posts.Routing;
 using BioEngine.Core.Routing;
-using BioEngine.Pages.Routing;
-using BioEngine.Posts.Routing;
 using Microsoft.AspNetCore.Routing;
 
 namespace BioEngine.BRC.Common

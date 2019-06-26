@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Entities;
 using BioEngine.BRC.Domain.Repository;
+using BioEngine.Core.DB;
 using BioEngine.Core.Search;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
@@ -14,8 +15,8 @@ namespace BioEngine.BRC.Domain.Search
         private readonly TopicsRepository _topicsRepository;
 
         public TopicsSearchProvider(ISearcher searcher, ILogger<BaseSearchProvider<Topic>> logger,
-            TopicsRepository topicsRepository) : base(searcher,
-            logger)
+            TopicsRepository topicsRepository, BioEntitiesManager entitiesManager) : base(searcher,
+            logger, entitiesManager)
         {
             _topicsRepository = topicsRepository;
         }

@@ -1,6 +1,8 @@
 using System;
 using BioEngine.BRC.Common;
 using BioEngine.Core.Abstractions;
+using BioEngine.Core.Pages.Site;
+using BioEngine.Core.Posts.Site;
 using BioEngine.Core.Seo;
 using BioEngine.Core.Site;
 using BioEngine.Core.Users;
@@ -18,6 +20,8 @@ namespace BioEngine.BRC.Site
             bioEngine
                 .AddPostgresDb()
                 .AddBrcDomain()
+                .AddModule<PagesSiteModule>()
+                .AddModule<PostsSiteModule>()
                 .AddModule<BrcSiteModule, BrcSiteModuleConfig>(
                     (configuration, env) =>
                         new BrcSiteModuleConfig(configuration["BE_PATREON_SERVICE_URL"]))

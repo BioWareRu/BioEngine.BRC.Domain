@@ -1,7 +1,7 @@
 using BioEngine.Core.Comments;
-using BioEngine.Posts.Db;
-using BioEngine.Posts.Entities;
-using BioEngine.Posts.Site;
+using BioEngine.Core.Posts.Db;
+using BioEngine.Core.Posts.Entities;
+using BioEngine.Core.Posts.Site;
 using BioEngine.Core.Repository;
 using BioEngine.Core.Web;
 

@@ -3,7 +3,7 @@ using BioEngine.Core.DB;
 
 namespace BioEngine.BRC.Domain.Entities
 {
-    [TypedEntity("topic")]
+    [Entity("topicsection")]
     public class Topic : BrcSection<TopicData>
     {
         public override string TypeTitle { get; set; } = "Тема";

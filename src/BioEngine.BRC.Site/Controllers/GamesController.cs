@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Entities;
 using BioEngine.BRC.Domain.Repository;
+using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Site;
 using BioEngine.Core.Web;
-using BioEngine.Posts.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers

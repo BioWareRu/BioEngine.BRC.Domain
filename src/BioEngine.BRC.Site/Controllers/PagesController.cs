@@ -1,7 +1,7 @@
+using BioEngine.Core.Pages.Db;
+using BioEngine.Core.Pages.Entities;
 using BioEngine.Core.Site;
 using BioEngine.Core.Web;
-using BioEngine.Pages.Db;
-using BioEngine.Pages.Entities;
 
 namespace BioEngine.BRC.Site.Controllers
 {

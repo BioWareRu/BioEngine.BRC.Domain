@@ -4,7 +4,7 @@ using BioEngine.Core.DB;
 
 namespace BioEngine.BRC.Domain.Entities
 {
-    [TypedEntity("developer")]
+    [Entity("developersection")]
     public class Developer : BrcSection<DeveloperData>
     {
         public override string TypeTitle { get; set; } = "Разработчик";

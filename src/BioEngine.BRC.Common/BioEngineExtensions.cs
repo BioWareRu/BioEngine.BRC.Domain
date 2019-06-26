@@ -3,10 +3,8 @@ using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
 using BioEngine.Core.Logging.Graylog;
-using BioEngine.Posts;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
-using BioEngine.Pages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -35,7 +33,7 @@ namespace BioEngine.BRC.Common
 
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
         {
-            return bioEngine.AddModule<BrcDomainModule>().AddModule<PagesModule>().AddModule<PostsModule>();
+            return bioEngine.AddModule<BrcDomainModule>();
         }
 
         public static Core.BioEngine AddLogging(this Core.BioEngine bioEngine)
