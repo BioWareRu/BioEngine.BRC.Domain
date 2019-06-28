@@ -27,7 +27,7 @@ namespace BioEngine.BRC.Common
         public static Core.BioEngine AddElasticSearch(this Core.BioEngine bioEngine)
         {
             return bioEngine.AddModule<ElasticSearchModule, ElasticSearchModuleConfig>((configuration, env) =>
-                new ElasticSearchModuleConfig(configuration["BE_ELASTICSEARCH_URI"],
+                new ElasticSearchModuleConfig(configuration["BE_ELASTICSEARCH_PREFIX"], configuration["BE_ELASTICSEARCH_URI"],
                     configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"]));
         }
 
