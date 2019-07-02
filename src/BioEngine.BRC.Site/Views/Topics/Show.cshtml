@@ -8,11 +8,11 @@
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
-    <img class="card-img-top" src="@Model.Entity.Data.Logo.PublicUri" alt="@Model.Entity.Title"/>
+    <img class="card-img-top" src="@Model.Entity.Data.HeaderPicture.PublicUri" alt="@Model.Entity.Title"/>
     <section class="card-body">
         <header>
             <h1 class="card-title">
-                <img class="img-fluid" src="@Model.Entity.Data.LogoSmall.PublicUri" alt="@Model.Entity.Title"/> @Model.Entity.Title
+                @Model.Entity.Title
             </h1>
         </header>
     </section>
