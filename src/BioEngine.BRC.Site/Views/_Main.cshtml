@@ -3,17 +3,17 @@
 @using BioEngine.Extra.Ads.Site
 @using BioEngine.Extra.Twitter
 @model BioEngine.Core.Site.Model.PageViewModel
-
+@{
+    var meta = await Model.GetMetaAsync();
+    var twitterProperties = await Model.GetSitePropertiesAsync<TwitterSitePropertiesSet>();
+    var seoProperties = await Model.GetSitePropertiesAsync<SeoPropertiesSet>();
+}
 <!DOCTYPE html>
 <html>
 <head lang="ru">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
-    @{
-        var meta = await Model.GetMetaAsync();
-        var twitterProperties = await Model.GetSitePropertiesAsync<TwitterSitePropertiesSet>();
-        var seoProperties = await Model.GetSitePropertiesAsync<SeoPropertiesSet>();
-    }
+
     <title>@meta.Title</title>
     <meta name="description" content="@Html.Raw(meta.Description)"/>
     <meta name="keywords" content="@Html.Raw(meta.Keywords)"/>
