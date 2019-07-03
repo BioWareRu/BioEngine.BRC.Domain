@@ -8,7 +8,10 @@
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
-    <img class="card-img-top" src="@Model.Entity.Data.HeaderPicture.PublicUri" alt="@Model.Entity.Title"/>
+    @if (Model.Entity.Data.HeaderPicture != null)
+    {
+        <img class="card-img-top" src="@Model.Entity.Data.HeaderPicture.PublicUri" alt="@Model.Section.Title"/>
+    }
     <section class="card-body">
         <header>
             <h1 class="card-title">
