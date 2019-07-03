@@ -12,7 +12,7 @@
 <html>
 <head lang="ru">
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
     <title>@meta.Title</title>
     <meta name="description" content="@Html.Raw(meta.Description)"/>
@@ -57,6 +57,7 @@
     <meta itemprop="description" content="@Html.Raw(meta.Description)"/>
     <meta itemprop="image" content="@Html.Raw(meta.ImageUrl)"/>
 
+    <meta name="robots" content="index, follow"/>
     <link rel="canonical" href="@Html.Raw(meta.CurrentUrl)"/>
     @await Html.PartialAsync("Assets/_Gen_Styles")
     @RenderSection("styles", required: false)
