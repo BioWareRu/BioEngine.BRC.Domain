@@ -5,8 +5,10 @@ using BioEngine.Core.DB;
 using BioEngine.Core.Logging.Graylog;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
 
 namespace BioEngine.BRC.Common
 {
@@ -24,6 +26,21 @@ namespace BioEngine.BRC.Common
                 {
                     collection.AddHealthChecks().AddDbContextCheck<BioContext>();
                 });
+        }
+
+        public static string GetPostgresConnectionString(this IConfiguration configuration)
+        {
+            var connBuilder = new NpgsqlConnectionStringBuilder
+            {
+                Host = configuration["BE_POSTGRES_HOST"],
+                Port = int.Parse(configuration["BE_POSTGRES_PORT"]),
+                Username = configuration["BE_POSTGRES_USERNAME"],
+                Password = configuration["BE_POSTGRES_PASSWORD"],
+                Database = configuration["BE_POSTGRES_DATABASE"],
+                Pooling = false
+            };
+
+            return connBuilder.ConnectionString;
         }
 
         public static Core.BioEngine AddElasticSearch(this Core.BioEngine bioEngine)
