@@ -7,14 +7,13 @@ using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Npgsql;
 
 namespace BioEngine.BRC.Common
 {
     public static class BioEngineExtensions
     {
-        public static Core.BioEngine AddPostgresDb(this Core.BioEngine bioEngine)
+        public static Core.BioEngine AddPostgresDb(this Core.BioEngine bioEngine, bool enablePooling = true)
         {
             return bioEngine
                 .AddEntities()
@@ -22,7 +21,7 @@ namespace BioEngine.BRC.Common
                     (configuration, env) => new PostgresDatabaseModuleConfig(configuration["BE_POSTGRES_HOST"],
                         configuration["BE_POSTGRES_USERNAME"], configuration["BE_POSTGRES_DATABASE"],
                         configuration["BE_POSTGRES_PASSWORD"], int.Parse(configuration["BE_POSTGRES_PORT"]),
-                        env.IsDevelopment(), typeof(MigrationsManager).Assembly)).ConfigureServices(collection =>
+                        enablePooling, typeof(MigrationsManager).Assembly)).ConfigureServices(collection =>
                 {
                     collection.AddHealthChecks().AddDbContextCheck<BioContext>();
                 });
