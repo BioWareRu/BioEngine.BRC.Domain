@@ -7,6 +7,7 @@ using BioEngine.Core.Seo;
 using BioEngine.Core.Site;
 using BioEngine.Core.Users;
 using BioEngine.Extra.Ads;
+using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -48,7 +49,7 @@ namespace BioEngine.BRC.Site
                 })
                 .AddModule<SiteModule, SiteModuleConfig>((configuration, env) =>
                     new SiteModuleConfig(Guid.Parse(configuration["BE_SITE_ID"])))
-                .AddModule<AdsModule>();
+                .AddModule<AdsSiteModule>();
 
             bioEngine.ConfigureServices((context, collection) =>
             {
