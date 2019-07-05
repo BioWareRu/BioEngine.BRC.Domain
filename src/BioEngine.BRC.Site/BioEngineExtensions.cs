@@ -6,7 +6,6 @@ using BioEngine.Core.Posts.Site;
 using BioEngine.Core.Seo;
 using BioEngine.Core.Site;
 using BioEngine.Core.Users;
-using BioEngine.Extra.Ads;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB;
 using Microsoft.Extensions.DependencyInjection;
