@@ -7,6 +7,7 @@ using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Npgsql;
 
 namespace BioEngine.BRC.Common
@@ -47,7 +48,7 @@ namespace BioEngine.BRC.Common
             return bioEngine.AddModule<ElasticSearchModule, ElasticSearchModuleConfig>((configuration, env) =>
                 new ElasticSearchModuleConfig(configuration["BE_ELASTICSEARCH_PREFIX"],
                     configuration["BE_ELASTICSEARCH_URI"],
-                    configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"]));
+                    configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"], env.IsDevelopment()));
         }
 
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
