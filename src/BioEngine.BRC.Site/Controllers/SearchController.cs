@@ -11,6 +11,7 @@ using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Routing;
 using BioEngine.Core.Search;
 using BioEngine.Core.Site.Controllers;
+using BioEngine.Core.Site.Helpers;
 using BioEngine.Core.Site.Model;
 using BioEngine.Core.Web;
 using Microsoft.AspNetCore.Mvc;
@@ -89,7 +90,8 @@ namespace BioEngine.BRC.Site.Controllers
                     entitiesCount,
                     entities, x => x.Title,
                     x => LinkGenerator.GeneratePublicUrl(x),
-                    x => GetDescriptionFromHtml((x.Blocks.FirstOrDefault(b => b is TextBlock) as TextBlock)
+                    x => HtmlHelper.GetDescriptionFromHtml(
+                        (x.Blocks.OrderBy(b => b.Position).FirstOrDefault(b => b is TextBlock) as TextBlock)
                         ?.Data
                         .Text), x => x.DateUpdated);
                 return searchBlock;
