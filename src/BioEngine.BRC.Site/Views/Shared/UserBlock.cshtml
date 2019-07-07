@@ -6,7 +6,7 @@
         <div class="card-body">
             <div class="auth auth_sign-in">
                 <a href="@(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Webpage)?.Value)">
-                    <img src="@(User.Claims.FirstOrDefault(x => x.Type == "avatarUrl")?.Value)" alt="@User.Identity.Name" class="rounded-circle img-fluid auth__userpic"/>
+                    <img src="@(User.Claims.FirstOrDefault(x => x.Type == "photo")?.Value)" alt="@User.Identity.Name" class="rounded-circle img-fluid auth__userpic"/>
                 </a>
                 <a class="auth__username @if (User.HasClaim(x => x.Type == "renegade"))
                                          {
