@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using BioEngine.Core.Comments;
 using BioEngine.Core.Posts.Db;
 using BioEngine.Core.Posts.Entities;
@@ -16,10 +17,25 @@ namespace BioEngine.BRC.Site.Controllers
             commentsProvider)
         {
         }
-        
+
         protected override IActionResult PageNotFound()
         {
             return View("~/Views/Errors/Error.cshtml", new ErrorsViewModel(GetPageContext(), 404));
+        }
+
+        protected override BioRepositoryQuery<Post> ApplyPublishConditions(BioRepositoryQuery<Post> query)
+        {
+            if (CurrentUser != null)
+            {
+                if (User.HasClaim(ClaimTypes.Role, "admin"))
+                {
+                    return query;
+                }
+
+                return query.Where(e => e.IsPublished || e.AuthorId == CurrentUser.Id);
+            }
+
+            return base.ApplyPublishConditions(query);
         }
     }
 }
