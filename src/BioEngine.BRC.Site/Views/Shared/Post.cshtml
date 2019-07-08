@@ -18,14 +18,20 @@
             </div>
 
             <h2 class="card-title">
-
+                @{
+                    var title = Model.Entity.Title;
+                    if (!Model.Entity.IsPublished)
+                    {
+                        title += " (Неопубликовано)";
+                    }
+                }
                 @switch (Model.Mode)
                 {
                     case ContentEntityViewMode.List:
-                        <a class="article-list__permalink" href="@LinkGenerator.GeneratePublicUrl(Model.Entity)">@Model.Entity.Title</a>
+                        <a class="article-list__permalink" href="@LinkGenerator.GeneratePublicUrl(Model.Entity)">@title</a>
                         break;
                     case ContentEntityViewMode.Entity:
-                        @Model.Entity.Title
+                        @title
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
