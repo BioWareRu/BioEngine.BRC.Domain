@@ -1,11 +1,11 @@
 @model BioEngine.Core.Web.Models.BlockViewModel<BioEngine.Core.Entities.Blocks.IframeBlock, BioEngine.Core.Entities.Blocks.IframeBlockData>
 
-<div style="text-align: center">
+<div class="embed-container">
     @* ReSharper disable once Html.Obsolete *@
-    <iframe
-        frameborder="0"
-        height="315"
-        src="@Model.Block.Data.Src"
-        width="560">
+    <iframe frameborder="0"
+            class="lazyload"
+            allowfullscreen=""
+            width="100%"
+            data-src="@Model.Block.Data.Src">
     </iframe>
 </div>
