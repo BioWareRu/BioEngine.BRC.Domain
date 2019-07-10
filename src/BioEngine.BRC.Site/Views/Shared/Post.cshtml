@@ -13,7 +13,7 @@
         <header>
             <div class="author">
                 <a href="@Model.Entity.Author.ProfileUrl">
-                    <img src="@Model.Entity.Author.PhotoUrl" alt="@Model.Entity.Author.Name" class="rounded-circle img-fluid"/> @Model.Entity.Author.Name</a>
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="@Model.Entity.Author.PhotoUrl" alt="@Model.Entity.Author.Name" class="rounded-circle img-fluid lazyload"/> @Model.Entity.Author.Name</a>
                 <time datetime="@Model.Entity.DateAdded.DateTime.ToString("s", CultureInfo.InvariantCulture)">@dateString в @Model.Entity.DateAdded.DateTime.ToShortTimeString()</time>
             </div>
 
