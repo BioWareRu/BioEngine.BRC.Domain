@@ -6,7 +6,7 @@
         <div class="col-lg-4 col-md-12 mb-3">
             <div class="card gallery-picture p-2">
                 <div class="view overlay">
-                    <img class="card-img-top" src="@picture.PictureInfo.MediumThumbnail.PublicUri" alt="@picture.FileName">
+                    <img class="card-img-top lazyload" data-src="@picture.PictureInfo.MediumThumbnail.PublicUri" alt="@picture.FileName">
                     <a href="@picture.PublicUri" target="_blank" title="@picture.FileName">
                         <div class="mask rgba-white-slight"></div>
                     </a>
