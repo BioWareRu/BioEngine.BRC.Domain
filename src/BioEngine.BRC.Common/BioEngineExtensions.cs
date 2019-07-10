@@ -2,6 +2,7 @@ using System;
 using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
+using BioEngine.Core.Db.PostgreSQL;
 using BioEngine.Core.Logging.Graylog;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage;
