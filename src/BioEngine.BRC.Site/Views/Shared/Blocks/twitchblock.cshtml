@@ -1,8 +1,25 @@
 @model BioEngine.Core.Web.Models.BlockViewModel<BioEngine.BRC.Domain.Entities.Blocks.TwitchBlock, BioEngine.BRC.Domain.Entities.Blocks.TwitchBlockData>
 
-<div id="twitch-@Model.Block.Id" class="twitch-embed" 
-     data-video-id="@Model.Block.Data.VideoId" 
-     data-collection-id="@Model.Block.Data.CollectionId" 
-     data-channel-id="@Model.Block.Data.ChannelId">
-    <div class="preloader"><i class="fas fa-spinner fa-spin"></i> Загрузка видео</div>
+@{
+    var url = "";
+    if (!string.IsNullOrEmpty(Model.Block.Data.VideoId))
+    {
+        url = $"https://player.twitch.tv/?video=v{Model.Block.Data.VideoId}&autoplay=false";
+    }
+    else
+    {
+        url = !string.IsNullOrEmpty(Model.Block.Data.ChannelId) ?
+            $"https://player.twitch.tv/?channel={Model.Block.Data.ChannelId}&muted=true" :
+            $"https://player.twitch.tv/?collection={Model.Block.Data.CollectionId}";
+    }
+}
+<div class="embed-container">
+    <iframe
+        class="lazyload"
+        allowfullscreen=""
+        width="100%"
+        data-src="@url"
+        frameborder="0"
+        scrolling="no">
+    </iframe>
 </div>
