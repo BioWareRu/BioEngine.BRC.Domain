@@ -86,16 +86,15 @@
                 {
                     if (pageNumber < Model.PageCount)
                     {
-                        if (pageNumber == Model.CurrentPage)
-                        {
-                            <span class="pagination__item pagination__item_active">@pageNumber</span>
-                        }
-                        else
-                        {
-                            <a class="pagination__item pagination__item_link"
-                               href="@Model.PageLink(pageNumber)">
-                                @pageNumber</a>
-                        }
+                        <li class="page-item @(Model.CurrentPage == pageNumber ? "active" : "")">
+                            <a class="page-link" href="@Model.PageLink(pageNumber)">
+                                @pageNumber
+                                @if (Model.CurrentPage == pageNumber)
+                                {
+                                    <span class="sr-only">(Текущая)</span>
+                                }
+                            </a>
+                        </li>
                     }
                 }
             }
