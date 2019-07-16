@@ -12,7 +12,7 @@ namespace BioEngine.BRC.Common
         {
             endpoints
                 .MapRoute("root", "/", "Posts", "List")
-                .MapRoute("rss", "/rss.xml", "Posts", "Rss")
+                .MapRoute("rss", "/rss.xml", "Rss", "Index")
                 .MapRoute(BioEnginePostsRoutes.Post, "/posts/{url}.html", "Posts", "Show")
                 .MapRoute(BioEnginePostsRoutes.PostsPage, "page/page.html", "Posts", "ListPage")
                 .MapRoute(BioEnginePostsRoutes.PostsByTags, "posts/tags/{tagNames}.html", "Posts", "ListByTag")
@@ -30,12 +30,9 @@ namespace BioEngine.BRC.Common
                 .MapRoute(BrcDomainRoutes.TopicPosts, "/topics/{url}/posts.html", "Topics", "Posts")
                 .MapRoute(BrcDomainRoutes.TopicPostsPage, "/topics/{url}/posts/page/{page:int}.html", "Topics",
                     "PostsPage")
-                .MapRoute(BioEnginePagesRoutes.Page, "/pages/{url}.html", "Pages", "Show")
-                ;
+                .MapRoute(BioEnginePagesRoutes.Page, "/pages/{url}.html", "Pages", "Show");
 
             return endpoints;
         }
-
-
     }
 }
