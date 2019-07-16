@@ -1,7 +1,7 @@
 @model BioEngine.Core.Web.Models.BlockViewModel<BioEngine.BRC.Domain.Entities.Blocks.TwitchBlock, BioEngine.BRC.Domain.Entities.Blocks.TwitchBlockData>
 
 @{
-    var url = "";
+    string url;
     if (!string.IsNullOrEmpty(Model.Block.Data.VideoId))
     {
         url = $"https://player.twitch.tv/?video=v{Model.Block.Data.VideoId}&autoplay=false";
