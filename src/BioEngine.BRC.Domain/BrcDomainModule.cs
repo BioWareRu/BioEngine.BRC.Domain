@@ -14,12 +14,9 @@ namespace BioEngine.BRC.Domain
             IHostEnvironment environment)
         {
             base.ConfigureServices(services, configuration, environment);
-            services.RegisterSearchRepositoryHook<Developer>()
-                .RegisterSearchProvider<DevelopersSearchProvider, Developer>();
-            services.RegisterSearchRepositoryHook<Game>()
-                .RegisterSearchProvider<GamesSearchProvider, Game>();
-            services.RegisterSearchRepositoryHook<Topic>()
-                .RegisterSearchProvider<TopicsSearchProvider, Topic>();
+            services.RegisterSearchProvider<DevelopersSearchProvider, Developer>();
+            services.RegisterSearchProvider<GamesSearchProvider, Game>();
+            services.RegisterSearchProvider<TopicsSearchProvider, Topic>();
         }
     }
 }
