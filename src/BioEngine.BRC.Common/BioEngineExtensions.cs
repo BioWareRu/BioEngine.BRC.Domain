@@ -5,7 +5,7 @@ using BioEngine.Core.DB;
 using BioEngine.Core.Db.PostgreSQL;
 using BioEngine.Core.Logging.Graylog;
 using BioEngine.Core.Search.ElasticSearch;
-using BioEngine.Core.Storage;
+using BioEngine.Core.Storage.S3;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -49,7 +49,8 @@ namespace BioEngine.BRC.Common
             return bioEngine.AddModule<ElasticSearchModule, ElasticSearchModuleConfig>((configuration, env) =>
                 new ElasticSearchModuleConfig(configuration["BE_ELASTICSEARCH_PREFIX"],
                     configuration["BE_ELASTICSEARCH_URI"],
-                    configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"], env.IsDevelopment()));
+                    configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"],
+                    env.IsDevelopment()));
         }
 
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
@@ -79,10 +80,26 @@ namespace BioEngine.BRC.Common
                 success = Uri.TryCreate(serverUriStr, UriKind.Absolute, out var serverUri);
                 if (!success)
                 {
-                    throw new ArgumentException($"S3 server URI {uri} is not proper URI");
+                    throw new ArgumentException($"S3 server URI {serverUriStr} is not proper URI");
                 }
 
                 return new S3StorageModuleConfig(publicUri, serverUri, configuration["BE_STORAGE_S3_BUCKET"],
+                    configuration["BE_STORAGE_S3_ACCESS_KEY"], configuration["BE_STORAGE_S3_SECRET_KEY"]);
+            });
+        }
+
+        public static Core.BioEngine AddS3Client(this Core.BioEngine bioEngine)
+        {
+            return bioEngine.AddModule<S3ClientModule, S3ClientModuleConfig>((configuration, env) =>
+            {
+                var serverUriStr = configuration["BE_STORAGE_S3_SERVER_URI"];
+                var success = Uri.TryCreate(serverUriStr, UriKind.Absolute, out var serverUri);
+                if (!success)
+                {
+                    throw new ArgumentException($"S3 server URI {serverUri} is not proper URI");
+                }
+
+                return new S3ClientModuleConfig(serverUri, configuration["BE_STORAGE_S3_BUCKET"],
                     configuration["BE_STORAGE_S3_ACCESS_KEY"], configuration["BE_STORAGE_S3_SECRET_KEY"]);
             });
         }
