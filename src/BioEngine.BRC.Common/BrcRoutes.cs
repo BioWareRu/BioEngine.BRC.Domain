@@ -14,9 +14,9 @@ namespace BioEngine.BRC.Common
                 .MapRoute("root", "/", "Posts", "List")
                 .MapRoute("rss", "/rss.xml", "Rss", "Index")
                 .MapRoute(BioEnginePostsRoutes.Post, "/posts/{url}.html", "Posts", "Show")
-                .MapRoute(BioEnginePostsRoutes.PostsPage, "page/page.html", "Posts", "ListPage")
+                .MapRoute(BioEnginePostsRoutes.PostsPage, "page/{page:int}.html", "Posts", "ListPage")
                 .MapRoute(BioEnginePostsRoutes.PostsByTags, "posts/tags/{tagNames}.html", "Posts", "ListByTag")
-                .MapRoute(BioEnginePostsRoutes.PostsByTagsPage, "posts/tags/{tagNames}/page/page.html", "Posts",
+                .MapRoute(BioEnginePostsRoutes.PostsByTagsPage, "posts/tags/{tagNames}/page/{page:int}.html", "Posts",
                     "ListByTagPage")
                 .MapRoute(BrcDomainRoutes.DeveloperPublic, "/developers/{url}/about.html", "Developers", "Show")
                 .MapRoute(BrcDomainRoutes.DeveloperPosts, "/developers/{url}/posts.html", "Developers", "Posts")
