@@ -1,9 +1,9 @@
- using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Entities;
 using BioEngine.BRC.Domain.Repository;
- using BioEngine.Core.DB;
- using BioEngine.Core.Search;
+using BioEngine.Core.DB;
+using BioEngine.Core.Search;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 
@@ -14,9 +14,9 @@ namespace BioEngine.BRC.Domain.Search
     {
         private readonly DevelopersRepository _developersRepository;
 
-        public DevelopersSearchProvider(ISearcher searcher, ILogger<BaseSearchProvider<Developer>> logger,
-            DevelopersRepository developersRepository, BioEntitiesManager entitiesManager) : base(searcher,
-            logger, entitiesManager)
+        public DevelopersSearchProvider(ILogger<BaseSearchProvider<Developer>> logger,
+            DevelopersRepository developersRepository, BioEntitiesManager entitiesManager, ISearcher searcher = null) :
+            base(logger, entitiesManager, searcher)
         {
             _developersRepository = developersRepository;
         }
