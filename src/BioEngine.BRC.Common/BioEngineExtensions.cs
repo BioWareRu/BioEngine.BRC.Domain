@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
+using Serilog;
+using Serilog.Events;
 
 namespace BioEngine.BRC.Common
 {
@@ -58,11 +60,16 @@ namespace BioEngine.BRC.Common
             return bioEngine.AddModule<BrcDomainModule>();
         }
 
-        public static Core.BioEngine AddLogging(this Core.BioEngine bioEngine)
+        public static Core.BioEngine AddLogging(this Core.BioEngine bioEngine,
+            LogEventLevel devLevel = LogEventLevel.Debug, LogEventLevel prodLevel = LogEventLevel.Information,
+            Action<LoggerConfiguration> configure = null)
         {
             return bioEngine.AddModule<GraylogLoggingModule, GraglogModuleConfig>((configuration, environment) =>
                 new GraglogModuleConfig(configuration["BE_GRAYLOG_HOST"],
-                    int.Parse(configuration["BE_GRAYLOG_PORT"]), environment.ApplicationName));
+                    int.Parse(configuration["BE_GRAYLOG_PORT"]), environment.ApplicationName)
+                {
+                    DevLevel = devLevel, ProdLevel = prodLevel, Configure = configure
+                });
         }
 
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)
