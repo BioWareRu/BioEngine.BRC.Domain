@@ -54,7 +54,7 @@
                     @* ReSharper disable once Mvc.ActionNotResolved *@
                     @foreach (var tag in Model.Entity.Tags)
                     {
-                        @Html.ActionLink(tag.Title, "ListByTag", "Posts", new {tagName = tag.Title})
+                        @Html.ActionLink(tag.Title, "ListByTag", "Posts", new {tagNames = tag.Title})
                         if (tag != Model.Entity.Tags.Last())
                         {
                             <span>, </span>
