@@ -10,11 +10,11 @@ namespace BioEngine.BRC.Site.Patreon
     {
         private readonly PatreonApiHelper _patreonApiHelper;
         private readonly IHostEnvironment _hostEnvironment;
-        private readonly ILogger<PatreonApiHelper> _logger;
+        private readonly ILogger<PatreonWidgetViewComponent> _logger;
 
         public PatreonWidgetViewComponent(PatreonApiHelper patreonApiHelper,
             IHostEnvironment hostEnvironment,
-            ILogger<PatreonApiHelper> logger)
+            ILogger<PatreonWidgetViewComponent> logger)
         {
             _patreonApiHelper = patreonApiHelper;
             _hostEnvironment = hostEnvironment;

@@ -14,7 +14,7 @@ namespace BioEngine.BRC.Domain.Search
     {
         private readonly TopicsRepository _topicsRepository;
 
-        public TopicsSearchProvider(ILogger<BaseSearchProvider<Topic>> logger,
+        public TopicsSearchProvider(ILogger<TopicsSearchProvider> logger,
             TopicsRepository topicsRepository, BioEntitiesManager entitiesManager, ISearcher searcher = null) : base(
             logger, entitiesManager, searcher)
         {
