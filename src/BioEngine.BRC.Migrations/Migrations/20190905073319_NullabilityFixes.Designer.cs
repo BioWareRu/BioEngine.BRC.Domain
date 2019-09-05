@@ -10,15 +10,17 @@ using BioEngine.Core.Pages.Entities;
 using BioEngine.Core.Posts.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Migrations.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20190905073319_NullabilityFixes")]
+    partial class NullabilityFixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
