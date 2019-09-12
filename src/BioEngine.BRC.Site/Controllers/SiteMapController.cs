@@ -9,7 +9,7 @@ namespace BioEngine.BRC.Site.Controllers
 {
     public class SiteMapController : BaseSiteMapController
     {
-        public SiteMapController(ILogger<cloudscribe.Web.SiteMap.Controllers.SiteMapController> logger,
+        public SiteMapController(ILogger<SiteMapController> logger,
             IEnumerable<ISiteMapNodeService> nodeProviders = null) : base(logger, nodeProviders)
         {
         }

@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using BioEngine.Core.Comments;
+using BioEngine.Core.DB;
 using BioEngine.Core.Posts.Db;
 using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Posts.Site;
@@ -23,7 +24,7 @@ namespace BioEngine.BRC.Site.Controllers
             return View("~/Views/Errors/Error.cshtml", new ErrorsViewModel(GetPageContext(), 404));
         }
 
-        protected override BioRepositoryQuery<Post> ApplyPublishConditions(BioRepositoryQuery<Post> query)
+        protected override BioQuery<Post> ApplyPublishConditions(BioQuery<Post> query)
         {
             if (CurrentUser != null)
             {

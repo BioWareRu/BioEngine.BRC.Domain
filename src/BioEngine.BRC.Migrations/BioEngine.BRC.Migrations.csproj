@@ -11,10 +11,15 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core\BioEngine.Core.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Db.PostgreSQL\BioEngine.Core.Db.PostgreSQL.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Posts\BioEngine.Core.Posts.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Pages\BioEngine.Core.Pages.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <ProjectReference Include="..\BioEngine.BRC.Domain\BioEngine.BRC.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BioEngine.Core" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Db.PostgreSQL" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Core.Posts" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Core.Pages" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
   </ItemGroup>
 
 </Project>

@@ -25,10 +25,11 @@ namespace BioEngine.BRC.Common
                     (configuration, env) => new PostgresDatabaseModuleConfig(configuration["BE_POSTGRES_HOST"],
                         configuration["BE_POSTGRES_USERNAME"], configuration["BE_POSTGRES_DATABASE"],
                         configuration["BE_POSTGRES_PASSWORD"], int.Parse(configuration["BE_POSTGRES_PORT"]),
-                        enablePooling, typeof(MigrationsManager).Assembly)).ConfigureServices(collection =>
-                {
-                    collection.AddHealthChecks().AddDbContextCheck<BioContext>();
-                });
+                        typeof(MigrationsManager).Assembly) {EnableNpgsqlPooling = enablePooling}).ConfigureServices(
+                    collection =>
+                    {
+                        collection.AddHealthChecks().AddDbContextCheck<BioContext>();
+                    });
         }
 
         public static string GetPostgresConnectionString(this IConfiguration configuration)
