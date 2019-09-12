@@ -14,24 +14,23 @@
             {
                 imgClass += " active";
             }
-            <div class="@imgClass">
-                <a href="@picture.PublicUri" target="_blank">
-                    <img class="d-block w-100" src="@picture.PublicUri" alt="@picture.FileName"/>
-                </a>
+            <div class="@imgClass" style="background-image: url('@picture.PublicUri')">
+                <a href="@picture.PublicUri" target="_blank" class="carousel-item-inner"></a>
             </div>
         }
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#@galleryId" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Предыдущая</span>
+        </a>
+        <a class="carousel-control-next" href="#@galleryId" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Следующая</span>
+        </a>
+        <!--/.Controls-->
     </div>
     <!--/.Slides-->
-    <!--Controls-->
-    <a class="carousel-control-prev" href="#@galleryId" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Предыдущая</span>
-    </a>
-    <a class="carousel-control-next" href="#@galleryId" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Следующая</span>
-    </a>
-    <!--/.Controls-->
+
     <ol class="carousel-indicators">
         @for (var index = 0; index < Model.Block.Data.Pictures.Length; index++)
         {
@@ -41,9 +40,7 @@
             {
                 imgClass += " active";
             }
-            <li data-target="#@galleryId" data-slide-to="@index" class="@imgClass">
-                <img class="d-block w-100 img-fluid" src="@picture.PictureInfo.SmallThumbnail.PublicUri" alt="@picture.FileName">
-                <div><span>@picture.PictureInfo.HorizontalResolution</span>x<span>@picture.PictureInfo.VerticalResolution</span></div>
+            <li data-target="#@galleryId" data-slide-to="@index" class="@imgClass" style="background-image: url('@picture.PictureInfo.SmallThumbnail.PublicUri')" title="@picture.FileName (@picture.PictureInfo.HorizontalResolution x @picture.PictureInfo.VerticalResolution)">
             </li>
         }
     </ol>
