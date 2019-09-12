@@ -63,7 +63,7 @@ namespace BioEngine.BRC.Common
 
         public static Core.BioEngine AddLogging(this Core.BioEngine bioEngine,
             LogEventLevel devLevel = LogEventLevel.Debug, LogEventLevel prodLevel = LogEventLevel.Information,
-            Action<LoggerConfiguration> configure = null)
+            Action<LoggerConfiguration, IHostEnvironment> configure = null)
         {
             return bioEngine.AddModule<GraylogLoggingModule, GraglogModuleConfig>((configuration, environment) =>
                 new GraglogModuleConfig(configuration["BE_GRAYLOG_HOST"],

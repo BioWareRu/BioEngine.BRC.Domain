@@ -10,6 +10,7 @@ using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog.Events;
 
 namespace BioEngine.BRC.Site
 {
@@ -25,7 +26,13 @@ namespace BioEngine.BRC.Site
                 .AddModule<BrcSiteModule, BrcSiteModuleConfig>(
                     (configuration, env) =>
                         new BrcSiteModuleConfig(configuration["BE_PATREON_SERVICE_URL"]))
-                .AddLogging()
+                .AddLogging(configure: (configuration, env) =>
+                {
+                    if (!env.IsDevelopment())
+                    {
+                        configuration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
+                    }
+                })
                 .AddElasticSearch()
                 .AddS3Storage()
                 .AddModule<SeoModule>()
