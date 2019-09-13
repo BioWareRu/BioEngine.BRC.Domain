@@ -8,6 +8,7 @@ using BioEngine.Core.Site;
 using BioEngine.Core.Users;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB;
+using BioEngine.Extra.IPB.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog.Events;
@@ -43,17 +44,9 @@ namespace BioEngine.BRC.Site
                         throw new ArgumentException($"Can't parse IPB url; {configuration["BE_IPB_URL"]}");
                     }
 
-                    return new IPBSiteModuleConfig(ipbUrl)
-                    {
-                        ApiClientId = configuration["BE_IPB_OAUTH_CLIENT_ID"],
-                        ApiClientSecret = configuration["BE_IPB_OAUTH_CLIENT_SECRET"],
-                        CallbackPath = "/login/ipb",
-                        AuthorizationEndpoint = configuration["BE_IPB_AUTHORIZATION_ENDPOINT"],
-                        TokenEndpoint = configuration["BE_IPB_TOKEN_ENDPOINT"],
-                        ApiReadonlyKey = configuration["BE_IPB_API_READONLY_KEY"],
-                        DataProtectionPath = configuration["BE_IPB_DATA_PROTECTION_PATH"]
-                    };
+                    return new IPBSiteModuleConfig(ipbUrl) {ApiReadonlyKey = configuration["BE_IPB_API_READONLY_KEY"]};
                 })
+                .AddIpbUsers<IPBSiteUsersModule, IPBSiteUsersModuleConfig, IPBSiteCurrentUserProvider>()
                 .AddModule<SiteModule, SiteModuleConfig>((configuration, env) =>
                     new SiteModuleConfig(Guid.Parse(configuration["BE_SITE_ID"])))
                 .AddModule<AdsSiteModule>();
