@@ -4,7 +4,7 @@
 @inject ICommentsProvider CommentsProvider
 @{
     // ReSharper disable once CoVariantArrayConversion
-    var comments = await CommentsProvider.GetCommentsDataAsync(Model.Items);
+    var comments = await CommentsProvider.GetCommentsDataAsync(Model.Items, Model.Site);
 }
 @foreach (var item in Model.Items)
 {
