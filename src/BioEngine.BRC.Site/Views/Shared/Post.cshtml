@@ -3,7 +3,7 @@
 @using BioEngine.Core.Abstractions
 @using BioEngine.Core.Routing
 @using Microsoft.AspNetCore.Routing
-@model BioEngine.Core.Site.Model.ContentItemViewModel
+@model BioEngine.Core.Posts.Site.PostViewModel<string>
 @inject LinkGenerator LinkGenerator
 @{
     var dateString = Model.Entity.DateAdded.DateTime.Year == DateTime.Now.Year ? Model.Entity.DateAdded.DateTime.ToString("d MMMM") : Model.Entity.DateAdded.DateTime.ToString("d MMMM yyyy");

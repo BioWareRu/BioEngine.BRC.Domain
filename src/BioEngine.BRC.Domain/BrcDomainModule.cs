@@ -1,10 +1,14 @@
 using BioEngine.BRC.Domain.Entities;
+using BioEngine.BRC.Domain.Entities.Blocks;
 using BioEngine.BRC.Domain.Search;
+using BioEngine.Core.DB;
 using BioEngine.Core.Modules;
 using BioEngine.Core.Search;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BioEngine.BRC.Domain
 {
@@ -17,6 +21,17 @@ namespace BioEngine.BRC.Domain
             services.RegisterSearchProvider<DevelopersSearchProvider, Developer>();
             services.RegisterSearchProvider<GamesSearchProvider, Game>();
             services.RegisterSearchProvider<TopicsSearchProvider, Topic>();
+        }
+    }
+
+    public class BrcBioContextModelConfigurator : IBioContextModelConfigurator
+    {
+        public void Configure(ModelBuilder modelBuilder, ILogger<BioContext> logger)
+        {
+            modelBuilder.RegisterSection<Developer, DeveloperData>(logger);
+            modelBuilder.RegisterSection<Game, GameData>(logger);
+            modelBuilder.RegisterSection<Topic, TopicData>(logger);
+            modelBuilder.RegisterContentBlock<TwitchBlock, TwitchBlockData>(logger);
         }
     }
 }

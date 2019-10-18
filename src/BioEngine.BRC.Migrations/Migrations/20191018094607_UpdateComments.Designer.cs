@@ -8,15 +8,17 @@ using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Migrations.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20191018094607_UpdateComments")]
+    partial class UpdateComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

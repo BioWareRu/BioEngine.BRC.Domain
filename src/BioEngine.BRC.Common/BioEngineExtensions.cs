@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Claims;
 using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
-using BioEngine.Core.Abstractions;
 using BioEngine.Core.DB;
 using BioEngine.Core.Db.PostgreSQL;
 using BioEngine.Core.Logging.Graylog;
@@ -126,7 +125,7 @@ namespace BioEngine.BRC.Common
             AddIpbUsers<TUsersModule, TConfig, TCurrentUserProvider>(this Core.BioEngine bioEngine)
             where TUsersModule : IPBUsersModule<TConfig, TCurrentUserProvider>, new()
             where TConfig : IPBUsersModuleConfig, new()
-            where TCurrentUserProvider : class, ICurrentUserProvider
+            where TCurrentUserProvider : class, ICurrentUserProvider<string>
         {
             return bioEngine.AddModule<TUsersModule, TConfig>((configuration, env) =>
             {
