@@ -15,8 +15,7 @@ namespace BioEngine.BRC.Migrations.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "ContentType",
-                table: "IPBComment",
-                nullable: false);
+                table: "IPBComment");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ads_SiteIds",
