@@ -39,7 +39,7 @@
                     {
                         foreach (var item in block.Items)
                         {
-                            var dateString = item.Date.DateTime.Year == DateTime.Now.Year ? item.Date.DateTime.ToString("d MMMM") : null;
+                            var dateString = item.Date.DateTime.Year == DateTime.Now.Year ? item.Date.DateTime.ToString("dd MMMM") : item.Date.DateTime.ToString("dd MMMM yyyy");
                             <div class="search-page__item">
                                 <a class="search-page__link" href="@item.Url">@item.Title</a>
                                 <time datetime="@item.Date.DateTime.ToString("s", CultureInfo.InvariantCulture)">@dateString в @item.Date.DateTime.ToShortTimeString()</time>
