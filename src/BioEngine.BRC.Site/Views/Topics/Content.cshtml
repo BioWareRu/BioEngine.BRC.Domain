@@ -30,6 +30,4 @@
         </li>
     </ul>
 </section>
-@{
-    await Html.RenderPartialAsync("PostsList", Model);
-}
+<partial name="PostsList" model="@Model"/>

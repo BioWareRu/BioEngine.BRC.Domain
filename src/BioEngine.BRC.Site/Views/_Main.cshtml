@@ -1,4 +1,4 @@
-﻿@using BioEngine.BRC.Site.Patreon
+@using BioEngine.BRC.Site.Patreon
 @using BioEngine.Core.Seo
 @using BioEngine.Extra.Ads.Site
 @using BioEngine.Extra.Twitter
@@ -105,10 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <!-- Left -->
-                <vc:menu></vc:menu>
+                <vc:menu />
 
                 <!-- Right -->
-                @await Html.PartialAsync("_headerRight")
+                <partial name="_headerRight"></partial>
             </div>
 
         </div>

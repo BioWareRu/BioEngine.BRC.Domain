@@ -9,6 +9,6 @@
 @foreach (var item in Model.Items)
 {
     var postComments = comments[item.Id];
-    await Html.RenderPartialAsync("Post", new PostViewModel<string>(Model.GetContext(), item, postComments.count, postComments.uri));
+    <partial name="Post" model="@(new PostViewModel<string>(Model.GetContext(), item, postComments.count, postComments.uri))"/>
 }
-<vc:pager page="@Model.Page" total-items="@Model.TotalItems" items-per-page="@Model.ItemsPerPage"></vc:pager>
+<vc:pager page="@Model.Page" total-items="@Model.TotalItems" items-per-page="@Model.ItemsPerPage"/>

@@ -32,9 +32,7 @@
 </section>
 <article class="card mb-4 post">
     <section class="card-body">
-        @{
-            await Html.RenderPartialAsync("Blocks/Blocks", Model.ContentEntityViewModel());
-        }
+        <partial name="Blocks/Blocks" model="@Model.ContentEntityViewModel()"/>
     </section>
     <footer class="card-footer">
         <div class="row justify-content-between">
@@ -42,7 +40,7 @@
 
             </div>
             <div class="col-5" style="text-align: right">
-                @await Html.PartialAsync("Share", new ShareViewModel(Model.Entity.Title, LinkGenerator.GeneratePublicUrl(Model.Entity, Model.Site)))
+                <partial name="Share" model="@(new ShareViewModel(Model.Entity.Title, LinkGenerator.GeneratePublicUrl(Model.Entity, Model.Site)))"/>
             </div>
         </div>
     </footer>

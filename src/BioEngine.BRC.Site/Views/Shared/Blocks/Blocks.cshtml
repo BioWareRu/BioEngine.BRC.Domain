@@ -1,8 +1,7 @@
 @using BioEngine.Core.Abstractions
 @using BioEngine.Core.Entities.Blocks
-@using BioEngine.Core.Site.Model
 @using BioEngine.Core.Web.Models
-@model EntityViewModel<BioEngine.Core.Abstractions.IContentEntity>
+@model BioEngine.Core.Site.Model.EntityViewModel<BioEngine.Core.Abstractions.IContentEntity>
 @{
 
     foreach (var block in Model.Entity.Blocks.OrderBy(b => b.Position))
@@ -16,11 +15,9 @@
         }
 
         var modelType = typeof(BlockViewModel<,>).MakeGenericType(block.GetType(), block.GetData().GetType());
-        var model = Activator.CreateInstance(modelType, block, Model.Entity, Model.Site);
+        var blockModel = Activator.CreateInstance(modelType, block, Model.Entity, Model.Site);
         <div class="block block-@block.Type">
-            @{
-                await Html.RenderPartialAsync($"Blocks/{block.Type}", model);
-            }
+            <partial name="@($"Blocks/{block.Type}")" model="@blockModel"/>
         </div>
         if (block is CutBlock)
         {

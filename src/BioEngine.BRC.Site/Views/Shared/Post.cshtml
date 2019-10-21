@@ -41,9 +41,7 @@
         <div class="sections">
             @Html.Raw(string.Join(", ", Model.Entity.Sections.Where(s => s.SiteIds.Contains(Model.Site.Id)).Select(section => $"<a href=\"{LinkGenerator.GeneratePublicUrl(section)}\">{section.Title}</a>")))
         </div>
-        @{
-            await Html.RenderPartialAsync("Blocks/Blocks", Model.ContentEntityViewModel());
-        }
+        <partial name="Blocks/Blocks" model="@Model.ContentEntityViewModel()"/>
     </section>
     <footer class="card-footer">
         @if (Model.Entity.Tags.Any())
