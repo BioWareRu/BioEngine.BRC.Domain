@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.BRC.Domain.Repository;
+using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Site;
 using BioEngine.Core.Site.Model;
@@ -25,14 +26,15 @@ namespace BioEngine.BRC.Site.Controllers
         [HttpGet("/games.html")]
         public async Task<IActionResult> ListGamesAsync()
         {
-            var games = await _gamesRepository.GetAllAsync();
+            var games = await _gamesRepository.GetAllAsync(query => query.ForSite(Site).Where(g => g.IsPublished));
             return ListSections(games.items, "Игры");
         }
 
         [HttpGet("/developers.html")]
         public async Task<IActionResult> ListDevelopersAsync()
         {
-            var developers = await _developersRepository.GetAllAsync();
+            var developers =
+                await _developersRepository.GetAllAsync(query => query.ForSite(Site).Where(d => d.IsPublished));
             return ListSections(developers.items, "Компании");
         }
 
