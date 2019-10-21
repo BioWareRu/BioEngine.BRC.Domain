@@ -8,15 +8,17 @@ using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BioEngine.BRC.Migrations.Migrations
 {
     [DbContext(typeof(BioContext))]
-    partial class BioContextModelSnapshot : ModelSnapshot
+    [Migration("20191018061038_MigrateToSeparateContentItems")]
+    partial class MigrateToSeparateContentItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -457,8 +459,6 @@ namespace BioEngine.BRC.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SiteIds");
-
                     b.ToTable("Ads");
                 });
 
@@ -506,10 +506,6 @@ namespace BioEngine.BRC.Migrations.Migrations
 
                     b.Property<Guid>("ContentId")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("DateAdded")
                         .HasColumnType("timestamp with time zone");

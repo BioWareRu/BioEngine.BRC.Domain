@@ -714,12 +714,7 @@ namespace BioEngine.BRC.Migrations.Migrations
             modelBuilder.Entity("BioEngine.Core.Pages.Entities.Page", b =>
                 {
                     b.HasBaseType("BioEngine.Core.Entities.ContentItem");
-
-                    b.Property<PageData>("Data")
-                        .IsRequired()
-                        .HasColumnName("Data")
-                        .HasColumnType("jsonb");
-
+                    
                     b.ToTable("Content");
 
                     b.HasDiscriminator().HasValue("pagecontentitem");
@@ -728,11 +723,6 @@ namespace BioEngine.BRC.Migrations.Migrations
             modelBuilder.Entity("BioEngine.Core.Posts.Entities.Post", b =>
                 {
                     b.HasBaseType("BioEngine.Core.Entities.ContentItem");
-
-                    b.Property<PostData>("Data")
-                        .IsRequired()
-                        .HasColumnName("Data")
-                        .HasColumnType("jsonb");
 
                     b.ToTable("Content");
 

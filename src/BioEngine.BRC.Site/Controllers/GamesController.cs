@@ -17,12 +17,12 @@ namespace BioEngine.BRC.Site.Controllers
 
         public Task<IActionResult> PostsAsync(string url)
         {
-            return ShowContentAsync<Post>(url);
+            return ShowContentAsync<Post<string>>(url);
         }
 
         public Task<IActionResult> PostsPageAsync(string url, int page)
         {
-            return ShowContentAsync<Post>(url, page);
+            return ShowContentAsync<Post<string>>(url, page);
         }
 
         protected override IActionResult PageNotFound()

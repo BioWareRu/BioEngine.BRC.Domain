@@ -1,7 +1,7 @@
 @using BioEngine.Core.Comments
-@using BioEngine.Core.Site.Model
-@model BioEngine.Core.Site.Model.ListViewModel<BioEngine.Core.Posts.Entities.Post>
-@inject ICommentsProvider CommentsProvider
+@using BioEngine.Core.Posts.Site
+@model BioEngine.Core.Site.Model.ListViewModel<BioEngine.Core.Posts.Entities.Post<string>>
+@inject ICommentsProvider<string> CommentsProvider
 @{
     // ReSharper disable once CoVariantArrayConversion
     var comments = await CommentsProvider.GetCommentsDataAsync(Model.Items, Model.Site);
@@ -9,6 +9,6 @@
 @foreach (var item in Model.Items)
 {
     var postComments = comments[item.Id];
-    await Html.RenderPartialAsync("Post", new ContentItemViewModel(Model.GetContext(), item, postComments.count, postComments.uri));
+    await Html.RenderPartialAsync("Post", new PostViewModel<string>(Model.GetContext(), item, postComments.count, postComments.uri));
 }
 <vc:pager page="@Model.Page" total-items="@Model.TotalItems" items-per-page="@Model.ItemsPerPage"></vc:pager>

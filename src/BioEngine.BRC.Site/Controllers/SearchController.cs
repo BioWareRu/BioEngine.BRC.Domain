@@ -66,7 +66,7 @@ namespace BioEngine.BRC.Site.Controllers
 
                 if (!hasBlock || block == "posts")
                 {
-                    var searchBlock = await BuildBlockAsync<Post>(query, limit, "Публикации", "posts");
+                    var searchBlock = await BuildBlockAsync<Post<string>>(query, limit, "Публикации", "posts");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
