@@ -14,7 +14,8 @@
             {
                 imgClass += " active";
             }
-            <div class="@imgClass" style="background-image: url('@picture.PublicUri')">
+            var imgUrl = picture.PictureInfo?.LargeThumbnail?.PublicUri ?? picture.PublicUri;
+            <div class="@imgClass" style="background-image: url('@imgUrl')">
                 <a href="@picture.PublicUri" target="_blank" class="carousel-item-inner"></a>
             </div>
         }
