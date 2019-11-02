@@ -101,7 +101,10 @@ namespace BioEngine.BRC.Common
                 }
 
                 return new S3StorageModuleConfig(publicUri, serverUri, configuration["BE_STORAGE_S3_BUCKET"],
-                    configuration["BE_STORAGE_S3_ACCESS_KEY"], configuration["BE_STORAGE_S3_SECRET_KEY"]);
+                    configuration["BE_STORAGE_S3_ACCESS_KEY"], configuration["BE_STORAGE_S3_SECRET_KEY"])
+                {
+                    LargeThumbnailHeight = 578, LargeThumbnailWidth = 800
+                };
             });
         }
 
