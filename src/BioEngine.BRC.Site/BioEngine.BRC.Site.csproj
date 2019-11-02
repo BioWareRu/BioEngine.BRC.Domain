@@ -11,7 +11,7 @@
     <PackageReference Include="BioEngine.Core.Site" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Posts.Site" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Pages.Site" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Extra.Ads.Site" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
+    <PackageReference Include="BioEngine.Extra.Ads.Site" Version="3.0.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
@@ -19,7 +19,7 @@
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Site\BioEngine.Core.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Pages.Site\BioEngine.Core.Pages.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Posts.Site\BioEngine.Core.Posts.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Extra.Ads\src\BioEngine.Extra.Ads.Site\BioEngine.Extra.Ads.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Extra.Ads')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Ads.Site\BioEngine.Extra.Ads.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\Assets" />
