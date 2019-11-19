@@ -15,11 +15,8 @@ namespace BioEngine.BRC.Site
 {
     public abstract class BrcSiteStartup : BioEngineSiteStartup
     {
-        private readonly IHostEnvironment _environment;
-
-        protected BrcSiteStartup(IConfiguration configuration, IHostEnvironment environment) : base(configuration)
+        protected BrcSiteStartup(IConfiguration configuration) : base(configuration)
         {
-            _environment = environment;
         }
 
         protected override IMvcBuilder ConfigureMvc(IMvcBuilder mvcBuilder)
@@ -28,10 +25,6 @@ namespace BioEngine.BRC.Site
                 .AddApplicationPart(typeof(UserController).Assembly)
                 .AddApplicationPart(typeof(BrcSiteModule).Assembly)
                 .AddApplicationPart(typeof(AdsSiteController).Assembly);
-            if (_environment.IsDevelopment())
-            {
-                mvcBuilder.AddRazorRuntimeCompilation();
-            }
 
             return mvcBuilder;
         }
@@ -56,7 +49,8 @@ namespace BioEngine.BRC.Site
             });
         }
 
-        protected override void ConfigureEndpoints(IApplicationBuilder app, IHostEnvironment env, IEndpointRouteBuilder endpoints)
+        protected override void ConfigureEndpoints(IApplicationBuilder app, IHostEnvironment env,
+            IEndpointRouteBuilder endpoints)
         {
             endpoints.AddBrcRoutes();
             base.ConfigureEndpoints(app, env, endpoints);

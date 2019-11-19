@@ -12,7 +12,6 @@
     <PackageReference Include="BioEngine.Core.Posts.Site" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Pages.Site" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Extra.Ads.Site" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0-preview3.19555.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BioEngine.BRC.Common\BioEngine.BRC.Common.csproj" />
