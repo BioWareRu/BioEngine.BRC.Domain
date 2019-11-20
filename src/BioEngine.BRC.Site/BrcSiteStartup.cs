@@ -15,7 +15,8 @@ namespace BioEngine.BRC.Site
 {
     public abstract class BrcSiteStartup : BioEngineSiteStartup
     {
-        protected BrcSiteStartup(IConfiguration configuration) : base(configuration)
+        protected BrcSiteStartup(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
+            environment)
         {
         }
 
@@ -26,6 +27,11 @@ namespace BioEngine.BRC.Site
                 .AddApplicationPart(typeof(BrcSiteModule).Assembly)
                 .AddApplicationPart(typeof(AdsSiteController).Assembly);
 
+            if (Environment.IsDevelopment())
+            {
+                mvcBuilder.AddRazorRuntimeCompilation();
+            }
+            
             return mvcBuilder;
         }
 

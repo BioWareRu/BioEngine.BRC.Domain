@@ -48,7 +48,7 @@ namespace BioEngine.BRC.Site
                 .AddIpbUsers<IPBSiteUsersModule, IPBSiteUsersModuleConfig, IPBSiteCurrentUserProvider>()
                 .AddModule<SiteModule, SiteModuleConfig>((configuration, env) =>
                     new SiteModuleConfig(
-                        Guid.Parse(configuration["BE_SITE_ID"])) {EnableRuntimeCompilation = env.IsDevelopment()})
+                        Guid.Parse(configuration["BE_SITE_ID"])))
                 .AddModule<AdsSiteModule>();
 
             bioEngine.ConfigureServices((context, collection) =>
