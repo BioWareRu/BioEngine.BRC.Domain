@@ -156,6 +156,8 @@ namespace BioEngine.BRC.Common
                     .Build();
                 var policies = new Dictionary<string, AuthorizationPolicy>
                 {
+                    {BioPolicies.Admin, adminPolicy},
+                    {BrcPolicies.SiteTeam, siteTeamPolicy},
                     // sections
                     {BioPolicies.Sections, siteTeamPolicy},
                     {BioPolicies.SectionsAdd, adminPolicy},
