@@ -10,7 +10,7 @@
             {
                 if (!string.IsNullOrEmpty(Model.Block.Data.Author))
                 {
-                    <a href="@Model.Block.Data.Link">@Model.Block.Data.Author</a>
+                    <a href="@Model.Block.Data.Link">&mdash; @Model.Block.Data.Author</a>
                 }
                 else
                 {
@@ -19,8 +19,14 @@
             }
             else if (!string.IsNullOrEmpty(Model.Block.Data.Author))
             {
-                @Model.Block.Data.Author
+                <text>&mdash; @Model.Block.Data.Author</text>
             }
         </cite>
     </footer>
 </blockquote>
+@if (Model.Block.Data.Picture?.PictureInfo?.SmallThumbnail != null)
+{
+    <div class="picture">
+        <img src="@Model.Block.Data.Picture.PictureInfo.SmallThumbnail.PublicUri" alt="@Model.Block.Data.Picture.FileName"/>
+    </div>
+}
