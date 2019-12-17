@@ -20,7 +20,4 @@
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Posts.Site\BioEngine.Core.Posts.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Ads.Site\BioEngine.Extra.Ads.Site.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Shared\Assets" />
-  </ItemGroup>
 </Project>

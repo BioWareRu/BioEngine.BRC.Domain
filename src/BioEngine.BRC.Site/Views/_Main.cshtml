@@ -59,7 +59,9 @@
 
     <meta name="robots" content="index, follow"/>
     <link rel="canonical" href="@Html.Raw(meta.CurrentUrl)"/>
-    @await Html.PartialAsync("Assets/_Gen_Styles")
+    @* ReSharper disable Html.PathError *@
+    <link href="/dist/styles.css" rel="stylesheet">
+    @* ReSharper restore Html.PathError *@
     @RenderSection("styles", required: false)
     @if (!string.IsNullOrEmpty(seoProperties.TagManagerId))
     {
@@ -103,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <!-- Left -->
-                <vc:menu />
+                <vc:menu/>
 
                 <!-- Right -->
                 <partial name="_headerRight"></partial>
@@ -188,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         @await Html.PartialAsync("_footerSocials")
     </div>
     <!-- Social icons -->
-    
+
     <!-- Social icons -->
     <div class="pb-4">
         <a href="https://brcgames.ru/">Сеть сайтов BRCGames</a>
@@ -203,7 +205,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </footer>
 <!--/.Footer-->
-@await Html.PartialAsync("Assets/_Gen_Scripts")
+@* ReSharper disable Html.PathError *@
+<script src="/dist/bundle.js"></script>
+@* ReSharper restore Html.PathError *@
 @RenderSection("scripts", required: false)
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
