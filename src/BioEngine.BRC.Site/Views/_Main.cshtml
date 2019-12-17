@@ -60,7 +60,7 @@
     <meta name="robots" content="index, follow"/>
     <link rel="canonical" href="@Html.Raw(meta.CurrentUrl)"/>
     @* ReSharper disable Html.PathError *@
-    <link href="/dist/styles.css" rel="stylesheet">
+    <link href="/dist/styles.css?v=@Model.Version" rel="stylesheet">
     @* ReSharper restore Html.PathError *@
     @RenderSection("styles", required: false)
     @if (!string.IsNullOrEmpty(seoProperties.TagManagerId))
@@ -206,7 +206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </footer>
 <!--/.Footer-->
 @* ReSharper disable Html.PathError *@
-<script src="/dist/bundle.js"></script>
+<script src="/dist/bundle.js?v=@Model.Version"></script>
 @* ReSharper restore Html.PathError *@
 @RenderSection("scripts", required: false)
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
