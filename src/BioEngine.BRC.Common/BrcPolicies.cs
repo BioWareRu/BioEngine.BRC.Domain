@@ -1,6 +1,6 @@
 namespace BioEngine.BRC.Common
 {
-    public class BrcPolicies
+    public static class BrcPolicies
     {
         public const string SiteTeam = "SiteTeam";
     }
