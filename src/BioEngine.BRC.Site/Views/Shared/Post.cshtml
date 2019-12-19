@@ -6,7 +6,8 @@
 @model BioEngine.Core.Posts.Site.PostViewModel<string>
 @inject LinkGenerator LinkGenerator
 @{
-    var dateString = Model.Entity.DateAdded.DateTime.Year == DateTime.Now.Year ? Model.Entity.DateAdded.DateTime.ToString("d MMMM") : Model.Entity.DateAdded.DateTime.ToString("d MMMM yyyy");
+    var date = Model.Entity.IsPublished && Model.Entity.DatePublished != null ? Model.Entity.DatePublished.Value : Model.Entity.DateUpdated;
+    var dateString = date.DateTime.Year == DateTime.Now.Year ? date.DateTime.ToString("d MMMM") : date.DateTime.ToString("d MMMM yyyy");
 }
 <article class="card mb-4 post">
     <section class="card-body">
@@ -14,7 +15,7 @@
             <div class="author">
                 <a href="@Model.Entity.Author.ProfileUrl">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="@Model.Entity.Author.PhotoUrl" alt="@Model.Entity.Author.Name" class="rounded-circle img-fluid lazyload"/> @Model.Entity.Author.Name</a>
-                <time datetime="@Model.Entity.DateAdded.DateTime.ToString("s", CultureInfo.InvariantCulture)">@dateString в @Model.Entity.DateAdded.DateTime.ToShortTimeString()</time>
+                <time datetime="@date.DateTime.ToString("s", CultureInfo.InvariantCulture)">@dateString в @date.DateTime.ToShortTimeString()</time>
             </div>
 
             <h2 class="card-title">
