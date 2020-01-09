@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
             <!-- Brand -->
-            <partial name="_logo"></partial>
+            <partial name="_logo"/>
 
             <!-- Collapse -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <vc:menu/>
 
                 <!-- Right -->
-                <partial name="_headerRight"></partial>
+                <partial name="_headerRight"/>
             </div>
 
         </div>
@@ -139,7 +139,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <!--Grid column-->
                 <div class="col-md-3 mb-4">
 
-                    @await Html.PartialAsync("~/Views/Shared/UserBlock.cshtml")
+                    <partial name="Shared/UserBlock"/>
 
                     <div class="card mb-4">
                         <div class="card-body">
@@ -187,7 +187,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <!-- Social icons -->
     <div class="pb-4">
-        @await Html.PartialAsync("_footerSocials")
+        <partial name="_footerSocials"/>
     </div>
     <!-- Social icons -->
 

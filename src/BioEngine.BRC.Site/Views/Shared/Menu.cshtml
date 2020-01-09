@@ -37,7 +37,7 @@
                 <a href="@url" class="@linkClass" data-toggle="dropdown">
                     @menuItem.Label
                 </a>
-                @await Html.PartialAsync("Menu", new MenuLevel {Items = menuItem.Items, Level = Model.Level + 1})
+                <partial name="Menu" model="@(new MenuLevel {Items = menuItem.Items, Level = Model.Level + 1})"/>
             }
             else
             {
