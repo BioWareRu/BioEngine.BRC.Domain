@@ -61,9 +61,7 @@ namespace BioEngine.BRC.Common
         {
             return bioEngine.AddModule<ElasticSearchModule, ElasticSearchModuleConfig>((configuration, env) =>
                 new ElasticSearchModuleConfig(configuration["BE_ELASTICSEARCH_PREFIX"],
-                    configuration["BE_ELASTICSEARCH_URI"],
-                    configuration["BE_ELASTICSEARCH_LOGIN"], configuration["BE_ELASTICSEARCH_PASSWORD"],
-                    env.IsDevelopment()));
+                    configuration["BE_ELASTICSEARCH_URI"], enableClientLogging: env.IsDevelopment()));
         }
 
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
