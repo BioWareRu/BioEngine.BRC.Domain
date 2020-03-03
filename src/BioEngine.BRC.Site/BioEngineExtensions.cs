@@ -26,6 +26,7 @@ namespace BioEngine.BRC.Site
                 .AddModule<BrcSiteModule, BrcSiteModuleConfig>(
                     (configuration, env) =>
                         new BrcSiteModuleConfig(configuration["BE_PATREON_SERVICE_URL"]))
+                .AddLogging()
                 .AddElasticSearch()
                 .AddS3Storage()
                 .AddModule<SeoModule>()
