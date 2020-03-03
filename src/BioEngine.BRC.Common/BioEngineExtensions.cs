@@ -78,7 +78,18 @@ namespace BioEngine.BRC.Common
                     (configuration, environment) =>
                         new ElasticSearchLoggingConfig(new List<Uri> {new Uri(configuration["BE_ELASTIC_ES_URL"])})
                         {
-                            DevLevel = devLevel, ProdLevel = prodLevel, Configure = configure
+                            DevLevel = devLevel,
+                            ProdLevel = prodLevel,
+                            Configure =
+                                (loggerConfiguration, hostEnvironment) =>
+                                {
+                                    if (!environment.IsDevelopment())
+                                    {
+                                        loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
+                                    }
+
+                                    configure?.Invoke(loggerConfiguration, hostEnvironment);
+                                }
                         }
                 )
                 .AddModule<ElasticSearchApmModule, ElasticSearchApmConfig>(
