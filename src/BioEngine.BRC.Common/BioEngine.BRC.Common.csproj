@@ -15,10 +15,9 @@
     <PackageReference Include="BioEngine.Core.Posts" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Pages" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Extra.Ads" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Core.Logging.Graylog" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="BioEngine.Core.Storage.S3" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="BioEngine.Extra.ElasticStack" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.2" />
-    <!---->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BioEngine.BRC.Domain\BioEngine.BRC.Domain.csproj" />
@@ -29,8 +28,8 @@
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.IPB\BioEngine.Extra.IPB.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Twitter\BioEngine.Extra.Twitter.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Facebook\BioEngine.Extra.Facebook.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Logging.Graylog\BioEngine.Core.Logging.Graylog.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
     <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Storage.S3\BioEngine.Core.Storage.S3.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.ElasticStack\BioEngine.Extra.ElasticStack.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
   </ItemGroup>
 
 </Project>

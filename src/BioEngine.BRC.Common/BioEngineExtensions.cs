@@ -6,13 +6,13 @@ using BioEngine.BRC.Domain;
 using BioEngine.BRC.Migrations;
 using BioEngine.Core.DB;
 using BioEngine.Core.Db.PostgreSQL;
-using BioEngine.Core.Logging.Graylog;
 using BioEngine.Core.Pages;
 using BioEngine.Core.Posts;
 using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage.S3;
 using BioEngine.Core.Users;
 using BioEngine.Extra.Ads;
+using BioEngine.Extra.ElasticStack;
 using BioEngine.Extra.IPB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -75,12 +75,18 @@ namespace BioEngine.BRC.Common
             LogEventLevel devLevel = LogEventLevel.Debug, LogEventLevel prodLevel = LogEventLevel.Information,
             Action<LoggerConfiguration, IHostEnvironment> configure = null)
         {
-            return bioEngine.AddModule<GraylogLoggingModule, GraglogModuleConfig>((configuration, environment) =>
-                new GraglogModuleConfig(configuration["BE_GRAYLOG_HOST"],
-                    int.Parse(configuration["BE_GRAYLOG_PORT"]), environment.ApplicationName)
-                {
-                    DevLevel = devLevel, ProdLevel = prodLevel, Configure = configure
-                });
+            return bioEngine
+                .AddModule<ElasticSearchLoggingModule, ElasticSearchLoggingConfig>(
+                    (configuration, environment) =>
+                        new ElasticSearchLoggingConfig(new List<Uri> {new Uri(configuration["BE_ELASTIC_ES_URL"])})
+                        {
+                            DevLevel = devLevel, ProdLevel = prodLevel, Configure = configure
+                        }
+                )
+                .AddModule<ElasticSearchApmModule, ElasticSearchApmConfig>(
+                    (configuration, environment) =>
+                        new ElasticSearchApmConfig(new List<Uri> {new Uri(configuration["BE_ELASTIC_APM_URL"])})
+                );
         }
 
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)
