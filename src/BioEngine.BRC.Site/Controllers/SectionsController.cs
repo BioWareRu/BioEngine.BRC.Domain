@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BioEngine.BRC.Domain.Repository;
-using BioEngine.Core.DB;
-using BioEngine.Core.Entities;
-using BioEngine.Core.Site;
-using BioEngine.Core.Site.Model;
-using BioEngine.Core.Web;
+using BioEngine.BRC.Common.Entities;
+using BioEngine.BRC.Common.Repository;
+using BioEngine.BRC.Common.Web;
+using BioEngine.BRC.Common.Web.Site;
+using BioEngine.BRC.Common.Web.Site.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers

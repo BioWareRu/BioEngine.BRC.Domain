@@ -1,9 +1,9 @@
 @using System.Globalization
+@using BioEngine.BRC.Common.Entities.Abstractions
+@using BioEngine.BRC.Common.Routing
 @using BioEngine.BRC.Site.ViewModels
-@using BioEngine.Core.Abstractions
-@using BioEngine.Core.Routing
 @using Microsoft.AspNetCore.Routing
-@model BioEngine.Core.Posts.Site.PostViewModel<string>
+@model BioEngine.BRC.Common.Posts.Site.PostViewModel
 @inject LinkGenerator LinkGenerator
 @{
     var date = Model.Entity.IsPublished && Model.Entity.DatePublished != null ? Model.Entity.DatePublished.Value : Model.Entity.DateUpdated;

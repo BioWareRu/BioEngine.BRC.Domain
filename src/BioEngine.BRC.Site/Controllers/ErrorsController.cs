@@ -1,5 +1,5 @@
-using BioEngine.Core.Site.Controllers;
-using BioEngine.Core.Web;
+using BioEngine.BRC.Common.Web;
+using BioEngine.BRC.Common.Web.Site.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

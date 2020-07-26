@@ -1,7 +1,7 @@
-@using BioEngine.BRC.Domain
-@using BioEngine.Core.Routing
+@using BioEngine.BRC.Common
+@using BioEngine.BRC.Common.Routing
 @using Microsoft.AspNetCore.Routing
-@model BioEngine.Core.Site.Model.SectionContentListViewModel<BioEngine.BRC.Domain.Entities.Game, BioEngine.Core.Posts.Entities.Post<string>>
+@model BioEngine.BRC.Common.Web.Site.Model.SectionContentListViewModel<BioEngine.BRC.Common.Entities.Game, BioEngine.BRC.Common.Entities.Post>
 @inject LinkGenerator LinkGenerator
 @{
     Layout = "~/Views/_Main.cshtml";

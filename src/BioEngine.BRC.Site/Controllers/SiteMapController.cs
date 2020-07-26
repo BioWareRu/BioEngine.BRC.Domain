@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BioEngine.Core.Site.Controllers;
+using BioEngine.BRC.Common.Web.Site.Controllers;
 using cloudscribe.Web.SiteMap;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

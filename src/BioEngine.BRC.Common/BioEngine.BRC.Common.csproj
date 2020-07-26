@@ -2,34 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>8.0</LangVersion>
     <IsPackable>true</IsPackable>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="BioEngine.Extra.IPB" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Extra.Twitter" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Extra.Facebook" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Core.Posts" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Core.Pages" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Extra.Ads" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Core.Storage.S3" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="BioEngine.Extra.ElasticStack" Version="3.1.*" Condition="!Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BioEngine.BRC.Domain\BioEngine.BRC.Domain.csproj" />
-    <ProjectReference Include="..\BioEngine.BRC.Migrations\BioEngine.BRC.Migrations.csproj" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Posts\BioEngine.Core.Posts.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Pages\BioEngine.Core.Pages.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Ads\BioEngine.Extra.Ads.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.IPB\BioEngine.Extra.IPB.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Twitter\BioEngine.Extra.Twitter.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.Facebook\BioEngine.Extra.Facebook.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Core.Storage.S3\BioEngine.Core.Storage.S3.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
-    <ProjectReference Include="..\..\..\..\BioEngine\BioEngine.Core\src\BioEngine.Extra.ElasticStack\BioEngine.Extra.ElasticStack.csproj" Condition="Exists('..\..\..\..\BioEngine\BioEngine.Core')" />
+    <PackageReference Include="Sitko.Core.App.Web" Version="3.2.0" />
+    <PackageReference Include="Sitko.Core.Db.Postgres" Version="3.2.0" />
+    <PackageReference Include="Sitko.Core.ElasticStack" Version="3.2.0" />
+    <PackageReference Include="Sitko.Core.Repository.EntityFrameworkCore" Version="3.2.0" />
+    <PackageReference Include="Sitko.Core.Search.ElasticSearch" Version="3.2.0" />
+    <PackageReference Include="Sitko.Core.Storage.S3" Version="3.2.0" />
+    <PackageReference Include="cloudscribe.Syndication.Web" Version="3.0.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
+    <PackageReference Include="cloudscribe.Web.SiteMap" Version="4.0.1" />
+    <PackageReference Include="Flurl.Http" Version="2.4.2" />
+    <PackageReference Include="Sitko.Core.Swagger" Version="3.2.0" />
+    <PackageReference Include="TweetinviAPI" Version="4.0.3" />
   </ItemGroup>
 
 </Project>

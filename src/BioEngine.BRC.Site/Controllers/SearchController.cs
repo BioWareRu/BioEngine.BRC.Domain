@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using BioEngine.BRC.Domain.Entities;
-using BioEngine.Core.Abstractions;
-using BioEngine.Core.Entities;
-using BioEngine.Core.Entities.Blocks;
-using BioEngine.Core.Posts.Entities;
-using BioEngine.Core.Routing;
-using BioEngine.Core.Search;
-using BioEngine.Core.Site.Controllers;
-using BioEngine.Core.Site.Helpers;
-using BioEngine.Core.Site.Model;
-using BioEngine.Core.Web;
+using BioEngine.BRC.Common.Entities;
+using BioEngine.BRC.Common.Entities.Abstractions;
+using BioEngine.BRC.Common.Entities.Blocks;
+using BioEngine.BRC.Common.Routing;
+using BioEngine.BRC.Common.Web;
+using BioEngine.BRC.Common.Web.Site.Controllers;
+using BioEngine.BRC.Common.Web.Site.Helpers;
+using BioEngine.BRC.Common.Web.Site.Model;
 using Microsoft.AspNetCore.Mvc;
+using Sitko.Core.Search;
 
 namespace BioEngine.BRC.Site.Controllers
 {
@@ -38,7 +36,7 @@ namespace BioEngine.BRC.Site.Controllers
                 if (!hasBlock || block == "games")
                 {
                     var searchBlock =
-                        await BuildBlockAsync<Game>(query, limit, "Игры", "games");
+                        await BuildBlockAsync<Game, Guid>(query, limit, "Игры", "games");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
@@ -47,7 +45,7 @@ namespace BioEngine.BRC.Site.Controllers
 
                 if (!hasBlock || block == "developers")
                 {
-                    var searchBlock = await BuildBlockAsync<Developer>(query, limit, "Разработчики", "developers");
+                    var searchBlock = await BuildBlockAsync<Developer, Guid>(query, limit, "Разработчики", "developers");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
@@ -57,7 +55,7 @@ namespace BioEngine.BRC.Site.Controllers
                 if (!hasBlock || block == "topics")
                 {
                     var searchBlock =
-                        await BuildBlockAsync<Topic>(query, limit, "Темы", "topics");
+                        await BuildBlockAsync<Topic, Guid>(query, limit, "Темы", "topics");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
@@ -66,7 +64,7 @@ namespace BioEngine.BRC.Site.Controllers
 
                 if (!hasBlock || block == "posts")
                 {
-                    var searchBlock = await BuildBlockAsync<Post<string>>(query, limit, "Публикации", "posts");
+                    var searchBlock = await BuildBlockAsync<Post, Guid>(query, limit, "Публикации", "posts");
                     if (searchBlock != null)
                     {
                         viewModel.AddBlock(searchBlock);
@@ -78,13 +76,14 @@ namespace BioEngine.BRC.Site.Controllers
         }
 
         [SuppressMessage("ReSharper", "Mvc.ActionNotResolved")]
-        private async Task<SearchBlock> BuildBlockAsync<T>(string query, int limit, string blockTitle, string blockKey)
-            where T : BaseEntity, IContentEntity
+        private async Task<SearchBlock> BuildBlockAsync<TEntity, TEntityPk>(string query, int limit, string blockTitle,
+            string blockKey)
+            where TEntity : BaseEntity, IContentEntity
         {
-            var entitiesCount = await CountEntitiesAsync<T>(query);
+            var entitiesCount = await CountEntitiesAsync<TEntity, TEntityPk>(query);
             if (entitiesCount > 0)
             {
-                var entities = await SearchEntitiesAsync<T>(query, limit);
+                var entities = await SearchEntitiesAsync<TEntity, TEntityPk>(query, limit);
                 var searchBlock = CreateSearchBlock(blockTitle,
                     new Uri(Url.Action("Index", "Search", new {query, block = blockKey}), UriKind.Relative),
                     entitiesCount,

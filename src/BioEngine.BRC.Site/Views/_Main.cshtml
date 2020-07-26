@@ -1,8 +1,10 @@
-﻿@using BioEngine.BRC.Site.Patreon
-@using BioEngine.Core.Seo
-@using BioEngine.Extra.Ads.Site
-@using BioEngine.Extra.Twitter
-@model BioEngine.Core.Site.Model.PageViewModel
+﻿@using BioEngine.BRC.Common.Ads.Site
+@using BioEngine.BRC.Common.Seo
+@using BioEngine.BRC.Common.Twitter
+@using BioEngine.BRC.Site.Patreon
+@using Sitko.Core.App
+@inject IApplication Application
+@model BioEngine.BRC.Common.Web.Site.Model.PageViewModel
 @{
     var meta = await Model.GetMetaAsync();
     var twitterProperties = await Model.GetSitePropertiesAsync<TwitterSitePropertiesSet>();
@@ -61,7 +63,7 @@
     <link rel="canonical" href="@Html.Raw(meta.CurrentUrl)"/>
     @* ReSharper disable Html.PathError *@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link href="/dist/styles.css?v=@Model.Version" rel="stylesheet">
+    <link href="/dist/styles.css?v=@Application.Version" rel="stylesheet">
     @* ReSharper restore Html.PathError *@
     @RenderSection("styles", required: false)
     @if (!string.IsNullOrEmpty(seoProperties.TagManagerId))
@@ -207,7 +209,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </footer>
 <!--/.Footer-->
 @* ReSharper disable Html.PathError *@
-<script src="/dist/bundle.js?v=@Model.Version"></script>
+<script src="/dist/bundle.js?v=@Application.Version"></script>
 @* ReSharper restore Html.PathError *@
 @RenderSection("scripts", required: false)
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

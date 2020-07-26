@@ -1,15 +1,14 @@
-using BioEngine.Core.Entities;
-using BioEngine.Core.Posts.Entities;
-using BioEngine.Core.Site.Model;
+using BioEngine.BRC.Common.Entities;
+using BioEngine.BRC.Common.Web.Site.Model;
 
 namespace BioEngine.BRC.Site.ViewModels
 {
-    public class PostsListModel : ListViewModel<Post<string>>
+    public class PostsListModel : ListViewModel<Post>
     {
         public StorageItem Logo { get; }
         public StorageItem LogoSmall { get; }
 
-        public PostsListModel(PageViewModelContext context, Post<string>[] items, int totalItems, int page, int itemsPerPage,
+        public PostsListModel(PageViewModelContext context, Post[] items, int totalItems, int page, int itemsPerPage,
             StorageItem logo, StorageItem logoSmall) :
             base(context, items, totalItems, page, itemsPerPage)
         {

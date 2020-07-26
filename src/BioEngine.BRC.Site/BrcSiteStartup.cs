@@ -1,10 +1,8 @@
 using System.Globalization;
 using BioEngine.BRC.Common;
-using BioEngine.Core.Logging.Controllers;
-using BioEngine.Core.Site;
-using BioEngine.Extra.Ads.Site;
-using BioEngine.Extra.IPB.Controllers;
-using Elastic.Apm.NetCoreAll;
+using BioEngine.BRC.Common.Ads.Site;
+using BioEngine.BRC.Common.IPB.Controllers;
+using BioEngine.BRC.Common.Web.Site;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;
@@ -14,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BioEngine.BRC.Site
 {
-    public abstract class BrcSiteStartup : BioEngineSiteStartup
+    public abstract class BrcSiteStartup : BRCSiteStartup
     {
         protected BrcSiteStartup(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
             environment)
@@ -23,7 +21,7 @@ namespace BioEngine.BRC.Site
 
         protected override IMvcBuilder ConfigureMvc(IMvcBuilder mvcBuilder)
         {
-            base.ConfigureMvc(mvcBuilder).AddApplicationPart(typeof(LogsController).Assembly)
+            base.ConfigureMvc(mvcBuilder)
                 .AddApplicationPart(typeof(UserController).Assembly)
                 .AddApplicationPart(typeof(BrcSiteModule).Assembly)
                 .AddApplicationPart(typeof(AdsSiteController).Assembly);
@@ -36,16 +34,16 @@ namespace BioEngine.BRC.Site
             return mvcBuilder;
         }
 
-        protected override void ConfigureAfterRouting(IApplicationBuilder app, IHostEnvironment env)
+        protected override void ConfigureAfterRoutingMiddleware(IApplicationBuilder app)
         {
-            base.ConfigureAfterRouting(app, env);
+            base.ConfigureAfterRoutingMiddleware(app);
             app.UseAuthentication();
             app.UseAuthorization();
         }
 
-        protected override void ConfigureBeforeRouting(IApplicationBuilder app, IHostEnvironment env)
+        protected override void ConfigureBeforeRoutingMiddleware(IApplicationBuilder app)
         {
-            base.ConfigureBeforeRouting(app, env);
+            base.ConfigureBeforeRoutingMiddleware(app);
             var supportedCultures = new[] {new CultureInfo("ru-RU"), new CultureInfo("ru")};
 
             app.UseRequestLocalization(new RequestLocalizationOptions
@@ -56,20 +54,10 @@ namespace BioEngine.BRC.Site
             });
         }
 
-        protected override void ConfigureEndpoints(IApplicationBuilder app, IHostEnvironment env,
-            IEndpointRouteBuilder endpoints)
+        protected override void ConfigureEndpoints(IApplicationBuilder app, IEndpointRouteBuilder endpointRouteBuilder)
         {
-            endpoints.AddBrcRoutes();
-            base.ConfigureEndpoints(app, env, endpoints);
-        }
-
-        protected override void ConfigureStart(IApplicationBuilder appBuilder)
-        {
-            base.ConfigureStart(appBuilder);
-            if (Environment.IsProduction())
-            {
-                appBuilder.UseAllElasticApm(Configuration);
-            }
+            endpointRouteBuilder.AddBrcRoutes();
+            base.ConfigureEndpoints(app, endpointRouteBuilder);
         }
     }
 }

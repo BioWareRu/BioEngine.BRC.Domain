@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BioEngine.Core.Site.Controllers;
-using BioEngine.Core.Site.Rss;
-using BioEngine.Core.Web;
+using BioEngine.BRC.Common.Web;
+using BioEngine.BRC.Common.Web.Site.Controllers;
+using BioEngine.BRC.Common.Web.Site.Rss;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers

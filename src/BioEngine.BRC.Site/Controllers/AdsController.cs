@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using BioEngine.Core.Site.Model;
-using BioEngine.Core.Web;
-using BioEngine.Extra.Ads.Entities;
-using BioEngine.Extra.Ads.Site;
+using BioEngine.BRC.Common.Ads.Site;
+using BioEngine.BRC.Common.Repository;
+using BioEngine.BRC.Common.Web;
+using BioEngine.BRC.Common.Web.Site.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers

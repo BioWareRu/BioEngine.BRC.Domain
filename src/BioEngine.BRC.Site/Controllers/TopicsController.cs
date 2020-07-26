@@ -1,28 +1,28 @@
+using System;
 using System.Threading.Tasks;
-using BioEngine.BRC.Domain.Entities;
-using BioEngine.BRC.Domain.Repository;
-using BioEngine.Core.Posts.Entities;
-using BioEngine.Core.Site;
-using BioEngine.Core.Site.Model;
-using BioEngine.Core.Web;
+using BioEngine.BRC.Common.Entities;
+using BioEngine.BRC.Common.Repository;
+using BioEngine.BRC.Common.Web;
+using BioEngine.BRC.Common.Web.Site;
+using BioEngine.BRC.Common.Web.Site.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioEngine.BRC.Site.Controllers
 {
     public class TopicsController : SectionController<Topic, TopicsRepository>
     {
-        public TopicsController(BaseControllerContext<Topic, TopicsRepository> context) : base(context)
+        public TopicsController(BaseControllerContext<Topic, Guid, TopicsRepository> context) : base(context)
         {
         }
 
         public Task<IActionResult> PostsAsync(string url)
         {
-            return ShowContentAsync<Post<string>>(url);
+            return ShowContentAsync<Post>(url);
         }
 
         public Task<IActionResult> PostsPageAsync(string url, int page)
         {
-            return ShowContentAsync<Post<string>>(url, page);
+            return ShowContentAsync<Post>(url, page);
         }
 
         protected override IActionResult PageNotFound()
