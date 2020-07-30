@@ -2,15 +2,17 @@
 @using BioEngine.BRC.Common.Routing
 @using BioEngine.BRC.Site.ViewModels
 @using Microsoft.AspNetCore.Routing
+@using Sitko.Core.Storage
 @model BioEngine.BRC.Common.Web.Site.Model.EntityViewModel<BioEngine.BRC.Common.Entities.Topic>
 @inject LinkGenerator LinkGenerator
+@inject IStorage<BRCStorageConfig> Storage
 @{
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
     @if (Model.Entity.Data.HeaderPicture != null)
     {
-        <img class="card-img-top" src="@Model.Entity.Data.HeaderPicture.PublicUri" alt="@Model.Entity.Title"/>
+        <img class="card-img-top" src="@Storage.PublicUri(Model.Entity.Data.HeaderPicture)" alt="@Model.Entity.Title"/>
     }
     <section class="card-body">
         <header>
@@ -39,7 +41,7 @@
             <div class="col-3">
 
             </div>
-            <div class="col-5" style="text-aligLn: right">
+            <div class="col-5" style="text-align: right">
                 <partial name="Share" model="@(new ShareViewModel(Model.Entity.Title, LinkGenerator.GeneratePublicUrl(Model.Entity, Model.Site)))"/>
             </div>
         </div>

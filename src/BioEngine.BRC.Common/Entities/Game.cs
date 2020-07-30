@@ -6,7 +6,7 @@ namespace BioEngine.BRC.Common.Entities
     [Entity("gamesection")]
     public class Game : BrcSection<GameData>
     {
-        public override string TypeTitle { get; set; } = "Игра"; 
+        public override string? TypeTitle { get; set; } = "Игра"; 
         [NotMapped] public override string PublicRouteName { get; set; } = BrcDomainRoutes.GamePublic;
     }
 

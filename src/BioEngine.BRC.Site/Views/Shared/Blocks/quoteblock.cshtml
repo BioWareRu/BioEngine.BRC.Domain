@@ -1,5 +1,8 @@
+@using BioEngine.BRC.Common
+@using BioEngine.BRC.Common.Extensions
+@using Sitko.Core.Storage
 @model BioEngine.BRC.Common.Web.Models.BlockViewModel<BioEngine.BRC.Common.Entities.Blocks.QuoteBlock, BioEngine.BRC.Common.Entities.Blocks.QuoteBlockData>
-
+@inject IStorage<BRCStorageConfig> Storage
 <blockquote class="blockquote">
     <div>
         @Html.Raw(Model.Block.Data.Text)
@@ -24,9 +27,9 @@
         </cite>
     </footer>
 </blockquote>
-@if (Model.Block.Data.Picture?.PictureInfo?.SmallThumbnail != null)
+@if (Model.Block.Data.Picture != null)
 {
     <div class="picture">
-        <img src="@Model.Block.Data.Picture.PictureInfo.SmallThumbnail.PublicUri" alt="@Model.Block.Data.Picture.FileName"/>
+        <img src="@Storage.SmallThumbnailUri(Model.Block.Data.Picture)" alt="@Model.Block.Data.Picture.FileName"/>
     </div>
 }

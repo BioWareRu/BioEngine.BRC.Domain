@@ -7,7 +7,7 @@ namespace BioEngine.BRC.Common.Entities
     [Entity("developersection")]
     public class Developer : BrcSection<DeveloperData>
     {
-        public override string TypeTitle { get; set; } = "Разработчик";
+        public override string? TypeTitle { get; set; } = "Разработчик";
         [NotMapped] public override string PublicRouteName { get; set; } = BrcDomainRoutes.DeveloperPublic;
     }
 

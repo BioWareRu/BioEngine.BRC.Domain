@@ -32,7 +32,7 @@ namespace BioEngine.BRC.Common.Web.Site
 
         protected virtual PageViewModelContext GetPageContext()
         {
-            var context = new PageViewModelContext(LinkGenerator, PropertiesProvider, Site);
+            var context = new PageViewModelContext(LinkGenerator, PropertiesProvider, Site, Storage);
 
             return context;
         }

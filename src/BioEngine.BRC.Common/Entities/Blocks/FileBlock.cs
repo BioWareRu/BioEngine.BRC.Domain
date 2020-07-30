@@ -5,7 +5,7 @@ namespace BioEngine.BRC.Common.Entities.Blocks
     [Entity("fileblock")]
     public class FileBlock : ContentBlock<FileBlockData>
     {
-        public override string TypeTitle { get; set; } = "Файл";
+        public override string? TypeTitle { get; set; } = "Файл";
 
         public override string ToString()
         {

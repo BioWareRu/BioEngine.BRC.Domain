@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BioEngine.BRC.Common.Entities;
 using BioEngine.BRC.Common.Policies;
 using BioEngine.BRC.Common.Posts.Api.Entities;
 using BioEngine.BRC.Common.Repository;
@@ -12,7 +13,6 @@ using BioEngine.BRC.Common.Web.Api.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Post = BioEngine.BRC.Common.Posts.Api.Entities.Post;
-using StorageItem = Sitko.Core.Storage.StorageItem;
 
 namespace BioEngine.BRC.Common.Posts.Api
 {
@@ -22,21 +22,26 @@ namespace BioEngine.BRC.Common.Posts.Api
     {
         private readonly IUserDataProvider _userDataProvider;
         private readonly ICurrentUserProvider _currentUserProvider;
+        private readonly StorageItemsRepository _storageItemsRepository;
 
         protected ApiPostsController(
             BaseControllerContext<BRC.Common.Entities.Post, Guid, PostsRepository> context,
             ContentBlocksRepository blocksRepository, IUserDataProvider userDataProvider,
-            ICurrentUserProvider currentUserProvider) : base(context,
+            ICurrentUserProvider currentUserProvider, StorageItemsRepository storageItemsRepository) : base(context,
             blocksRepository)
         {
             _userDataProvider = userDataProvider;
             _currentUserProvider = currentUserProvider;
+            _storageItemsRepository = storageItemsRepository;
         }
 
         public override async Task<ActionResult<StorageItem>> UploadAsync(string name)
         {
-            return await Storage.SaveFileAsync(Request.Body, name,
+            var uploaded = await Storage.SaveFileAsync(await GetBodyAsStreamAsync(), name,
                 $"posts/{DateTimeOffset.UtcNow.Year.ToString()}/{DateTimeOffset.UtcNow.Month.ToString()}");
+            var item = StorageItem.FromCore(uploaded);
+            await _storageItemsRepository.AddAsync(item);
+            return item;
         }
 
         [HttpGet("{postId}/versions")]

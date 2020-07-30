@@ -13,7 +13,7 @@ namespace BioEngine.BRC.Common.Web.Site.Model
         public int Page { get; }
         public int ItemsPerPage { get; }
 
-        public Tag[] Tags { get; set; }
+        public Tag[] Tags { get; set; } = new Tag[0];
 
         public ListViewModel(PageViewModelContext context, TEntity[] items, int totalItems, int page,
             int itemsPerPage) :
@@ -38,7 +38,7 @@ namespace BioEngine.BRC.Common.Web.Site.Model
 
         public PageViewModelContext GetContext()
         {
-            return new PageViewModelContext(LinkGenerator, PropertiesProvider, Site, Section);
+            return new PageViewModelContext(LinkGenerator, PropertiesProvider, Site, Storage, Section);
         }
     }
 }

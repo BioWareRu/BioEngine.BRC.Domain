@@ -5,7 +5,7 @@ namespace BioEngine.BRC.Common.Entities.Blocks
     [Entity("twitchblock")]
     public class TwitchBlock : ContentBlock<TwitchBlockData>
     {
-        public override string TypeTitle { get; set; } = "Twitch";
+        public override string? TypeTitle { get; set; } = "Twitch";
 
         public override string ToString()
         {

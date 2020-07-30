@@ -4,6 +4,7 @@ using BioEngine.BRC.Common.Entities;
 using BioEngine.BRC.Common.Properties;
 using BioEngine.BRC.Common.Seo;
 using Microsoft.AspNetCore.Routing;
+using Sitko.Core.Storage;
 
 namespace BioEngine.BRC.Common.Web.Site.Model
 {
@@ -13,6 +14,7 @@ namespace BioEngine.BRC.Common.Web.Site.Model
         public readonly Section? Section;
         protected readonly PropertiesProvider PropertiesProvider;
         protected readonly LinkGenerator LinkGenerator;
+        protected readonly IStorage<BRCStorageConfig> Storage;
 
         protected PageViewModel(PageViewModelContext context)
         {
@@ -20,10 +22,11 @@ namespace BioEngine.BRC.Common.Web.Site.Model
             Section = context.Section;
             PropertiesProvider = context.PropertiesProvider;
             LinkGenerator = context.LinkGenerator;
+            Storage = context.Storage;
         }
 
 
-        private PageMetaModel _meta;
+        private PageMetaModel? _meta;
 
         public Task<TPropertySet> GetSitePropertiesAsync<TPropertySet>() where TPropertySet : PropertiesSet, new()
         {
@@ -35,7 +38,7 @@ namespace BioEngine.BRC.Common.Web.Site.Model
             if (_meta == null)
             {
                 _meta = new PageMetaModel {Title = Site.Title, CurrentUrl = new Uri(Site.Url)};
-                SeoContentPropertiesSet seoPropertiesSet = null;
+                SeoContentPropertiesSet? seoPropertiesSet = null;
                 if (Section != null)
                 {
                     seoPropertiesSet = await PropertiesProvider.GetAsync<SeoContentPropertiesSet>(Section);
@@ -64,9 +67,9 @@ namespace BioEngine.BRC.Common.Web.Site.Model
     public class PageViewModel<T> : PageViewModel
     {
         public T Data { get; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Keywords { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public string? Keywords { get; set; }
 
         public PageViewModel(PageViewModelContext context, T data) : base(context)
         {

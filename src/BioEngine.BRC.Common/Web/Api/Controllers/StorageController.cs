@@ -22,7 +22,7 @@ namespace BioEngine.BRC.Common.Web.Api.Controllers
         [HttpPost("upload")]
         public async Task<StorageNode> UploadAsync([FromQuery] string name, [FromQuery] string path = "/")
         {
-            var item = await Storage.SaveFileAsync(Request.Body, name, path);
+            var item = await Storage.SaveFileAsync(await GetBodyAsStreamAsync(), name, path);
             return new StorageNode(item);
         }
 

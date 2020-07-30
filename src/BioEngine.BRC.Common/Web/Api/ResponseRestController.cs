@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,16 @@ using BioEngine.BRC.Common.Web.Api.Models;
 using BioEngine.BRC.Common.Web.Api.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using Sitko.Core.Repository;
+using Sitko.Core.Storage;
+using StorageItem = BioEngine.BRC.Common.Entities.StorageItem;
 
 namespace BioEngine.BRC.Common.Web.Api
 {
@@ -123,6 +132,22 @@ namespace BioEngine.BRC.Common.Web.Api
             return Ok(new ListResponse<TResponse>(restModels, result.itemsCount));
         }
 
+        public override void OnActionExecuted(ActionExecutedContext ctx)
+        {
+            if (ctx.Result is ObjectResult objectResult)
+            {
+                objectResult.Formatters.Add(new NewtonsoftJsonOutputFormatter(
+                    new JsonSerializerSettings
+                    {
+                        ContractResolver =
+                            new DefaultContractResolver {NamingStrategy = new CamelCaseNamingStrategy()},
+                        Converters = new List<JsonConverter> {new StorageItemConverter(Storage)}
+                    },
+                    ctx.HttpContext.RequestServices.GetRequiredService<ArrayPool<char>>(),
+                    ctx.HttpContext.RequestServices.GetRequiredService<IOptions<MvcOptions>>().Value));
+            }
+        }
+
         protected ActionResult<TResponse> Model(
             TResponse model)
         {
@@ -143,6 +168,53 @@ namespace BioEngine.BRC.Common.Web.Api
             IEnumerable<IErrorInterface> errors)
         {
             return new ObjectResult(new RestResponse(code, errors)) {StatusCode = code};
+        }
+    }
+
+    public class StorageItemConverter : JsonConverter<StorageItem>
+    {
+        private readonly IStorage<BRCStorageConfig> _storage;
+
+        public StorageItemConverter(IStorage<BRCStorageConfig> storage)
+        {
+            _storage = storage;
+        }
+
+        public override void WriteJson(JsonWriter writer, StorageItem value, JsonSerializer serializer)
+        {
+            var apiItem = new ApiStorageItem(value, _storage.PublicUri(value));
+
+            var valueToken = JToken.FromObject(apiItem, JsonSerializer.Create(new JsonSerializerSettings
+            {
+                ContractResolver =
+                    new DefaultContractResolver {NamingStrategy = new CamelCaseNamingStrategy()},
+            }));
+            valueToken.WriteTo(writer);
+        }
+
+        public override StorageItem ReadJson(JsonReader reader, Type objectType, StorageItem existingValue,
+            bool hasExistingValue,
+            JsonSerializer serializer)
+        {
+            string s = (string)reader.Value;
+            return JsonConvert.DeserializeObject<ApiStorageItem>(s);
+        }
+    }
+
+    public class ApiStorageItem : StorageItem
+    {
+        public Uri PublicUri { get; set; }
+
+        public ApiStorageItem(StorageItem item, Uri publicUri)
+        {
+            Id = item.Id;
+            Path = item.Path;
+            FileName = item.FileName;
+            FilePath = item.FilePath;
+            FileSize = item.FileSize;
+            DateAdded = item.DateAdded;
+            DateUpdated = item.DateUpdated;
+            PublicUri = publicUri;
         }
     }
 }

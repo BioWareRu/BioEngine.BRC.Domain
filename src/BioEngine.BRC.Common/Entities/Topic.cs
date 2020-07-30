@@ -6,7 +6,7 @@ namespace BioEngine.BRC.Common.Entities
     [Entity("topicsection")]
     public class Topic : BrcSection<TopicData>
     {
-        public override string TypeTitle { get; set; } = "Тема";
+        public override string? TypeTitle { get; set; } = "Тема";
         [NotMapped] public override string PublicRouteName { get; set; } = BrcDomainRoutes.TopicPublic;
     }
 

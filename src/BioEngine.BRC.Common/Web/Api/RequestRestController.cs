@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BioEngine.BRC.Common.Entities;
 using BioEngine.BRC.Common.Entities.Abstractions;
 using BioEngine.BRC.Common.Web.Api.Models;
 using BioEngine.BRC.Common.Web.Api.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sitko.Core.Repository;
-using Sitko.Core.Storage;
 
 namespace BioEngine.BRC.Common.Web.Api
 {
@@ -27,7 +27,7 @@ namespace BioEngine.BRC.Common.Web.Api
         }
 
         protected virtual async Task<TEntity> MapDomainModelAsync(TRequest restModel,
-            TEntity domainModel = null)
+            TEntity? domainModel = null)
         {
             return await restModel.GetEntityAsync(domainModel);
         }

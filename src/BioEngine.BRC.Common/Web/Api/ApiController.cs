@@ -15,13 +15,11 @@ namespace BioEngine.BRC.Common.Web.Api
         {
         }
 
-        protected async Task<byte[]> GetBodyAsFileAsync()
+        protected async Task<Stream> GetBodyAsStreamAsync()
         {
-            using (var ms = new MemoryStream())
-            {
-                await Request.Body.CopyToAsync(ms);
-                return ms.GetBuffer();
-            }
+            var memoryStream = new MemoryStream();
+            await Request.Body.CopyToAsync(memoryStream);
+            return memoryStream;
         }
     }
 }

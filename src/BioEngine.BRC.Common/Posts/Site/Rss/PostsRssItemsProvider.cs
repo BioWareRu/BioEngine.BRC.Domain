@@ -11,6 +11,7 @@ using BioEngine.BRC.Common.Routing;
 using BioEngine.BRC.Common.Web.Site.Rss;
 using cloudscribe.Syndication.Models.Rss;
 using Microsoft.AspNetCore.Routing;
+using Sitko.Core.Storage;
 
 namespace BioEngine.BRC.Common.Posts.Site.Rss
 {
@@ -19,13 +20,15 @@ namespace BioEngine.BRC.Common.Posts.Site.Rss
         private readonly PostsRepository _postsRepository;
         private readonly LinkGenerator _linkGenerator;
         private readonly ICommentsProvider _commentsProvider;
+        private readonly IStorage<BRCStorageConfig> _storage;
 
         public PostsRssItemsProvider(PostsRepository postsRepository, LinkGenerator linkGenerator,
-            ICommentsProvider commentsProvider)
+            ICommentsProvider commentsProvider, IStorage<BRCStorageConfig> storage)
         {
             _postsRepository = postsRepository;
             _linkGenerator = linkGenerator;
             _commentsProvider = commentsProvider;
+            _storage = storage;
         }
 
         public async Task<IEnumerable<RssItem>> GetItemsAsync(BRC.Common.Entities.Site site, int count)
@@ -34,7 +37,8 @@ namespace BioEngine.BRC.Common.Posts.Site.Rss
                 entities.Where(e => e.IsPublished).ForSite(site).OrderByDescending(p => p.DatePublished).Take(count));
             DateTimeOffset? mostRecentPubDate = DateTimeOffset.MinValue;
             var commentsData =
-                await _commentsProvider.GetCommentsDataAsync(posts.items.Select(p => p as IContentItem).ToArray(), site);
+                await _commentsProvider.GetCommentsDataAsync(posts.items.Select(p => p as IContentItem).ToArray(),
+                    site);
             var items = new List<RssItem>();
             foreach (var post in posts.items)
             {
@@ -90,13 +94,13 @@ namespace BioEngine.BRC.Common.Posts.Site.Rss
                         break;
                     case PictureBlock pictureBlock:
                         description +=
-                            $"<p style=\"text-align:center;\"><img src=\"{pictureBlock.Data.Picture.PublicUri}\" alt=\"{pictureBlock.Data.Picture.FileName}\" /></p>";
+                            $"<p style=\"text-align:center;\"><img src=\"{_storage.PublicUri(pictureBlock.Data.Picture)}\" alt=\"{pictureBlock.Data.Picture.FileName}\" /></p>";
                         break;
                     case GalleryBlock galleryBlock:
                         foreach (var picture in galleryBlock.Data.Pictures)
                         {
                             description +=
-                                $"<p style=\"text-align:center;\"><img src=\"{picture.PublicUri}\" alt=\"{picture.FileName}\" /></p>";
+                                $"<p style=\"text-align:center;\"><img src=\"{_storage.PublicUri(picture)}\" alt=\"{picture.FileName}\" /></p>";
                         }
 
                         break;

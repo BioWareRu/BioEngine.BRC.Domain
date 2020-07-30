@@ -25,15 +25,22 @@ namespace BioEngine.BRC.Common.Web.Api
         where TRequest : SectionRestModel<TEntity>, IContentRequestRestModel<TEntity>
         where TRepository : IContentEntityRepository<TEntity>
     {
+        private readonly StorageItemsRepository _storageItemsRepository;
+
         protected SectionController(BaseControllerContext<TEntity, Guid, TRepository> context,
-            ContentBlocksRepository blocksRepository) : base(context, blocksRepository)
+            ContentBlocksRepository blocksRepository, StorageItemsRepository storageItemsRepository) : base(context,
+            blocksRepository)
         {
+            _storageItemsRepository = storageItemsRepository;
         }
 
-
-        public override async Task<ActionResult<Sitko.Core.Storage.StorageItem>> UploadAsync([FromQuery] string name)
+        public override async Task<ActionResult<StorageItem>> UploadAsync([FromQuery] string name)
         {
-            return await Storage.SaveFileAsync(Request.Body, name, Path.Combine("sections", GetUploadPath()));
+            var uploaded = await Storage.SaveFileAsync(await GetBodyAsStreamAsync(), name,
+                Path.Combine("sections", GetUploadPath()));
+            var item = StorageItem.FromCore(uploaded);
+            await _storageItemsRepository.AddAsync(item);
+            return item;
         }
 
         protected abstract string GetUploadPath();

@@ -65,13 +65,13 @@ namespace BioEngine.BRC.Common.Web.Site.Model
                 {
                     if (block is PictureBlock pictureBlock)
                     {
-                        meta.ImageUrl = pictureBlock.Data.Picture.PublicUri;
+                        meta.ImageUrl = Storage.PublicUri(pictureBlock.Data.Picture);
                         break;
                     }
 
                     if (block is GalleryBlock galleryBlock && galleryBlock.Data.Pictures.Length > 0)
                     {
-                        meta.ImageUrl = galleryBlock.Data.Pictures[0].PublicUri;
+                        meta.ImageUrl = Storage.PublicUri(galleryBlock.Data.Pictures[0]);
                         break;
                     }
                 }
@@ -85,7 +85,7 @@ namespace BioEngine.BRC.Common.Web.Site.Model
             if (Entity is IContentEntity contentEntity)
             {
                 return new EntityViewModel<IContentEntity>(
-                    new PageViewModelContext(LinkGenerator, PropertiesProvider, Site, Section),
+                    new PageViewModelContext(LinkGenerator, PropertiesProvider, Site, Storage, Section),
                     contentEntity,
                     Mode);
             }

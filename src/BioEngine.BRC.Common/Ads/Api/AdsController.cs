@@ -7,7 +7,6 @@ using BioEngine.BRC.Common.Web;
 using BioEngine.BRC.Common.Web.Api;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using StorageItem = Sitko.Core.Storage.StorageItem;
 
 namespace BioEngine.BRC.Common.Ads.Api
 {
@@ -15,16 +14,22 @@ namespace BioEngine.BRC.Common.Ads.Api
     public abstract class
         AdsApiController : ContentEntityController<Ad, AdsRepository, Entities.Ad, Entities.Ad>
     {
+        private readonly StorageItemsRepository _storageItemsRepository;
+
         protected AdsApiController(BaseControllerContext<Ad, Guid, AdsRepository> context,
-            ContentBlocksRepository blocksRepository) : base(context,
+            ContentBlocksRepository blocksRepository, StorageItemsRepository storageItemsRepository) : base(context,
             blocksRepository)
         {
+            _storageItemsRepository = storageItemsRepository;
         }
 
         public override async Task<ActionResult<StorageItem>> UploadAsync(string name)
         {
-            return await Storage.SaveFileAsync(HttpContext.Request.Body, name,
+            var uploaded = await Storage.SaveFileAsync(await GetBodyAsStreamAsync(), name,
                 $"ads/{DateTimeOffset.UtcNow.Year.ToString()}/{DateTimeOffset.UtcNow.Month.ToString()}");
+            var item = StorageItem.FromCore(uploaded);
+            await _storageItemsRepository.AddAsync(item);
+            return item;
         }
 
         [Authorize(Policy = AdsPolicies.AdsAdd)]

@@ -223,8 +223,8 @@ namespace BioEngine.BRC.Common.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<StorageItemPictureInfo>("PictureInfo")
-                        .HasColumnType("jsonb");
+                    // b.Property<StorageItemPictureInfo>("PictureInfo")
+                    //     .HasColumnType("jsonb");
 
                     b.Property<string>("PublicUri")
                         .IsRequired()

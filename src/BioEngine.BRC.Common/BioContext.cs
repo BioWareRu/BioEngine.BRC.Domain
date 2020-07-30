@@ -1,5 +1,4 @@
-﻿using System;
-using BioEngine.BRC.Common.Entities;
+﻿using BioEngine.BRC.Common.Entities;
 using BioEngine.BRC.Common.Entities.Blocks;
 using BioEngine.BRC.Common.Facebook.Entities;
 using BioEngine.BRC.Common.IPB.Entities;
@@ -33,8 +32,8 @@ namespace BioEngine.BRC.Common
             base.OnModelCreating(modelBuilder);
 
 
-            modelBuilder.Entity<StorageItem>().Property(i => i.PublicUri)
-                .HasConversion(u => u.ToString(), s => new Uri(s));
+            // modelBuilder.Entity<StorageItem>().Property(i => i.PublicUri)
+            //     .HasConversion(u => u.ToString(), s => new Uri(s));
 
 
             modelBuilder.Entity<Section>().HasIndex(s => s.SiteIds);

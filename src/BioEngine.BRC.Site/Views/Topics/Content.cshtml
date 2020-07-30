@@ -1,15 +1,17 @@
 @using BioEngine.BRC.Common
 @using BioEngine.BRC.Common.Routing
 @using Microsoft.AspNetCore.Routing
+@using Sitko.Core.Storage
 @model BioEngine.BRC.Common.Web.Site.Model.SectionContentListViewModel<BioEngine.BRC.Common.Entities.Topic, BioEngine.BRC.Common.Entities.Post>
 @inject LinkGenerator LinkGenerator
+@inject IStorage<BRCStorageConfig> Storage
 @{
     Layout = "~/Views/_Main.cshtml";
 }
 <div class="card mb-4">
     @if (Model.Section.Data.HeaderPicture != null)
     {
-        <img class="card-img-top" src="@Model.Section.Data.HeaderPicture.PublicUri" alt="@Model.Section.Title"/>
+        <img class="card-img-top" src="@Storage.PublicUri(Model.Section.Data.HeaderPicture)" alt="@Model.Section.Title"/>
     }
     <section class="card-body">
         <header>

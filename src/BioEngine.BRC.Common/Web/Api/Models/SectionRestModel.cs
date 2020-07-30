@@ -51,7 +51,7 @@ namespace BioEngine.BRC.Common.Web.Api.Models
         where TEntity : Section, ISiteEntity, IEntity
     {
         public string Type { get; set; }
-        public string TypeTitle { get; set; }
+        public string? TypeTitle { get; set; }
 
         public async Task SetEntityAsync(TEntity entity)
         {
@@ -82,7 +82,7 @@ namespace BioEngine.BRC.Common.Web.Api.Models
         where TData : ITypedData, new()
     {
         public string Type { get; set; }
-        public string TypeTitle { get; set; }
+        public string? TypeTitle { get; set; }
         public TData Data { get; set; }
 
         public async Task SetEntityAsync(TEntity entity)

@@ -6,7 +6,7 @@ namespace BioEngine.BRC.Common.Web.Api.Entities
     {
         public Guid Id { get; set; }
         public string Type { get; set; }
-        public string TypeTitle { get; set; }
+        public string? TypeTitle { get; set; }
         public int Position { get; set; }
         public object Data { get; set; }
 

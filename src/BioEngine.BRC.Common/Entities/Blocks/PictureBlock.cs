@@ -5,7 +5,7 @@ namespace BioEngine.BRC.Common.Entities.Blocks
     [Entity("pictureblock")]
     public class PictureBlock : ContentBlock<PictureBlockData>
     {
-        public override string TypeTitle { get; set; } = "Галерея";
+        public override string? TypeTitle { get; set; } = "Галерея";
 
         public override string ToString()
         {

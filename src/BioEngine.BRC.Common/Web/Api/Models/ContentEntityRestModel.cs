@@ -17,7 +17,7 @@ namespace BioEngine.BRC.Common.Web.Api.Models
         private readonly SitesRepository _sitesRepository;
         public bool IsPublished { get; set; }
         public DateTimeOffset? DatePublished { get; set; }
-        public List<PublicUrl> PublicUrls = new List<PublicUrl>();
+        public List<PublicUrl> PublicUrls { get; set; } = new List<PublicUrl>();
         public List<ContentBlock> Blocks { get; set; } = new List<ContentBlock>();
         public string Url { get; set; }
         public string Title { get; set; }

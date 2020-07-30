@@ -1,4 +1,8 @@
+@using BioEngine.BRC.Common
+@using BioEngine.BRC.Common.Extensions
+@using Sitko.Core.Storage
 @model BioEngine.BRC.Common.Web.Models.BlockViewModel<BioEngine.BRC.Common.Entities.Blocks.GalleryBlock, BioEngine.BRC.Common.Entities.Blocks.GalleryBlockData>
+@inject IStorage<BRCStorageConfig> Storage
 @{
     var galleryId = $"gallery{Model.Block.Id}";
 }
@@ -14,9 +18,9 @@
             {
                 imgClass += " active";
             }
-            var imgUrl = picture.PictureInfo?.LargeThumbnail?.PublicUri ?? picture.PublicUri;
+            var imgUrl = Storage.LargeThumbnailUri(picture);
             <div class="@imgClass" style="background-image: url('@imgUrl')">
-                <a href="@picture.PublicUri" target="_blank" class="carousel-item-inner"></a>
+                <a href="@Storage.PublicUri(picture)" target="_blank" class="carousel-item-inner"></a>
             </div>
         }
         <!--Controls-->
@@ -41,7 +45,7 @@
             {
                 imgClass += " active";
             }
-            <li data-target="#@galleryId" data-slide-to="@index" class="@imgClass" style="background-image: url('@picture.PictureInfo.SmallThumbnail.PublicUri')" title="@picture.FileName (@picture.PictureInfo.HorizontalResolution x @picture.PictureInfo.VerticalResolution)">
+            <li data-target="#@galleryId" data-slide-to="@index" class="@imgClass" style="background-image: url('@Storage.SmallThumbnailUri(picture)')" title="@picture.FileName (@*@picture.PictureInfo.HorizontalResolution x @picture.PictureInfo.VerticalResolution // TODO: TITLE WITH ORIGINAL SIZE???*@)">
             </li>
         }
     </ol>

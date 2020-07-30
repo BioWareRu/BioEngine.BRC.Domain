@@ -15,7 +15,9 @@ namespace BioEngine.BRC.Common.Web.Api
 
         protected override IMvcBuilder ConfigureMvc(IMvcBuilder mvcBuilder)
         {
-            return base.ConfigureMvc(mvcBuilder).AddApplicationPart(typeof(ResponseRestController<,,,>).Assembly);
+            return base.ConfigureMvc(mvcBuilder)
+                .AddNewtonsoftJson()
+                .AddApplicationPart(typeof(ResponseRestController<,,,>).Assembly);
         }
 
         protected override void ConfigureAppServices(IServiceCollection services)
