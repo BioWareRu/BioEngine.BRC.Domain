@@ -46,7 +46,7 @@ namespace BioEngine.BRC.Common.Web.Api
 
         private ContentBlock? CreateBlock(string type)
         {
-            return ModelBuilderExtensions.CreateBlock(type);
+            return BRCDomainRegistrar.Instance().CreateBlock(type);
         }
 
         protected override async Task<TEntity> MapDomainModelAsync(TRequest restModel,

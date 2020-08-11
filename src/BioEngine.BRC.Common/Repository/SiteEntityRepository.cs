@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using BioEngine.BRC.Common.Entities;
 using BioEngine.BRC.Common.Entities.Abstractions;
-using BioEngine.BRC.Common.Validation;
 using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using Sitko.Core.Repository.EntityFrameworkCore;
@@ -35,12 +34,6 @@ namespace BioEngine.BRC.Common.Repository
             }
 
             return await base.BeforeValidateAsync(item, validationResult, isNew, cancellationToken);
-        }
-
-        protected override void RegisterValidators()
-        {
-            base.RegisterValidators();
-            Validators.Add(new SiteEntityValidator<TEntity>());
         }
     }
 }

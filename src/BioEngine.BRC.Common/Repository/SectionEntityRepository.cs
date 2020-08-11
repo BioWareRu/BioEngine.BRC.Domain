@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BioEngine.BRC.Common.Entities.Abstractions;
-using BioEngine.BRC.Common.Validation;
 using FluentValidation.Results;
 using Sitko.Core.Repository.EntityFrameworkCore;
 
@@ -22,12 +21,6 @@ namespace BioEngine.BRC.Common.Repository
             SectionsRepository = sectionsRepository;
         }
 
-        protected override void RegisterValidators()
-        {
-            base.RegisterValidators();
-            Validators.Add(new SectionEntityValidator<TEntity>());
-        }
-
         protected override async Task<bool> BeforeValidateAsync(TEntity item,
             (bool isValid, IList<ValidationFailure> errors) validationResult,
             bool isNew, CancellationToken cancellationToken = default)
@@ -37,7 +30,7 @@ namespace BioEngine.BRC.Common.Repository
             if (!result)
                 return false;
 
-            if (item.SectionIds != null && item.SectionIds.Any())
+            if (item.SectionIds.Any())
             {
                 var sections = (await SectionsRepository.GetByIdsAsync(item.SectionIds, cancellationToken)).ToArray();
 
