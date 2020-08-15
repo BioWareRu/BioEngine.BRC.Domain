@@ -18,12 +18,12 @@ namespace BioEngine.BRC.Common.Repository
             : base(repositoryContext)
         {
         }
-
-
+        
         protected override async Task<bool> BeforeValidateAsync(TEntity item,
             (bool isValid, IList<ValidationFailure> errors) validationResult, bool isNew,
             CancellationToken cancellationToken = default)
         {
+            item.DateUpdated = DateTimeOffset.UtcNow;
             if (item.SiteIds.Length == 0)
             {
                 var sites = await Set<Site>().ToListAsync(cancellationToken);
