@@ -7,6 +7,7 @@ using BioEngine.BRC.Common.Policies;
 using BioEngine.BRC.Common.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Hosting;
+using Serilog.Events;
 using Sitko.Core.App.Web;
 using Sitko.Core.Db.Postgres;
 using Sitko.Core.ElasticStack;
@@ -25,6 +26,7 @@ namespace BioEngine.BRC.Common
 
         public BRCApplication AddElasticStack()
         {
+            LoggingLevel = Environment.IsDevelopment() ? LogEventLevel.Debug : LogEventLevel.Information;
             if (!string.IsNullOrEmpty(Configuration["BE_ELASTIC_ES_URI"]) &&
                 !string.IsNullOrEmpty(Configuration["BE_ELASTIC_APM_URI"]))
             {
@@ -104,7 +106,7 @@ namespace BioEngine.BRC.Common
         }
 
         public BRCApplication
-            AddIpbUsers<TUsersModule, TConfig, TCurrentUserProvider>()
+            AddIpbUsers<TUsersModule, TConfig, TCurrentUserProvider>(bool isAdmin = false)
             where TUsersModule : IPBUsersModule<TConfig, TCurrentUserProvider>
             where TConfig : IPBUsersModuleConfig, new()
             where TCurrentUserProvider : class, ICurrentUserProvider
@@ -166,8 +168,17 @@ namespace BioEngine.BRC.Common
                 moduleConfig.AdminGroupId = adminGroupId;
                 moduleConfig.AdditionalGroupIds = additionalGroupIds.Distinct().ToArray();
                 moduleConfig.CallbackPath = "/login/ipb";
-                moduleConfig.ApiClientId = configuration["BE_IPB_OAUTH_CLIENT_ID"];
-                moduleConfig.ApiClientSecret = configuration["BE_IPB_OAUTH_CLIENT_SECRET"];
+                if (isAdmin)
+                {
+                    moduleConfig.ApiClientId = configuration["BE_IPB_ADMIN_OAUTH_CLIENT_ID"];
+                    moduleConfig.ApiClientSecret = configuration["BE_IPB_ADMIN_OAUTH_CLIENT_SECRET"];
+                }
+                else
+                {
+                    moduleConfig.ApiClientId = configuration["BE_IPB_OAUTH_CLIENT_ID"];
+                    moduleConfig.ApiClientSecret = configuration["BE_IPB_OAUTH_CLIENT_SECRET"];
+                }
+
                 moduleConfig.AuthorizationEndpoint = configuration["BE_IPB_AUTHORIZATION_ENDPOINT"];
                 moduleConfig.TokenEndpoint = configuration["BE_IPB_TOKEN_ENDPOINT"];
                 moduleConfig.DataProtectionPath = configuration["BE_IPB_DATA_PROTECTION_PATH"];
