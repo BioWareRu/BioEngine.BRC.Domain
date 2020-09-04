@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sitko.Core.App.Web" Version="3.5.2" />
-    <PackageReference Include="Sitko.Core.Db.Postgres" Version="3.5.2" />
-    <PackageReference Include="Sitko.Core.ElasticStack" Version="3.5.2" />
-    <PackageReference Include="Sitko.Core.Repository.EntityFrameworkCore" Version="3.5.2" />
-    <PackageReference Include="Sitko.Core.Search.ElasticSearch" Version="3.5.2" />
-    <PackageReference Include="Sitko.Core.Storage.S3" Version="3.5.2" />
+    <PackageReference Include="Sitko.Core.App.Web" Version="3.8.0" />
+    <PackageReference Include="Sitko.Core.Db.Postgres" Version="3.8.0" />
+    <PackageReference Include="Sitko.Core.ElasticStack" Version="3.8.0" />
+    <PackageReference Include="Sitko.Core.Repository.EntityFrameworkCore" Version="3.8.0" />
+    <PackageReference Include="Sitko.Core.Search.ElasticSearch" Version="3.8.0" />
+    <PackageReference Include="Sitko.Core.Storage.S3" Version="3.8.0" />
     <PackageReference Include="cloudscribe.Syndication.Web" Version="3.1.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
     <PackageReference Include="cloudscribe.Web.SiteMap" Version="4.1.0" />
