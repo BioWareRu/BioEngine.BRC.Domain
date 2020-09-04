@@ -5,7 +5,8 @@ namespace BioEngine.BRC.Common.Entities.Blocks
     [Entity("cutblock")]
     public class CutBlock : ContentBlock<CutBlockData>
     {
-        public override string? TypeTitle { get; set; } = "Кат";
+        public override string? TypeTitle => "Кат";
+        public override string TypeIcon => "content_cut";
 
         public override string ToString()
         {

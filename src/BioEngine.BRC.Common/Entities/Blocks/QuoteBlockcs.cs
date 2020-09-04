@@ -5,7 +5,8 @@ namespace BioEngine.BRC.Common.Entities.Blocks
     [Entity("quoteblock")]
     public class QuoteBlock : ContentBlock<QuoteBlockData>
     {
-        public override string? TypeTitle { get; set; } = "Цитата";
+        public override string TypeTitle => "Цитата";
+        public override string TypeIcon => "format_quote";
 
         public override string ToString()
         {

@@ -5,7 +5,8 @@ namespace BioEngine.BRC.Common.Entities.Blocks
     [Entity("youtubeblock")]
     public class YoutubeBlock : ContentBlock<YoutubeBlockData>
     {
-        public override string? TypeTitle { get; set; } = "Youtube";
+        public override string TypeTitle => "Youtube";
+        public override string TypeIcon => "video_library";
 
         public override string ToString()
         {

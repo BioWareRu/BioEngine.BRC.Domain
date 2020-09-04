@@ -12,7 +12,8 @@ namespace BioEngine.BRC.Common.Entities
         [Required] public Guid ContentId { get; set; }
         [Required] public string Type { get; set; }
         [Required] public int Position { get; set; }
-        [NotMapped] public abstract string? TypeTitle { get; set; }
+        [NotMapped] public abstract string TypeTitle { get; }
+        [NotMapped] public abstract string TypeIcon { get; }
 
         public abstract object GetData();
         public abstract void SetData(object data);
