@@ -12,15 +12,12 @@ using BioEngine.Core.Search.ElasticSearch;
 using BioEngine.Core.Storage.S3;
 using BioEngine.Core.Users;
 using BioEngine.Extra.Ads;
-using BioEngine.Extra.ElasticStack;
 using BioEngine.Extra.IPB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
-using Serilog;
-using Serilog.Events;
 
 namespace BioEngine.BRC.Common
 {
@@ -67,35 +64,6 @@ namespace BioEngine.BRC.Common
         public static Core.BioEngine AddBrcDomain(this Core.BioEngine bioEngine)
         {
             return bioEngine.AddModule<BrcDomainModule>();
-        }
-
-        public static Core.BioEngine AddLogging(this Core.BioEngine bioEngine,
-            LogEventLevel devLevel = LogEventLevel.Debug, LogEventLevel prodLevel = LogEventLevel.Information,
-            Action<LoggerConfiguration, IHostEnvironment> configure = null)
-        {
-            return bioEngine
-                .AddModule<ElasticSearchLoggingModule, ElasticSearchLoggingConfig>(
-                    (configuration, environment) =>
-                        new ElasticSearchLoggingConfig(new List<Uri> {new Uri(configuration["BE_ELASTIC_ES_URL"])})
-                        {
-                            DevLevel = devLevel,
-                            ProdLevel = prodLevel,
-                            Configure =
-                                (loggerConfiguration, hostEnvironment) =>
-                                {
-                                    if (!environment.IsDevelopment())
-                                    {
-                                        loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
-                                    }
-
-                                    configure?.Invoke(loggerConfiguration, hostEnvironment);
-                                }
-                        }
-                )
-                .AddModule<ElasticSearchApmModule, ElasticSearchApmConfig>(
-                    (configuration, environment) =>
-                        new ElasticSearchApmConfig(new List<Uri> {new Uri(configuration["BE_ELASTIC_APM_URL"])})
-                );
         }
 
         public static Core.BioEngine AddS3Storage(this Core.BioEngine bioEngine)

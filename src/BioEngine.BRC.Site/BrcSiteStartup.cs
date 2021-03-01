@@ -1,10 +1,8 @@
 using System.Globalization;
 using BioEngine.BRC.Common;
-using BioEngine.Core.Logging.Controllers;
 using BioEngine.Core.Site;
 using BioEngine.Extra.Ads.Site;
 using BioEngine.Extra.IPB.Controllers;
-using Elastic.Apm.NetCoreAll;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;
@@ -23,7 +21,7 @@ namespace BioEngine.BRC.Site
 
         protected override IMvcBuilder ConfigureMvc(IMvcBuilder mvcBuilder)
         {
-            base.ConfigureMvc(mvcBuilder).AddApplicationPart(typeof(LogsController).Assembly)
+            base.ConfigureMvc(mvcBuilder)
                 .AddApplicationPart(typeof(UserController).Assembly)
                 .AddApplicationPart(typeof(BrcSiteModule).Assembly)
                 .AddApplicationPart(typeof(AdsSiteController).Assembly);
@@ -61,15 +59,6 @@ namespace BioEngine.BRC.Site
         {
             endpoints.AddBrcRoutes();
             base.ConfigureEndpoints(app, env, endpoints);
-        }
-
-        protected override void ConfigureStart(IApplicationBuilder appBuilder)
-        {
-            base.ConfigureStart(appBuilder);
-            if (Environment.IsProduction())
-            {
-                appBuilder.UseAllElasticApm(Configuration);
-            }
         }
     }
 }
