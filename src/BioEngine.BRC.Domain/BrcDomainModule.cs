@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
+using Serilog.Extensions.Logging;
 
 namespace BioEngine.BRC.Domain
 {
@@ -21,6 +24,29 @@ namespace BioEngine.BRC.Domain
             services.RegisterSearchProvider<DevelopersSearchProvider, Developer>();
             services.RegisterSearchProvider<GamesSearchProvider, Game>();
             services.RegisterSearchProvider<TopicsSearchProvider, Topic>();
+            services.AddSingleton<ILoggerFactory>(_ => new SerilogLoggerFactory());
+
+            var loggerConfiguration = new LoggerConfiguration();
+            loggerConfiguration.MinimumLevel.Is(environment.IsDevelopment()
+                ? LogEventLevel.Debug
+                : LogEventLevel.Information);
+            loggerConfiguration
+                .Enrich.FromLogContext()
+                .Enrich.WithMachineName();
+
+            loggerConfiguration
+                .WriteTo.Console(
+                    outputTemplate:
+                    "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}]{NewLine}\t{Message:lj}{NewLine}{Exception}");
+
+            if (environment.IsProduction())
+            {
+                loggerConfiguration.MinimumLevel.Override("System.Net.Http.HttpClient.health-checks",
+                    LogEventLevel.Error);
+                loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
+            }
+
+            Log.Logger = loggerConfiguration.CreateLogger();
         }
     }
 
