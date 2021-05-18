@@ -41,8 +41,7 @@ namespace BioEngine.BRC.Domain
 
             if (environment.IsProduction())
             {
-                loggerConfiguration.MinimumLevel.Override("System.Net.Http.HttpClient.health-checks",
-                    LogEventLevel.Error);
+                loggerConfiguration.MinimumLevel.Override("System.Net.Http.HttpClient", LogEventLevel.Error);
                 loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
             }
 
